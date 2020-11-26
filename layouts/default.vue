@@ -1,14 +1,14 @@
 <template>
-  <v-app id="app">
+  <v-app>
     <v-app-bar
+      :app="$store.state.them.isApp"
       color="#6A76AB"
       dark
-      elevation="0"
       prominent
-      hide-on-scroll
+      elevation="0"
       src="/img/sarh.cover.jpg"
-      max-height="80"
-      extension-height="320"
+      height="80"
+      extension-height="380"
     >
       <template #img="{ props }">
         <v-img
@@ -19,12 +19,13 @@
 
       <!-- nav bar start ----------------------------------------------------------->
       <nav-bar />
+
       <!-- nav bar start ----------------------------------------------------------->
-      <template #extension v-if="false">
+      <template #extension v-if="$store.state.them.isHome">
         <search />
       </template>
     </v-app-bar>
-    <v-main class="overflow-hidden">
+    <v-main>
       <v-container>
         <!-- registration form start -------------------------------------------------->
         <div justify="center">
@@ -53,18 +54,10 @@ import search from '~/components/header/search'
 import registerForm from '~/components/auth/register'
 import loginForm from '~/components/auth/login'
 export default {
+  middleware: ['navBar'],
   components: { navBar, search, registerForm, loginForm },
   data() {
-    return {
-      
-    }
+    return {}
   },
-  created() {
-  }
 }
 </script>
-<style>
-#app {
-  background-color: #f5f5f5;
-}
-</style>

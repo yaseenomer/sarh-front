@@ -35,7 +35,7 @@
                     outlined
                     rounded
                     small
-                    @click="$router.push('/post/photos')"
+                    @click="$router.push('/company/55')"
                     >show all photos
                     <v-icon>mdi-arrow-right</v-icon>
                   </v-btn>

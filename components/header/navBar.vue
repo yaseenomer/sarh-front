@@ -1,6 +1,8 @@
 <template>
   <v-row class="justify-space-around">
-    <img src="/logo/logo.png" />
+    <nuxt-link to="/">
+      <img src="/logo/logo.png" />
+    </nuxt-link>
     <div>
       <v-btn text dark @click="$router.push({ name: 'community' })">
         <v-icon color="primary" class="mx-1">mdi-chat-outline</v-icon>
