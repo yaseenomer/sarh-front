@@ -29,7 +29,7 @@ export default {
 </script>
 <template>
   <v-menu top left rounded="xl">
-    <template v-slot:activator="{ on, attrs }">
+    <template #activator="{ on, attrs }">
       <v-btn
         fab
         :color="them.color"

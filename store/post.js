@@ -23,6 +23,16 @@ export const actions = {
     const posts = await this.$axios.get('operation/apiGetPost/20')
     commit('SET_POSTS', posts.data.data)
   },
+
+  async likePost(context, post) {
+    if (this.$auth.loggedIn) {
+      const status = post.is_Like ? 0 : 1
+      post.is_Like = !post.is_Like
+      await this.$axios.post('operation/apiLike', { post_id: post.id, status })
+    } else {
+      this.$toast.error('please login ...')
+    }
+  },
 }
 
 export default {

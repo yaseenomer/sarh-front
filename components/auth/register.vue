@@ -72,7 +72,7 @@ export default {
 }
 </script>
 <template>
-  <v-card rounded="20">
+  <v-card>
     <v-card-text>
       <div class="logo text-center">
         <img src="/Logo/logo.png" class="mt-5" />

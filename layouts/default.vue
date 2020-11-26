@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app id="app">
     <v-app-bar
       :app="$store.state.them.isApp"
       color="#6A76AB"
@@ -21,7 +21,7 @@
       <nav-bar />
 
       <!-- nav bar start ----------------------------------------------------------->
-      <template #extension v-if="$store.state.them.isHome">
+      <template v-if="$store.state.them.isHome" #extension>
         <search />
       </template>
     </v-app-bar>
@@ -54,10 +54,15 @@ import search from '~/components/header/search'
 import registerForm from '~/components/auth/register'
 import loginForm from '~/components/auth/login'
 export default {
-  middleware: ['navBar'],
   components: { navBar, search, registerForm, loginForm },
+  middleware: ['navBar'],
   data() {
     return {}
   },
 }
 </script>
+<style>
+#app {
+  background-color: #f5f5f5;
+}
+</style>

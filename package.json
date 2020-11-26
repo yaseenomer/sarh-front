@@ -16,6 +16,7 @@
     "@nuxtjs/proxy": "^2.0.1",
     "@nuxtjs/toast": "^3.3.1",
     "core-js": "^3.6.5",
+    "lodash": "^4.17.20",
     "nuxt": "^2.14.6",
     "vue-social-sharing": "^3.0.4",
     "vuelidate": "^0.7.6"
