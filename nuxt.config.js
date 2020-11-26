@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
+import auth from './config/auth'
 
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
@@ -15,7 +16,6 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
-
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [],
 
@@ -37,10 +37,32 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
+    '@nuxtjs/proxy',
+    '@nuxtjs/toast',
+    'vue-social-sharing/nuxt',
   ],
+  auth,
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    baseURL: 'http://back.sarh.ae/api/',
+    common: {
+      Accept: 'application/json',
+    },
+    proxyHeaders: false,
+    credentials: false,
+  },
+
+  proxy: {
+    '/api': {
+      target: 'https://back.sarh.ae/',
+      pathRewrite: {
+        '^/api/': '/',
+      },
+      changeOrigin: true,
+    },
+  },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
