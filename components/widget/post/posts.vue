@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col v-for="post in posts" :key="post.id" cols="12" md="4">
-      <v-hover v-slot:default="{ hover }">
+      <v-hover v-slot="{ hover }">
         <v-card
           class="rounded-xl"
           outlined

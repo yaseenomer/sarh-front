@@ -75,7 +75,7 @@
           <v-list-item-group color="primary">
             <v-list-item
               route
-              :to="$auth.user.type == 2 ? '/company/profile' : '/user/profile'"
+              :to="$auth.user.type == 2 ? '/profile/company' : '/profile/user'"
             >
               <v-list-item-icon>
                 <v-icon>mdi-account-cog-outline</v-icon>

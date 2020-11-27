@@ -38,15 +38,6 @@ export const mutations = {
     state.company = company
   },
 
-  setFavorite(state, data) {
-    const company = state.companies.find((company) => company.id === data.id)
-
-    if (company.is_Favorite) {
-      return (company.is_Favorite = false)
-    }
-    return (company.is_Favorite = true)
-  },
-
   setCompaniesByActivity(state, ac) {
     const coms = []
     state.companies.forEach((company) => {
@@ -107,15 +98,14 @@ export const actions = {
     commit('setReports', reports.data)
   },
 
-  async favorite({ commit }, data) {
+  async favorite(context, data) {
     if (this.$auth.loggedIn) {
       const status = (await data.is_Favorite) ? 0 : 1
       data.is_Favorite = !data.is_Favorite
-      this.$axios.post('operation/apiUserFavorite', {
+      await this.$axios.post('operation/apiUserFavorite', {
         company_id: data.id,
         status: status,
       })
-      commit('setFavorite', data)
     } else {
       this.$toast.info('plase login to do that')
     }

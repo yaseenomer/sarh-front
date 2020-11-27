@@ -11,8 +11,8 @@
         <v-tab>Random</v-tab>
         <v-tab-item>
           <v-container style="background-color: #f5f5f5">
-            <template v-if="companies.length">
-              <company :companies="companies" />
+            <template v-if="recentlyAdded.length">
+              <company :companies="recentlyAdded" />
             </template>
             <template v-else>
               <v-row>
@@ -24,6 +24,23 @@
                 </v-col>
               </v-row>
             </template>
+          </v-container>
+        </v-tab-item>
+        <v-tab-item>
+          <v-container style="background-color: #f5f5f5">
+            <company :companies="topRating" />
+          </v-container>
+        </v-tab-item>
+
+        <v-tab-item>
+          <v-container style="background-color: #f5f5f5">
+            <company :companies="recommendedByUs" />
+          </v-container>
+        </v-tab-item>
+
+        <v-tab-item>
+          <v-container style="background-color: #f5f5f5">
+            <company :companies="companies" />
           </v-container>
         </v-tab-item>
       </v-tabs>
@@ -39,10 +56,14 @@ export default {
   computed: {
     ...mapGetters({
       companies: 'company/companies',
+      recentlyAdded: 'company/recentlyAdded',
+      topRating: 'company/topRating',
+      recommendedByUs: 'company/recommendedByUs',
     }),
   },
   created() {
     this.$store.dispatch('company/getCompanies')
+    this.$store.dispatch('company/getRecommendedByUs')
   },
 }
 </script>
