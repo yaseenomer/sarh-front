@@ -1,48 +1,27 @@
 <template>
   <v-row class="justify-space-around">
-    <nuxt-link to="/">
+    <nuxt-link :to="localePath({ name: 'index' })">
       <img src="/logo/logo.png" />
     </nuxt-link>
     <div>
       <v-btn text dark @click="$router.push({ name: 'community' })">
         <v-icon color="primary" class="mx-1">mdi-chat-outline</v-icon>
-        community
+        {{ $t('nav.home') }}
       </v-btn>
 
       <v-btn text dark>
         <v-icon color="primary" class="mx-1">mdi-message-text-outline</v-icon>
         quotations
       </v-btn>
-      <v-menu offset-y open-on-hover>
-        <template #activator="{ on, attrs }">
-          <v-btn value="justify" v-bind="attrs" text dark v-on="on">
-            <v-icon color="primary" class="mx-1">mdi-web</v-icon>
-            language
-            <v-icon color="primary" class="mx-1">mdi-arrow-down</v-icon>
-          </v-btn>
-        </template>
-        <v-list dense>
-          <v-list-item-group color="primary">
-            <v-list-item>
-              <v-list-item-icon>
-                <v-icon>mdi-abjad-arabic</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title>عربي</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-icon>
-                <v-icon>mdi-alpha-e</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title>english</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
-      </v-menu>
 
+      <v-btn v-if="$i18n.locale === 'en'" text dark @click="setLocal('ar')">
+        <v-icon color="primary" class="mx-1">mdi-abjad-arabic</v-icon>
+        عربي
+      </v-btn>
+      <v-btn v-if="$i18n.locale === 'ar'" text dark @click="setLocal('en')">
+        <v-icon color="primary" class="mx-1">mdi-alpha-e</v-icon>
+        english
+      </v-btn>
       <v-btn
         v-if="!$auth.loggedIn"
         value="ty"
@@ -127,6 +106,9 @@ export default {
       await this.$auth.logout()
       this.logOutLoading = await false
       this.$store.dispatch('company/getCompanies')
+    },
+    setLocal(local) {
+      this.$router.replace(this.switchLocalePath(local))
     },
   },
 }

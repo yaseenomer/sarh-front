@@ -7,8 +7,8 @@
 <script>
 import company from '~/components/profile/company/index'
 export default {
-  components: { company },
   name: 'CompanyProfile',
+  components: { company },
 }
 </script>
 

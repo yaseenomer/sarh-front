@@ -1,5 +1,7 @@
 import colors from 'vuetify/es5/util/colors'
 import auth from './config/auth'
+import ar from './static/i18n/ar.json'
+import en from './static/i18n/en.json'
 
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
@@ -40,6 +42,7 @@ export default {
     '@nuxtjs/auth',
     '@nuxtjs/proxy',
     '@nuxtjs/toast',
+    'nuxt-i18n',
     'vue-social-sharing/nuxt',
   ],
   auth,
@@ -67,6 +70,7 @@ export default {
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
+    rtl: false,
     theme: {
       dark: false,
       themes: {
@@ -89,6 +93,14 @@ export default {
           success: colors.green.accent3,
         },
       },
+    },
+  },
+  i18n: {
+    locales: ['en', 'ar'],
+    defaultLocale: 'en',
+    vueI18n: {
+      fallbackLocale: 'en',
+      messages: { ar, en },
     },
   },
 
