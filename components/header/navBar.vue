@@ -108,7 +108,7 @@ export default {
       this.$store.dispatch('company/getCompanies')
     },
     setLocal(local) {
-      this.$router.replace(this.switchLocalePath(local))
+      this.$i18n.locale = local
     },
   },
 }

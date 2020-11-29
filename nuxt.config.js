@@ -98,6 +98,7 @@ export default {
   i18n: {
     locales: ['en', 'ar'],
     defaultLocale: 'en',
+    strategy: 'no_prefix',
     vueI18n: {
       fallbackLocale: 'en',
       messages: { ar, en },
