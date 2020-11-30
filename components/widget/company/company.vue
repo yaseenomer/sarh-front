@@ -100,11 +100,13 @@ export default {
               rounded
               @click="$router.push('/company/' + company.id)"
             >
-              <span style="color: #0c7cfe">view profile</span>
+              <span style="color: #0c7cfe">{{
+                $t('company.viewprofile')
+              }}</span>
             </v-btn>
             <v-btn small elevation="0" rounded color="blue lighten-5">
               <v-icon color="primary">mdi-eye-outline</v-icon>
-              <span style="color: #0c7cfe">51 views</span>
+              <span style="color: #0c7cfe"> 51</span>
             </v-btn>
           </v-row>
         </v-card-actions>

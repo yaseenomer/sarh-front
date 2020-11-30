@@ -2,14 +2,14 @@
   <v-row id="scrolling-techniques-4" class="overflow-y-auto">
     <v-col cols="12">
       <p class="primary--text text-center text-uppercase font-weight-bold">
-        Latest posts
+        {{ $t('home.Latestposts') }}
       </p>
     </v-col>
     <v-col>
       <v-tabs centered background-color="#f5f5f5">
-        <v-tab>Photos</v-tab>
-        <v-tab>Videos</v-tab>
-        <v-tab>Posts</v-tab>
+        <v-tab>{{ $t('home.Photos') }}</v-tab>
+        <v-tab>{{ $t('home.Videos') }}</v-tab>
+        <v-tab>{{ $t('home.Posts') }}</v-tab>
         <v-tab-item>
           <v-container style="background-color: #f5f5f5">
             <template v-if="images.length">
@@ -34,7 +34,7 @@
                     rounded
                     small
                     @click="$router.push('/company/55')"
-                    >show all photos
+                    >{{ $t('home.showallphotos') }}
                     <v-icon>mdi-arrow-right</v-icon>
                   </v-btn>
                 </p>
@@ -54,7 +54,7 @@
                     rounded
                     small
                     @click="$router.push('/company/55')"
-                    >show all videos
+                    >{{ $t('home.showallvideos') }}
                     <v-icon>mdi-arrow-right</v-icon>
                   </v-btn>
                 </p>
@@ -74,7 +74,8 @@
                     rounded
                     small
                     @click="$router.push('/company/55')"
-                    >show all posts
+                  >
+                    {{ $t('home.showallposts') }}
                     <v-icon>mdi-arrow-right</v-icon>
                   </v-btn>
                 </p>

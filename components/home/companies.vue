@@ -2,13 +2,13 @@
   <v-row>
     <v-col cols="12" md="12">
       <p class="primary--text text-center text-uppercase font-weight-bold">
-        Companies
+        {{ $t('home.Companies') }}
       </p>
       <v-tabs centered background-color="#f5f5f5">
-        <v-tab>Recently added</v-tab>
-        <v-tab>Top Rating</v-tab>
-        <v-tab>recommended By Us</v-tab>
-        <v-tab>Random</v-tab>
+        <v-tab>{{ $t('home.Recentlyadded') }}</v-tab>
+        <v-tab>{{ $t('home.TopRating') }}</v-tab>
+        <v-tab>{{ $t('home.recommendedByUs') }}</v-tab>
+        <v-tab>{{ $t('home.Random') }}</v-tab>
         <v-tab-item>
           <v-container style="background-color: #f5f5f5">
             <template v-if="recentlyAdded.length">

@@ -4,10 +4,10 @@
       <v-col cols="12" md="8" offset-md="2">
         <v-icon color="primary">mdi-format-quote-open</v-icon>
         <h1 class="primary--text text-uppercase font-weight-bold">
-          everything you need
+          {{ $t('home.title-1') }}
         </h1>
         <h3 class="primary--text text-uppercase font-weight-bold">
-          find best company and professionals consulting on sarh
+          {{ $t('home.title-2') }}
         </h3>
         <p class="text-center">
           <v-btn
@@ -19,7 +19,7 @@
             "
           >
             <v-icon class="mx-1">mdi-account-plus-outline</v-icon>
-            just register now</v-btn
+            {{ $t('home.justregisternow') }}</v-btn
           >
         </p>
       </v-col>
@@ -31,14 +31,14 @@
           color="primary"
           outlined
           filled
-          placeholder="search"
+          :placeholder="$t('home.search')"
           dense
         ></v-text-field>
       </v-col>
       <v-col cols="12" md="1">
         <v-btn dark rounded color="primary" large>
           <v-icon>mdi-magnify</v-icon>
-          search
+          {{ $t('home.search') }}
         </v-btn>
       </v-col>
     </v-row>

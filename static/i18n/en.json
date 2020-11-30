@@ -1,10 +1,38 @@
 {
   "nav": {
-    "home": "home"
+    "home": "home",
+    "quotations":"quotations",
+    "login":"login",
+    "addcompany":"add company",
+    "userprofile":"user profile",
+    "logout":"logout"
+   
   },
   "home": {
     "title-1": "EVERYTHING YOU NEED",
-    "title-2": "FIND BEST COMPANY AND PROFESSIONALS CONSULTING ON SARH"
+    "title-2": "FIND BEST COMPANY AND PROFESSIONALS CONSULTING ON SARH",
+    "justregisternow": "just register now",
+    "search":"search",
+    "Latestposts":"Latest posts",
+    "Photos":"Photos",
+    "Posts":"Posts",
+    "Videos":"Videos",
+    "showallposts":"show all posts",
+    "showallvideos":"show all videos",
+    "showallphotos":"show all photos",
+    "Companies":"Companies",
+    "Recentlyadded":"Recently added",
+    "TopRating":"Top Rating",
+    "recommendedByUs":"recommended By Us",
+    "Random":"Random"
+  },
+  "posts":
+  {
+    
+  },
+  "company":
+  {
+    "viewprofile":"view profile"
   },
   "global": {}
 }

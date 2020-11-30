@@ -11,7 +11,7 @@
 
       <v-btn text dark>
         <v-icon color="primary" class="mx-1">mdi-message-text-outline</v-icon>
-        quotations
+        {{ $t('nav.quotations') }}
       </v-btn>
 
       <v-btn v-if="$i18n.locale === 'en'" text dark @click="setLocal('ar')">
@@ -30,7 +30,7 @@
         @click="$store.commit('user/setLoginForm', true)"
       >
         <v-icon color="primary" class="mx-1">mdi-login</v-icon>
-        login
+        {{ $t('nav.login') }}
       </v-btn>
       <v-menu v-else offset-y open-on-hover>
         <template #activator="{ on, attrs }">
@@ -60,7 +60,9 @@
                 <v-icon>mdi-account-cog-outline</v-icon>
               </v-list-item-icon>
               <v-list-item-content>
-                <v-list-item-title>user profile</v-list-item-title>
+                <v-list-item-title>{{
+                  $t('nav.userprofile')
+                }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
             <v-list-item @click="logOut">
@@ -68,7 +70,7 @@
                 <v-icon>mdi-logout-variant</v-icon>
               </v-list-item-icon>
               <v-list-item-content>
-                <v-list-item-title>logout</v-list-item-title>
+                <v-list-item-title>{{ $t('nav.logout') }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </v-list-item-group>
@@ -81,7 +83,7 @@
       elevation="0"
       @click="$store.commit('user/setRegisterForm', { status: true, type: 2 })"
     >
-      <v-icon>mdi-plus</v-icon>add company
+      <v-icon>mdi-plus</v-icon>{{ $t('nav.addcompany') }}
     </v-btn>
   </v-row>
 </template>

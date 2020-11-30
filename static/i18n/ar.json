@@ -1,10 +1,38 @@
 {
   "nav": {
-    "home": "الرئيسية"
+    "home": "الرئيسية",
+    "quotations":"طلب تسعير",
+    "login":"تسجيل دخول",
+    "addcompany":"اضافة شركة",
+    "userprofile":"الملف الشخصي",
+    "logout":"تسجيل خروج"
+    
   },
   "home": {
-    "title-1": "كل ما تحتاجه",
-    "title-2": "ابحث عن أفضل الشركات  والاستشاريين في صرح"
+      "title-1": "كل ما تحتاجه",
+      "title-2": "ابحث عن أفضل الشركات  والاستشاريين في صرح",
+      "justregisternow" :"انضم الينا الان",
+      "search" :"البحث",
+      "Latestposts":"اخر المنشورات",
+      "Photos":"الصور",
+      "Posts":"المنشورات",
+      "Videos":"فيديوهات",
+      "showallposts":"عرض جميع المنشورات",
+      "showallvideos":"عرض جميع الفيديوهات",
+      "showallphotos":"عرض جميع الصور",
+      "Companies":"الشركات",
+      "Recentlyadded":"المضاف حديثا",
+      "TopRating":"اعلي تقييم",
+      "recommendedByUs":"نوصي به",
+      "Random":"عشوائي"
+  },
+  "posts":
+  {
+    
+  },
+  "company":
+  {
+    "viewprofile":"عرض الشركة"
   },
   "global": {}
 }
