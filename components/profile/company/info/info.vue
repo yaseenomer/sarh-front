@@ -1,14 +1,14 @@
 <template>
   <v-container>
     <v-row>
-      <v-tabs vertical>
+      <v-tabs vertical background-color="#eeeeee">
+        <v-tab>
+          <v-icon left>mdi-information-variant</v-icon>
+          about
+        </v-tab>
         <v-tab>
           <v-icon left>mdi-tag-multiple-outline</v-icon>
           activity
-        </v-tab>
-        <v-tab>
-          <v-icon left>mdi-information-variant</v-icon>
-          info
         </v-tab>
         <v-tab>
           <v-icon left>mdi-map-marker-multiple-outline</v-icon>
@@ -20,30 +20,22 @@
         </v-tab>
         <v-tab>
           <v-icon left>mdi-map-marker-radius-outline</v-icon>
-          map
+          map . . .
         </v-tab>
         <v-tab-item>
-          <v-card flat>
-            <v-card-text>
-              <p>
-                Sed aliquam ultrices mauris. Donec posuere vulputate arcu. Morbi
-                ac felis. Etiam feugiat lorem non metus. Sed a libero.
-              </p>
-
-              <p>
-                Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel,
-                lacus. Aenean tellus metus, bibendum sed, posuere ac, mattis
-                non, nunc. Aliquam lobortis. Aliquam lobortis. Suspendisse non
-                nisl sit amet velit hendrerit rutrum.
-              </p>
-
-              <p class="mb-0">
-                Phasellus dolor. Fusce neque. Fusce fermentum odio nec arcu.
-                Pellentesque libero tortor, tincidunt et, tincidunt eget, semper
-                nec, quam. Phasellus blandit leo ut odio.
-              </p>
-            </v-card-text>
-          </v-card>
+          <about-company />
+        </v-tab-item>
+        <v-tab-item>
+          <activity />
+        </v-tab-item>
+        <v-tab-item>
+          <company-address />
+        </v-tab-item>
+        <v-tab-item>
+          <licence />
+        </v-tab-item>
+        <v-tab-item>
+          <p>map</p>
         </v-tab-item>
       </v-tabs>
     </v-row>
@@ -51,7 +43,16 @@
 </template>
 
 <script>
-export default {}
+import activity from '~/components/profile/company/info/activity'
+import aboutCompany from '~/components/profile/company/info/about'
+import companyAddress from '~/components/profile/company/info/address'
+import licence from '~/components/profile/company/info/licence'
+export default {
+  components: { activity, aboutCompany, companyAddress, licence },
+  created() {
+    this.$store.dispatch('user/getUser')
+  },
+}
 </script>
 
 <style scoped></style>
