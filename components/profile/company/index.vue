@@ -1,5 +1,5 @@
 <template>
-  <v-tabs icons-and-text centered>
+  <v-tabs icons-and-text centered background-color="#eeeeee">
     <v-tab>
       info
       <v-icon>mdi-information-variant</v-icon>
