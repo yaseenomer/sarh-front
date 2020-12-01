@@ -1,27 +1,27 @@
 <template>
   <v-tabs icons-and-text centered background-color="#eeeeee">
     <v-tab>
-      info
+      {{ $t('company.info') }}
       <v-icon>mdi-information-variant</v-icon>
     </v-tab>
     <v-tab>
-      inquery
+      {{ $t('company.inquery') }}
       <v-icon>mdi-comment-quote-outline</v-icon>
     </v-tab>
     <v-tab>
-      posts
+      {{ $t('company.posts') }}
       <v-icon>mdi-post-outline</v-icon>
     </v-tab>
     <v-tab>
-      favorite company
+      {{ $t('company.favoritecompany') }}
       <v-icon>mdi-heart-outline</v-icon>
     </v-tab>
     <v-tab>
-      comments
+      {{ $t('company.comments') }}
       <v-icon>mdi-comment-text-multiple-outline</v-icon>
     </v-tab>
     <v-tab>
-      security
+      {{ $t('company.security') }}
       <v-icon>mdi-security</v-icon>
     </v-tab>
     <v-tab-item>

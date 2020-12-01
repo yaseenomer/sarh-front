@@ -51,7 +51,7 @@ export default {
     <v-card-title>
       <v-btn text color="primary" readonly>
         <v-icon>mdi-map-marker-multiple</v-icon>
-        <span> Address</span>
+        <span> {{ $t('company.Address') }}</span>
       </v-btn>
       <v-spacer />
       <v-btn
@@ -61,7 +61,7 @@ export default {
         @click.prevent="changeDisable"
       >
         <v-icon>mdi-pencil-outline</v-icon>
-        <span>edit</span>
+        <span>{{ $t('buttons.edit') }}</span>
       </v-btn>
 
       <v-btn
@@ -73,7 +73,7 @@ export default {
         @click="updateMyProfile"
       >
         <v-icon>mdi-content-save-all-outline</v-icon>
-        <span>save changes </span>
+        <span>{{ $t('buttons.savechanges') }} </span>
       </v-btn>
       <v-btn
         v-if="!disabled"
@@ -83,7 +83,7 @@ export default {
         @click.prevent="changeDisable"
       >
         <v-icon>mdi-cancel</v-icon>
-        <span>cancel </span>
+        <span>{{ $t('buttons.cancel') }} </span>
       </v-btn>
     </v-card-title>
     <v-divider />
@@ -93,7 +93,7 @@ export default {
           <v-col cols="12" md="6">
             <v-text-field
               v-model="profile.address_1"
-              label="Address 1"
+              :label="$t('company.Address1')"
               :disabled="disabled"
               prepend-icon="mdi-map-marker-outline"
             />
@@ -102,7 +102,7 @@ export default {
           <v-col cols="12" md="6">
             <v-text-field
               v-model="profile.address_2"
-              label="Address 2"
+              :label="$t('company.Address2')"
               :disabled="disabled"
               prepend-icon="mdi-map-marker-plus"
             />

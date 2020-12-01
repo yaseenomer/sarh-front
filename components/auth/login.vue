@@ -81,7 +81,7 @@ export default {
               v-model="email"
               type="email"
               :error-messages="emailErrors"
-              label="Email"
+              :label="$t('auth.Email')"
               outlined
               dense
               prepend-icon="mdi-email-outline"
@@ -94,7 +94,7 @@ export default {
               :type="type"
               outlined
               dense
-              label="Password"
+              :label="$t('auth.Password')"
               :error-messages="passwordErrors"
               prepend-icon="mdi-lock-outline"
               :append-icon="
@@ -108,7 +108,7 @@ export default {
             />
             <v-responsive>
               <v-btn text color="primary" @click="forgotPassword"
-                >Forgotten your password?</v-btn
+                >{{ $t('auth.Forgottenyourpassword') }} ?</v-btn
               >
             </v-responsive>
             <v-btn
@@ -120,10 +120,10 @@ export default {
               :loading="loading"
               color="primary"
             >
-              Sign in
+              {{ $t('auth.Signin') }}
             </v-btn>
             <div class="form-group col-sm-12 text-center mt-2">
-              <span class="or">Or Rgister With</span>
+              <span class="or">{{ $t('auth.OrRgisterWith') }}</span>
             </div>
             <div class="col-sm-12">
               <loginWithSocial />

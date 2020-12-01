@@ -98,7 +98,7 @@ export default {
           v-model="email"
           outlined
           dense
-          label="Email"
+          :label="$('auth.Email')"
           prepend-icon="mdi-email-outline"
           :error-messages="emailErrors"
           required
@@ -110,7 +110,7 @@ export default {
           outlined
           dense
           :type="type"
-          label="Password"
+          :label="$('auth.Password')"
           prepend-icon="mdi-lock-outline"
           :error-messages="passwordErrors"
           required
@@ -126,7 +126,7 @@ export default {
           outlined
           dense
           :type="type"
-          label="password confirmation"
+          :label="$t('auth.passwordconfirmation')"
           prepend-icon="mdi-lock-outline"
           :error-messages="passwordConfirmationErrors"
           required
@@ -139,7 +139,7 @@ export default {
         />
         <v-checkbox
           v-model="terms"
-          label="Accept policies and terms "
+          :label="t('auth.Acceptpoliciesandterms')"
           :error-messages="termsErrors"
           required
           dense
@@ -149,7 +149,7 @@ export default {
         <v-checkbox
           v-model="checkbox2"
           dense
-          label="Recive update and offer from us "
+          :label="$t('auth.Reciveupdateandofferfromus')"
         />
       </form>
       <v-divider />
@@ -163,9 +163,9 @@ export default {
             rounded
             @click="onSubmit"
           >
-            sign up
+            {{ $t('auth.signup') }}
           </v-btn>
-          <v-btn text color="primary">read terms & policies</v-btn>
+          <v-btn text color="primary">{{ $t('auth.readtermspolicies') }}</v-btn>
         </v-row>
       </v-card-actions>
     </v-card-text>
