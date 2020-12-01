@@ -32,7 +32,54 @@
   },
   "company":
   {
-    "viewprofile":"view profile"
+    "viewprofile":"view profile",
+    "info":"info",
+    "inquery":"inquery",
+    "posts":"posts",
+    "comments":"comments",
+    "security":"security",
+    "aboutcompany":"About Company",
+    "about":"about",
+    "CompanyName":"Company Name",
+    "email":"email",
+    "phone":"phone",
+    "EmployeesNumber":"Employees Number",
+    "ccemail":"Cc Email",
+    "website":"website",
+    "activity":"activity",
+    "operations":"operations",
+    "Address":"Address",
+    "Address1":"Address 1",
+    "Address2":"Address 2",
+    "license":"license",
+    "map":"map",
+    "LicenceCompany":"Licence Company",
+    "LicenceNumber":"Licence Number",
+    "CreationDate":"Creation Date",
+    "ExpirationDate":"Expiration Date",
+    "UploadLicence":"Upload Licence",
+    "licencefile":"licence file"
+    
+
+  },
+  "buttons":
+  {
+    "edit":"edit",
+    "savechanges":"save changes",
+    "cancel":"cancel"
+  },
+  "auth":
+  {
+    "Email":"Email",
+    "Password":"Password",
+    "Forgottenyourpassword":"Forgotten your password",
+    "Signin":"Sign in",
+    "signup":"sign up",
+    "passwordconfirmation":"password confirmation",
+    "OrRgisterWith":"Or Rgister With",
+    "readtermspolicies":"read terms & policies",
+    "Reciveupdateandofferfromus":"Recive update and offer from us",
+    "Acceptpoliciesandterms":"Accept policies and terms"
   },
   "global": {}
 }

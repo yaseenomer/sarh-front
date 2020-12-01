@@ -42,7 +42,7 @@ export default {
     <v-card-title>
       <v-btn text color="primary" readonly>
         <v-icon>mdi-license</v-icon>
-        <span> Licence Company</span>
+        <span> {{ $t('company.LicenceCompany') }}</span>
       </v-btn>
       <v-spacer />
       <v-btn
@@ -52,7 +52,7 @@ export default {
         @click.prevent="disabled = !disabled"
       >
         <v-icon>mdi-pencil-outline</v-icon>
-        <span>edit</span>
+        <span>{{ $t('buttons.edit') }}</span>
       </v-btn>
 
       <v-btn
@@ -64,7 +64,7 @@ export default {
         @click="updateLicence"
       >
         <v-icon>mdi-content-save-all-outline</v-icon>
-        <span>save changes </span>
+        <span>{{ $t('buttons.savechanges') }} </span>
       </v-btn>
       <v-btn
         v-if="!disabled"
@@ -74,7 +74,7 @@ export default {
         @click.prevent="disabled = !disabled"
       >
         <v-icon>mdi-cancel</v-icon>
-        <span>cancel </span>
+        <span>{{ $t('buttons.cancel') }} </span>
       </v-btn>
     </v-card-title>
     <v-divider />
@@ -85,7 +85,7 @@ export default {
             <v-text-field
               v-model="profile.licence_number"
               :disabled="disabled"
-              label="Licence Number"
+              :label="$t('company.LicenceNumber')"
               prepend-icon="mdi-license"
             />
           </v-col>
@@ -103,7 +103,7 @@ export default {
                 <v-text-field
                   v-model="profile.creation_date"
                   :disabled="disabled"
-                  label="Creation Date"
+                  :label="$t('company.CreationDate')"
                   prepend-icon="mdi-calendar-heart"
                   v-bind="attrs"
                   v-on="on"
@@ -129,7 +129,7 @@ export default {
                 <v-text-field
                   v-model="profile.expiration_date"
                   :disabled="disabled"
-                  label="Expiration Date"
+                  :label="$t('company.ExpirationDate')"
                   prepend-icon="mdi-calendar-remove-outline"
                   v-bind="attrs"
                   v-on="on"
@@ -146,7 +146,7 @@ export default {
               v-if="!disabled"
               v-model="file"
               small-chips
-              label="Upload Licence"
+              :label="$t('company.UploadLicence')"
             />
             <v-btn
               v-else
@@ -156,7 +156,7 @@ export default {
               target="_blank"
             >
               <v-icon class="mx-2">mdi-cloud-download-outline</v-icon>
-              <span>licence file</span>
+              <span>{{ $t('company.licencefile') }}</span>
             </v-btn>
           </v-col>
 

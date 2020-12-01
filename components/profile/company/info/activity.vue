@@ -5,8 +5,8 @@
         <v-simple-table v-if="activity" dense>
           <thead>
             <tr>
-              <th>activity</th>
-              <th>operation</th>
+              <th>{{ $t('company.activity') }}</th>
+              <th>{{ $t('company.operation') }}</th>
             </tr>
           </thead>
           <tbody>

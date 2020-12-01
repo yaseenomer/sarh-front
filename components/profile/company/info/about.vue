@@ -37,7 +37,7 @@ export default {
     <v-card-title>
       <v-btn text color="primary" readonly>
         <v-icon>mdi-information-outline</v-icon>
-        <span> about company</span>
+        <span> {{ $t('company.aboutcompany') }}</span>
       </v-btn>
       <v-spacer />
       <v-btn
@@ -47,7 +47,7 @@ export default {
         @click.prevent="disabled = !disabled"
       >
         <v-icon>mdi-pencil-outline</v-icon>
-        <span>edit</span>
+        <span>{{ $t('buttons.edit') }}</span>
       </v-btn>
 
       <v-btn
@@ -59,7 +59,7 @@ export default {
         @click="update"
       >
         <v-icon>mdi-content-save-all-outline</v-icon>
-        <span>save changes </span>
+        <span>{{ $t('buttons.savechanges') }} </span>
       </v-btn>
       <v-btn
         v-if="!disabled"
@@ -69,7 +69,7 @@ export default {
         @click.prevent="disabled = !disabled"
       >
         <v-icon>mdi-cancel</v-icon>
-        <span>cancel </span>
+        <span>{{ $t('company.cancel') }} </span>
       </v-btn>
     </v-card-title>
     <v-divider />
@@ -80,7 +80,7 @@ export default {
             <v-text-field
               v-model="profile.full_name"
               :disabled="disabled"
-              label="Company Name"
+              :label="$t('company.CompanyName')"
               prepend-icon="mdi-account-circle-outline"
             />
           </v-col>
@@ -88,7 +88,7 @@ export default {
             <v-text-field
               v-model="$auth.user.email"
               prepend-icon="mdi-email-open-outline"
-              label="email"
+              :label="$t('company.email')"
               disabled
             />
           </v-col>
@@ -97,7 +97,7 @@ export default {
             <!--            <vue-tel-input v-model="profile.phone" :disabled="disabled" />-->
             <v-text-field
               v-model="profile.phone"
-              label="phone"
+              :label="$t('company.phone')"
               prepend-icon="mdi-phone-outline"
               :disabled="disabled"
             ></v-text-field>
@@ -106,7 +106,7 @@ export default {
           <v-col cols="12" md="6">
             <v-text-field
               v-model="profile.employee_number"
-              label="Employees Number"
+              :label="$t('company.EmployeesNumber')"
               prepend-icon="mdi-account-group-outline"
               :disabled="disabled"
             />
@@ -115,7 +115,7 @@ export default {
           <v-col cols="12" md="6">
             <v-text-field
               v-model="profile.email_cc"
-              label="cc email"
+              :label="$t('company.ccemail')"
               :disabled="disabled"
               prepend-icon="mdi-email-outline"
             />
@@ -124,7 +124,7 @@ export default {
           <v-col cols="12" md="6">
             <v-text-field
               v-model="profile.web_site"
-              label="website"
+              :label="$t('company.website')"
               :disabled="disabled"
               prepend-icon="mdi-web"
             />
@@ -134,7 +134,7 @@ export default {
             <v-textarea
               v-model="profile.about"
               :disabled="disabled"
-              label="About Company"
+              :label="$t('company.aboutcompany')"
               prepend-icon="mdi-information-variant"
             ></v-textarea>
           </v-col>

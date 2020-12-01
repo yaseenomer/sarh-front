@@ -4,23 +4,23 @@
       <v-tabs vertical background-color="#eeeeee">
         <v-tab>
           <v-icon left>mdi-information-variant</v-icon>
-          about
+          {{ $t('company.about') }}
         </v-tab>
         <v-tab>
           <v-icon left>mdi-tag-multiple-outline</v-icon>
-          activity
+           {{ $t('company.activity') }}
         </v-tab>
         <v-tab>
           <v-icon left>mdi-map-marker-multiple-outline</v-icon>
-          address
+           {{ $t('company.Address') }}
         </v-tab>
         <v-tab>
           <v-icon left>mdi-license</v-icon>
-          license
+          {{ $t('company.license') }}
         </v-tab>
         <v-tab>
           <v-icon left>mdi-map-marker-radius-outline</v-icon>
-          map . . .
+           {{ $t('company.map') }}  . . .
         </v-tab>
         <v-tab-item>
           <about-company />
@@ -35,7 +35,7 @@
           <licence />
         </v-tab-item>
         <v-tab-item>
-          <p>map</p>
+          <p> {{ $t('company.map') }}</p>
         </v-tab-item>
       </v-tabs>
     </v-row>
