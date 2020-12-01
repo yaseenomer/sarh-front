@@ -99,7 +99,7 @@ export default {
               offset-y
               min-width="290px"
             >
-              <template v-slot:activator="{ on, attrs }">
+              <template #activator="{ on, attrs }">
                 <v-text-field
                   v-model="profile.creation_date"
                   :disabled="disabled"
@@ -125,7 +125,7 @@ export default {
               offset-y
               min-width="290px"
             >
-              <template v-slot:activator="{ on, attrs }">
+              <template #activator="{ on, attrs }">
                 <v-text-field
                   v-model="profile.expiration_date"
                   :disabled="disabled"

@@ -7,11 +7,15 @@ export default {
     return {
       disabled: true,
       loading: false,
+      state_id: parseInt(this.$auth.user.profile.state, 10),
     }
   },
   computed: {
     ...mapGetters({
       profile: 'user/user',
+      countries: 'country/countries',
+      states: 'country/filterStates',
+      cities: 'country/filterCities',
     }),
     profileData() {
       return {
@@ -27,9 +31,7 @@ export default {
   created() {
     this.$store.dispatch('country/getCountries')
     this.$store.dispatch('country/getStates')
-    // this.$getLocation({}).then((coordinates) => {
-    //   console.log(coordinates)
-    // })
+    this.$store.dispatch('country/getCities')
   },
   methods: {
     async updateMyProfile() {
@@ -40,7 +42,14 @@ export default {
     },
     changeDisable() {
       this.disabled = !this.disabled
-      this.$refs.regin.changeDisable()
+    },
+
+    selectCountry() {
+      this.$store.commit('country/filterStates', this.profile.country_id)
+    },
+
+    selectState() {
+      this.$store.commit('country/filterCities', this.profile.state)
     },
   },
 }
@@ -109,69 +118,44 @@ export default {
           </v-col>
           <!--          <save-country ref="regin" />-->
         </v-row>
+        <v-row>
+          <v-col cols="12" md="4">
+            <v-select
+              v-model="profile.country_id"
+              :items="countries"
+              :disabled="disabled"
+              item-text="name"
+              item-value="id"
+              prepend-icon="mdi-web"
+              @change="selectCountry"
+            >
+            </v-select>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-select
+              v-model="state_id"
+              :items="states"
+              :disabled="disabled"
+              item-text="name"
+              item-value="id"
+              prepend-icon="mdi-map"
+              @change="selectState"
+            >
+            </v-select>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-select
+              v-model="profile.city_id"
+              :items="cities"
+              :disabled="disabled"
+              item-text="name"
+              item-value="id"
+              prepend-icon="mdi-city"
+            >
+            </v-select>
+          </v-col>
+        </v-row>
       </v-container>
     </v-card-text>
   </v-card>
-  <!--  <div v-if="profile" class="panel">-->
-  <!--    <h6 class="title">-->
-  <!--      Address-->
-  <!--    </h6>-->
-  <!--    <div action="" class="row">-->
-  <!--      <div class="form-group col-md-6">-->
-  <!--        <label>Address 1</label>-->
-  <!--        <input-->
-  <!--          v-model="profile.address_1"-->
-  <!--          :disabled="disabled"-->
-  <!--          type="text"-->
-  <!--          class="form-control"-->
-  <!--        />-->
-  <!--      </div>-->
-  <!--      <div class="form-group col-md-6">-->
-  <!--        <label>Address 2</label>-->
-  <!--        <input-->
-  <!--          v-model="profile.address_2"-->
-  <!--          :disabled="disabled"-->
-  <!--          type="text"-->
-  <!--          class="form-control"-->
-  <!--        />-->
-  <!--      </div>-->
-  <!--    </div>-->
-
-  <!--    <showCountry v-if="disabled" />-->
-
-  <!--    <saveCountry v-else />-->
-
-  <!--    <div class="row">-->
-  <!--      <div class="col-sm-12">-->
-  <!--        <button-->
-  <!--          v-if="!disabled"-->
-  <!--          class="btn btn-primary"-->
-  <!--          :disabled="loading"-->
-  <!--          type="button"-->
-  <!--          @click="updateMyProfile"-->
-  <!--        >-->
-  <!--          <i v-if="loading" class="fa fa-spinner fa-spin" />-->
-  <!--          Save Changes-->
-  <!--        </button>-->
-
-  <!--        <button-->
-  <!--          v-if="disabled"-->
-  <!--          class="btn btn-primary"-->
-  <!--          type="button"-->
-  <!--          @click="disabled = !disabled"-->
-  <!--        >-->
-  <!--          Edit Data-->
-  <!--        </button>-->
-
-  <!--        <button-->
-  <!--          v-if="!disabled"-->
-  <!--          type="button"-->
-  <!--          class="btn btn-light"-->
-  <!--          @click="disabled = !disabled"-->
-  <!--        >-->
-  <!--          cancel-->
-  <!--        </button>-->
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--  </div>-->
 </template>
