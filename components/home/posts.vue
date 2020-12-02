@@ -29,11 +29,17 @@
               <v-col cols="12">
                 <p class="text-center">
                   <v-btn
+                    nuxt
                     color="primary"
                     outlined
                     rounded
                     small
-                    @click="$router.push('/company/55')"
+                    @click="
+                      $router.replace({
+                        name: 'posts',
+                        query: { type: 'image' },
+                      })
+                    "
                     >{{ $t('home.showallphotos') }}
                     <v-icon>mdi-arrow-right</v-icon>
                   </v-btn>
@@ -53,7 +59,12 @@
                     outlined
                     rounded
                     small
-                    @click="$router.push('/company/55')"
+                    @click="
+                      $router.replace({
+                        name: 'posts',
+                        query: { type: 'video' },
+                      })
+                    "
                     >{{ $t('home.showallvideos') }}
                     <v-icon>mdi-arrow-right</v-icon>
                   </v-btn>
@@ -73,7 +84,12 @@
                     outlined
                     rounded
                     small
-                    @click="$router.push('/company/55')"
+                    @click="
+                      $router.replace({
+                        name: 'posts',
+                        query: { type: 'post' },
+                      })
+                    "
                   >
                     {{ $t('home.showallposts') }}
                     <v-icon>mdi-arrow-right</v-icon>
