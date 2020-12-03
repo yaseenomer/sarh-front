@@ -4,15 +4,15 @@
       <v-tabs vertical background-color="#eeeeee">
         <v-tab>
           <v-icon left>mdi-folder-multiple-image</v-icon>
-          images
+          {{ $t('post.images') }}
         </v-tab>
         <v-tab>
           <v-icon left>mdi-post-outline</v-icon>
-          posts
+          {{ $t('post.posts') }}
         </v-tab>
         <v-tab>
           <v-icon left>mdi-play-box-multiple-outline</v-icon>
-          videos
+          {{ $t('post.videos') }}
         </v-tab>
         <!--        <v-tab-item>-->
         <!--          <v-container>-->

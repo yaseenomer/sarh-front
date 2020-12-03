@@ -28,7 +28,9 @@
   },
   "posts":
   {
-    
+    "images":"images",
+    "posts":"posts",
+    "videos":"videos"
   },
   "company":
   {
