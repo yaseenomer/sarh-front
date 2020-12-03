@@ -43,7 +43,7 @@
     "CompanyName":"اسم الشركة",
     "email":"البريد اللكتروني",
     "phone":"الهاتف",
-    "EmployeesNumber":"Employees Number",
+    "EmployeesNumber":"عدد الموظفين",
     "ccemail":"ايميل اضافي",
     "website":"الموقع الاكتروني",
     "activity":"النشاط",
@@ -60,6 +60,12 @@
     "UploadLicence":"رفع الرخصة",
     "licencefile":"ملف الرخصة"
   },
+  "buttons":
+  {
+    "edit":"تعديل",
+    "savechanges":"حفظ التغيرات",
+    "cancel":"الغاء"
+  },
   "auth":
   {
     "Email":"البريد الالكتروني",
@@ -67,6 +73,8 @@
     "Forgottenyourpassword":"نسيت كلمة المرور",
     "Signin":"تسجيل دخول",
     "signup":"التسجيل",
+    "CompanyName":"اسم الشركة",
+    "fullname":"الاسم كامل",
     "passwordconfirmation":"تاكيد كلمة المرور",
     "OrRgisterWith":"او سجل يواسطة",
     "readtermspolicies":"قراءة الشروط والاحكام",

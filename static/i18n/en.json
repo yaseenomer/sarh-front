@@ -72,6 +72,8 @@
   {
     "Email":"Email",
     "Password":"Password",
+    "CompanyName":"Company Name",
+    "fullname":"fullname",
     "Forgottenyourpassword":"Forgotten your password",
     "Signin":"Sign in",
     "signup":"sign up",

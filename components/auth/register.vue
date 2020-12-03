@@ -98,7 +98,7 @@ export default {
           v-model="email"
           outlined
           dense
-          :label="$('auth.Email')"
+          :label="$t('auth.Email')"
           prepend-icon="mdi-email-outline"
           :error-messages="emailErrors"
           required
@@ -110,7 +110,7 @@ export default {
           outlined
           dense
           :type="type"
-          :label="$('auth.Password')"
+          :label="$t('auth.Password')"
           prepend-icon="mdi-lock-outline"
           :error-messages="passwordErrors"
           required
@@ -139,7 +139,7 @@ export default {
         />
         <v-checkbox
           v-model="terms"
-          :label="t('auth.Acceptpoliciesandterms')"
+          :label="$t('auth.Acceptpoliciesandterms')"
           :error-messages="termsErrors"
           required
           dense
