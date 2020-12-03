@@ -5,12 +5,12 @@
       <v-icon>mdi-information-variant</v-icon>
     </v-tab>
     <v-tab>
-      {{ $t('company.inquery') }}
-      <v-icon>mdi-comment-quote-outline</v-icon>
-    </v-tab>
-    <v-tab>
       {{ $t('company.posts') }}
       <v-icon>mdi-post-outline</v-icon>
+    </v-tab>
+    <v-tab>
+      {{ $t('company.inquery') }}
+      <v-icon>mdi-comment-quote-outline</v-icon>
     </v-tab>
     <v-tab>
       {{ $t('company.favoritecompany') }}
@@ -27,13 +27,17 @@
     <v-tab-item>
       <info />
     </v-tab-item>
+    <v-tab-item>
+      <posts />
+    </v-tab-item>
   </v-tabs>
 </template>
 
 <script>
 import info from '~/components/profile/company/info/info'
+import posts from '~/components/profile/company/posts/index'
 export default {
-  components: { info },
+  components: { info, posts },
 }
 </script>
 

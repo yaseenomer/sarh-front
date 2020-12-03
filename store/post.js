@@ -24,6 +24,11 @@ export const actions = {
     commit('SET_POSTS', posts.data.data)
   },
 
+  // eslint-disable-next-line no-unused-vars
+  async myPosts(context) {
+    return this.$axios.get('operation/apiPost/companyPost')
+  },
+
   async likePost(context, post) {
     if (this.$auth.loggedIn) {
       const status = post.is_Like ? 0 : 1
