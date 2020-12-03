@@ -29,6 +29,7 @@
                 class="mx-2"
                 rounded
                 small
+                @click="getCreatePost(null)"
               >
                 <v-icon>mdi-plus</v-icon>
                 add post
@@ -36,7 +37,7 @@
             </v-row>
           </v-container>
           <v-divider />
-          <v-container>
+          <v-container v-if="posts">
             <posts-card :posts="posts.posts" />
           </v-container>
         </v-tab-item>
@@ -55,6 +56,7 @@
                 class="mx-2"
                 rounded
                 small
+                @click="getCreatePost('image')"
               >
                 <v-icon>mdi-plus</v-icon>
                 add post with image
@@ -62,7 +64,7 @@
             </v-row>
           </v-container>
           <v-divider />
-          <v-container>
+          <v-container v-if="posts">
             <photo-card :images="posts.images" />
           </v-container>
         </v-tab-item>
@@ -89,7 +91,7 @@
             </v-row>
           </v-container>
           <v-divider />
-          <v-container>
+          <v-container v-if="posts">
             <video-card :videos="posts.videos" />
           </v-container>
         </v-tab-item>
@@ -98,7 +100,7 @@
       <div justify="center">
         <v-dialog v-model="createPost" max-width="700px">
           <create-post
-            :title="postTitle"
+            :post-type="postType"
             @close-create-post="createPost = false"
           />
         </v-dialog>
@@ -124,7 +126,15 @@ export default {
   data() {
     return {
       createPost: false,
-      postTitle: '',
+      postType: '',
+    }
+  },
+
+  async asyncData({ store }) {
+    await store.dispatch('post/getMyPosts')
+    const posts = await store.state.post.myPosts
+    return {
+      posts,
     }
   },
   computed: {
@@ -137,7 +147,7 @@ export default {
   },
   methods: {
     getCreatePost(title) {
-      this.postTitle = title
+      this.postType = title
       this.createPost = true
     },
   },
