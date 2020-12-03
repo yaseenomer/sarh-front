@@ -2,12 +2,14 @@ export const state = () => ({
   posts: [],
   videos: [],
   images: [],
+  myPosts: [],
 })
 
 export const getters = {
   posts: (state) => state.posts,
   videos: (state) => state.videos,
   images: (state) => state.images,
+  myPosts: (state) => state.myPosts,
 }
 
 export const mutations = {
@@ -16,6 +18,7 @@ export const mutations = {
     state.videos = posts.filter((post) => post.type === 'video')
     state.images = posts.filter((post) => post.type === 'image')
   },
+  SET_MY_POSTS: (state, posts) => (state.myPosts = posts),
 }
 
 export const actions = {
@@ -24,9 +27,9 @@ export const actions = {
     commit('SET_POSTS', posts.data.data)
   },
 
-  // eslint-disable-next-line no-unused-vars
-  async myPosts(context) {
-    return this.$axios.get('operation/apiPost/companyPost')
+  async getMyPosts({ commit }) {
+    const posts = await this.$axios.get('operation/apiPost/companyPost')
+    commit('SET_MY_POSTS', posts.data.data)
   },
 
   async likePost(context, post) {
