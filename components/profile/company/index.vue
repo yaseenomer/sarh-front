@@ -30,14 +30,18 @@
     <v-tab-item>
       <posts />
     </v-tab-item>
+    <v-tab-item>
+      <quote />
+    </v-tab-item>
   </v-tabs>
 </template>
 
 <script>
 import info from '~/components/profile/company/info/info'
 import posts from '~/components/profile/company/posts/index'
+import quote from '~/components/profile/company/quoteation/quote'
 export default {
-  components: { info, posts },
+  components: { info, posts, quote },
 }
 </script>
 

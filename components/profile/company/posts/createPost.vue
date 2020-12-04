@@ -28,8 +28,8 @@
         @blur="$v.content.$touch()"
       ></v-textarea>
       <v-file-input
-        v-model="file"
         v-if="postType"
+        v-model="file"
         :label="postType"
       ></v-file-input>
     </v-card-text>
@@ -37,9 +37,9 @@
       <v-btn
         color="primary"
         elevation="0"
-        @click="savePost"
         :loading="saving"
         :disabled="saving"
+        @click="savePost"
         >save</v-btn
       >
       <v-spacer />

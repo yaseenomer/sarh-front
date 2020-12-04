@@ -123,18 +123,18 @@ export default {
     videoCard,
     createPost,
   },
-  data() {
-    return {
-      createPost: false,
-      postType: '',
-    }
-  },
 
   async asyncData({ store }) {
     await store.dispatch('post/getMyPosts')
     const posts = await store.state.post.myPosts
     return {
       posts,
+    }
+  },
+  data() {
+    return {
+      createPost: false,
+      postType: '',
     }
   },
   computed: {
