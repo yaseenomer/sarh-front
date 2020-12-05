@@ -96,7 +96,7 @@
           </v-container>
         </v-tab-item>
       </v-tabs>
-      <!-- registration form start -------------------------------------------------->
+      <!-- post form start -------------------------------------------------->
       <div justify="center">
         <v-dialog v-model="createPost" max-width="700px">
           <create-post
@@ -105,7 +105,7 @@
           />
         </v-dialog>
       </div>
-      <!-- registration form end ---------------------------------------------------->
+      <!-- post form end ---------------------------------------------------->
     </v-row>
   </v-container>
 </template>
