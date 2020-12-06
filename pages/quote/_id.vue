@@ -8,8 +8,6 @@
         <v-card-title>
           <span class="title font-weight-light">Twitter</span>
           <v-spacer />
-          <v-icon>mdi-calendar-month</v-icon>
-          <span class="subtitle-1 font-weight-light">1/2/2021</span>
         </v-card-title>
         <v-card-text>
           <p class="font-weight-bold">
@@ -43,16 +41,22 @@
               </p>
             </v-card-text>
             <v-card-actions>
-              <v-btn text>
-                <v-avatar color="grey lighten-3" size="30">
+              <v-btn text rounded>
+                <v-avatar color="grey lighten-2" size="30">
                   <v-icon>mdi-account</v-icon>
                 </v-avatar>
                 <span>company name</span>
               </v-btn>
 
               <v-spacer />
-              <v-chip small> price $1000</v-chip>
-              <v-btn text>
+              <v-chip> price $1000</v-chip>
+              <v-btn
+                rounded
+                small
+                color="grey lighten-2"
+                elevation="0"
+                class="mx-1"
+              >
                 <v-icon color="wight">mdi-paperclip</v-icon>
                 <span>file name</span>
               </v-btn>
@@ -65,6 +69,15 @@
       <v-card flat>
         <v-card-text>
           <v-list>
+            <v-list-item>
+              <v-list-item-avatar color="grey lighten-3">
+                <v-icon color="wight">mdi-calendar-month</v-icon>
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title>1/2/2021</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-divider inset />
             <v-list-item>
               <v-list-item-avatar color="grey lighten-3">
                 <v-icon color="wight">mdi-account-group-outline</v-icon>

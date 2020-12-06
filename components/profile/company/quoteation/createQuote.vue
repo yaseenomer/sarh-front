@@ -9,29 +9,41 @@
     </v-card-title>
     <v-card-text>
       <v-text-field
-        v-model="title"
-        label="title"
-        outlined
-        :error-messages="titleErrors"
+        v-model="subject"
+        label="subject"
+        prepend-icon="mdi-alpha-s"
+        :error-messages="subjectErrors"
         required
-        @input="$v.title.$touch()"
-        @blur="$v.title.$touch()"
+        @input="$v.subject.$touch()"
+        @blur="$v.subject.$touch()"
       ></v-text-field>
 
       <v-textarea
-        v-model="content"
-        label="content"
-        outlined
-        :error-messages="contentErrors"
+        v-model="body"
+        label="body"
+        :error-messages="bodyErrors"
+        prepend-icon="mdi-text-subject"
         required
-        @input="$v.content.$touch()"
-        @blur="$v.content.$touch()"
+        @input="$v.body.$touch()"
+        @blur="$v.body.$touch()"
       ></v-textarea>
-      <v-file-input
-        v-if="postType"
-        v-model="file"
-        :label="postType"
-      ></v-file-input>
+      <v-select
+        v-model="send_to"
+        label="send to"
+        prepend-icon="mdi-account-arrow-right-outline"
+        :items="items"
+      />
+
+      <v-select
+        v-model="activity_id"
+        label="activity"
+        prepend-icon="mdi-tag-outline"
+        item-text="name"
+        item-value="id"
+        :loading="!$store.state.activity.activites.length"
+        :items="$store.state.activity.activites"
+      />
+      <v-file-input v-model="file" multiple label="files"></v-file-input>
     </v-card-text>
     <v-card-actions>
       <v-btn
@@ -39,7 +51,7 @@
         elevation="0"
         :loading="saving"
         :disabled="saving"
-        @click="savePost"
+        @click="sendRequestQuote"
         >save</v-btn
       >
       <v-spacer />
@@ -55,33 +67,66 @@ export default {
   mixins: [validationMixin],
   data() {
     return {
-      title: '',
-      content: '',
-      file: '',
+      subject: '',
+      body: '',
+      send_to: '',
+      activity_id: '',
+      file: [],
       saving: false,
+      items: [
+        { value: 1, text: 'favorites' },
+        { value: 2, text: 'sarh recomendation' },
+        { value: 3, text: 'random' },
+      ],
     }
   },
   computed: {
-    titleErrors() {
+    subjectErrors() {
       const errors = []
-      if (!this.$v.title.$dirty) return errors
-      !this.$v.title.required && errors.push('title is required.')
+      if (!this.$v.subject.$dirty) return errors
+      !this.$v.subject.required && errors.push('subject is required.')
       return errors
     },
-    contentErrors() {
+    bodyErrors() {
       const errors = []
-      if (!this.$v.content.$dirty) return errors
-      !this.$v.content.required && errors.push('content is required.')
+      if (!this.$v.body.$dirty) return errors
+      !this.$v.body.required && errors.push('body is required.')
       return errors
     },
   },
   validations: {
-    title: { required },
-    content: { required },
+    subject: { required },
+    body: { required },
+  },
+  created() {
+    this.$store.dispatch('activity/getActivities')
   },
   methods: {
     closeWindow() {
       this.$emit('close-create-quote')
+    },
+
+    async sendRequestQuote() {
+      const quote = {
+        subject: this.subject,
+        body: this.body,
+        file: this.file,
+        activity_id: this.activity_id,
+        send_to: this.send_to,
+      }
+      this.$v.$touch()
+
+      if (this.$v.$invalid) return false
+
+      this.saving = true
+
+      try {
+        await this.$store.dispatch('quote/sendRequestQuotation', quote)
+        this.saving = false
+      } catch (e) {
+        this.saving = false
+        this.$toast.error('something error')
+      }
     },
   },
 }
