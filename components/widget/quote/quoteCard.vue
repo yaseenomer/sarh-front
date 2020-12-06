@@ -5,15 +5,15 @@
         class="rounded-lg"
         outlined
         hover
-        :to="{ name: 'quote-id', params: { id: 55 } }"
+        :to="{ name: 'quote-id', params: { id: quote.id } }"
       >
         <v-card-title>
           <span class="title font-weight-light">{{ quote.subject }}</span>
           <v-spacer />
           <v-icon>mdi-calendar-month</v-icon>
-          <span class="subtitle-1 font-weight-light">{{
-            quote.created_at
-          }}</span>
+          <span class="subtitle-1 font-weight-light">
+            {{ quote.created_at }}
+          </span>
         </v-card-title>
 
         <v-card-text>
@@ -21,12 +21,10 @@
             {{ quote.body }}
           </p>
         </v-card-text>
-
         <v-card-actions>
-          <v-spacer />
-          <v-icon v-if="quote.download_inquiry_attachment_url" class="mr-1"
-            >mdi-paperclip</v-icon
-          >
+          <v-icon v-if="quote.download_inquiry_attachment_url" class="mr-1">
+            mdi-paperclip
+          </v-icon>
         </v-card-actions>
       </v-card>
     </v-col>
