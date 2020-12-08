@@ -21,9 +21,7 @@ export default {
     async favorite(company) {
       this.$store.dispatch('company/favorite', company)
     },
-    onErrorImage() {
-      this.failed_image = true
-    },
+
     async sharing() {
       await this.$store.commit('company/setSharing', {
         url: 'http://localhost:3000',
@@ -41,10 +39,9 @@ export default {
       <v-card class="rounded-xl" outlined hover nuxt replace>
         <v-img
           class="rounded-xl m-1"
-          :src="failed_image ? '/img/sarh.cover.jpg' : company.profile.cover"
+          :src="company.profile.cover"
           height="300"
           aspect-ratio="1"
-          @error="onErrorImage"
         >
           <v-container>
             <v-row>

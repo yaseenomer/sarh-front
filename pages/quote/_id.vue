@@ -144,5 +144,9 @@ export default {
       items,
     }
   },
+
+  created() {
+    this.$store.dispatch('quote/getMyRequestQuotationDetails', this.id)
+  },
 }
 </script>

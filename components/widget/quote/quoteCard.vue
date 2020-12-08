@@ -9,11 +9,6 @@
       >
         <v-card-title>
           <span class="title font-weight-light">{{ quote.subject }}</span>
-          <v-spacer />
-          <v-icon>mdi-calendar-month</v-icon>
-          <span class="subtitle-1 font-weight-light">
-            {{ quote.created_at }}
-          </span>
         </v-card-title>
 
         <v-card-text>
@@ -25,6 +20,11 @@
           <v-icon v-if="quote.download_inquiry_attachment_url" class="mr-1">
             mdi-paperclip
           </v-icon>
+          <v-spacer />
+          <v-icon>mdi-calendar-month</v-icon>
+          <span class="subtitle-1 font-weight-light">
+            {{ quote.created_at }}
+          </span>
         </v-card-actions>
       </v-card>
     </v-col>
