@@ -1,0 +1,114 @@
+<template>
+  <v-row>
+    <v-col cols="12" md="12">
+      <v-breadcrumbs :items="items"> </v-breadcrumbs>
+    </v-col>
+    <v-col cols="12" md="12">
+      <v-card class="rounded-xl" elevation="0">
+        <v-img
+          class="rounded-xl"
+          :src="post ? post.file : ''"
+          width="100%"
+          max-height="600"
+          lazy-src="https://picsum.photos/id/11/10/6"
+        />
+        <v-card-text v-if="post">
+          <v-container>
+            <v-row>
+              <v-col cols="12" md="6">
+                <v-list-item>
+                  <v-list-item-avatar color="blue lighten-4">
+                    <v-icon large color="primary"
+                      >mdi-account-circle-outline</v-icon
+                    >
+                  </v-list-item-avatar>
+                  <v-list-item-content>
+                    <v-list-item-title v-text="post.user_id.name" />
+                    <v-list-item-subtitle v-text="post.created_at" />
+                  </v-list-item-content>
+                </v-list-item>
+              </v-col>
+              <v-col cols="12" md="6">
+                <v-row>
+                  <v-spacer />
+                  <share-company
+                    :data="{
+                      title: post.user_id ? post.user_id.name : 'company name',
+                      description: post.file,
+                    }"
+                    :them="{
+                      color: 'blue lighten-4',
+                      small: false,
+                      x_small: true,
+                    }"
+                  />
+                  <v-btn
+                    class="mx-2"
+                    x-small
+                    elevation="0"
+                    color="orange lighten-4"
+                    fab
+                    @click="like(post)"
+                  >
+                    <v-icon color="orange">mdi-alert-outline</v-icon>
+                  </v-btn>
+                  <v-btn
+                    class="mx-2"
+                    x-small
+                    elevation="0"
+                    color="red lighten-4"
+                    fab
+                    @click="like(post)"
+                  >
+                    <v-icon color="#EA2027">{{
+                      post.is_Like ? 'mdi-heart' : 'mdi-heart-outline'
+                    }}</v-icon>
+                  </v-btn>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-container>
+          <v-subheader v-text="post.title" class="display-1" />
+          <p v-text="post.content"></p>
+        </v-card-text>
+      </v-card>
+    </v-col>
+  </v-row>
+</template>
+
+<script>
+import { mapGetters } from 'vuex'
+import shareCompany from '~/components/widget/company/shareCompany'
+export default {
+  components: { shareCompany },
+  data() {
+    return {
+      items: [
+        {
+          text: 'Home',
+          disabled: false,
+          to: '/',
+        },
+        {
+          text: this.$route.query.type,
+          disabled: true,
+        },
+      ],
+    }
+  },
+  computed: {
+    ...mapGetters({ image: `post/image`, po: `post/post` }),
+    post() {
+      return this.$route.query.type === 'post' ? this.po : this.image
+    },
+  },
+  created() {
+    this.$store.dispatch('post/getPost', this.$route.query.post)
+  },
+  methods: {
+    like(post) {
+      this.$store.dispatch('post/likePost', post)
+    },
+  },
+}
+</script>

@@ -16,7 +16,7 @@
         required
         @input="$v.subject.$touch()"
         @blur="$v.subject.$touch()"
-      />
+      ></v-text-field>
 
       <v-textarea
         v-model="body"
@@ -26,8 +26,24 @@
         required
         @input="$v.body.$touch()"
         @blur="$v.body.$touch()"
+      ></v-textarea>
+      <v-select
+        v-model="send_to"
+        label="send to"
+        prepend-icon="mdi-account-arrow-right-outline"
+        :items="items"
       />
-      <v-file-input v-model="file" label="file"></v-file-input>
+
+      <v-select
+        v-model="activity_id"
+        label="activity"
+        prepend-icon="mdi-tag-outline"
+        item-text="name"
+        item-value="id"
+        :loading="!$store.state.activity.activites.length"
+        :items="$store.state.activity.activites"
+      />
+      <v-file-input v-model="file" multiple label="files"></v-file-input>
     </v-card-text>
     <v-card-actions>
       <v-btn
@@ -35,7 +51,7 @@
         elevation="0"
         :loading="saving"
         :disabled="saving"
-        @click="sendQuote"
+        @click="sendRequestQuote"
         >save</v-btn
       >
       <v-spacer />
@@ -48,16 +64,20 @@
 import { required } from 'vuelidate/lib/validators'
 import { validationMixin } from 'vuelidate'
 export default {
-  props: {
-    inquiryId: { type: String, required: true },
-  },
   mixins: [validationMixin],
   data() {
     return {
       subject: '',
       body: '',
-      file: null,
+      send_to: '',
+      activity_id: '',
+      file: [],
       saving: false,
+      items: [
+        { value: 1, text: 'favorites' },
+        { value: 2, text: 'sarh recomendation' },
+        { value: 3, text: 'random' },
+      ],
     }
   },
   computed: {
@@ -78,17 +98,22 @@ export default {
     subject: { required },
     body: { required },
   },
+  created() {
+    this.$store.dispatch('activity/getActivities')
+  },
   methods: {
     closeWindow() {
-      this.$emit('close-create-quote')
+      this.$emit('close-create-request-quote')
     },
 
-    async sendQuote() {
-      const fd = new FormData()
-      fd.append('subject', this.subject)
-      fd.append('body', this.body)
-      fd.append('inquiry_id', this.inquiryId)
-      fd.append('file', this.file, this.file.name)
+    async sendRequestQuote() {
+      const quote = {
+        subject: this.subject,
+        body: this.body,
+        file: this.file,
+        activity_id: this.activity_id,
+        send_to: this.send_to,
+      }
       this.$v.$touch()
 
       if (this.$v.$invalid) return false
@@ -96,7 +121,7 @@ export default {
       this.saving = true
 
       try {
-        await this.$store.dispatch('quote/sendQuotation', fd)
+        await this.$store.dispatch('quote/sendRequestQuotation', quote)
         this.saving = false
       } catch (e) {
         this.saving = false

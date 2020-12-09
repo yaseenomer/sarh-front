@@ -3,6 +3,9 @@ export const state = () => ({
   videos: [],
   images: [],
   myPosts: null,
+  image: null,
+  post: null,
+  video: null,
 })
 
 export const getters = {
@@ -10,6 +13,10 @@ export const getters = {
   videos: (state) => state.videos,
   images: (state) => state.images,
   myPosts: (state) => state.myPosts,
+
+  post: (state) => state.post,
+  image: (state) => state.image,
+  video: (state) => state.video,
 }
 
 export const mutations = {
@@ -30,12 +37,29 @@ export const mutations = {
       state.myPosts.videos.push(post)
     }
   },
+
+  SET_POST: (state, post) => {
+    if (post.type === 'post') {
+      state.post = post
+    }
+    if (post.type === 'image') {
+      state.image = post
+    }
+    if (post.type === 'video') {
+      state.video = post
+    }
+  },
 }
 
 export const actions = {
   async getPosts({ commit }) {
     const posts = await this.$axios.get('operation/apiGetPost/20')
     commit('SET_POSTS', posts.data.data)
+  },
+
+  async getPost({ commit }, id) {
+    const post = await this.$axios.get('operation/apiPost/' + id)
+    commit('SET_POST', post.data.data)
   },
 
   async getMyPosts({ commit }) {

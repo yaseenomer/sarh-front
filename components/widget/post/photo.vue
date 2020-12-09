@@ -10,43 +10,63 @@
           @error="onErrorImage"
         >
           <v-container>
-            <v-row class="justify-space-between align-end">
-              <div>
-                <v-avatar color="white" size="36" class="mx-1">
-                  <v-icon> mdi-account-circle </v-icon>
-                </v-avatar>
-                <v-chip
-                  class="ma-2 d-inline-block text-truncate"
-                  color="white"
-                  style="max-width: 200px"
-                  exact
-                  text-color="primary"
-                  small
-                >
-                  {{ post.user_id ? post.user_id.name : 'company name' }}
-                </v-chip>
-              </div>
-              <div>
-                <share-company
-                  :data="{
-                    title: post.user_id ? post.user_id.name : 'company name',
-                    description: post.file,
-                  }"
-                  :them="{ color: 'white', small: false, x_small: true }"
-                />
-                <v-btn
-                  class="mx-1"
-                  x-small
-                  elevation="0"
-                  color="white"
-                  fab
-                  @click="like(post)"
-                >
-                  <v-icon color="#EA2027">{{
-                    post.is_Like ? 'mdi-heart' : 'mdi-heart-outline'
-                  }}</v-icon>
-                </v-btn>
-              </div>
+            <v-row>
+              <v-avatar color="light-blue lighten-5" size="36" class="mx-1">
+                <v-icon color="primary"> mdi-account-circle </v-icon>
+              </v-avatar>
+              <v-chip
+                class="ma-2 d-inline-block text-truncate"
+                color="light-blue lighten-5"
+                style="max-width: 200px"
+                exact
+                text-color="primary"
+                small
+              >
+                {{ post.user_id ? post.user_id.name : 'company name' }}
+              </v-chip>
+              <v-spacer />
+              <v-btn
+                class="mx-2"
+                x-small
+                elevation="0"
+                color="red lighten-5"
+                fab
+                @click="like(post)"
+              >
+                <v-icon color="#EA2027">{{
+                  post.is_Like ? 'mdi-heart' : 'mdi-heart-outline'
+                }}</v-icon>
+              </v-btn>
+            </v-row>
+            <v-row>
+              <v-spacer />
+              <share-company
+                :data="{
+                  title: post.user_id ? post.user_id.name : 'company name',
+                  description: post.file,
+                }"
+                :them="{
+                  color: 'light-blue lighten-5',
+                  small: false,
+                  x_small: true,
+                }"
+              />
+            </v-row>
+            <v-row>
+              <v-spacer />
+              <v-btn
+                :to="{
+                  name: 'posts-post',
+                  query: { post: post.id, type: 'image' },
+                }"
+                fab
+                x-small
+                color="teal lighten-5"
+                elevation="0"
+                class="ma-2"
+              >
+                <v-icon color="teal">mdi-eye-outline</v-icon>
+              </v-btn>
             </v-row>
           </v-container>
         </v-img>
