@@ -33,6 +33,9 @@
     <v-tab-item>
       <quote />
     </v-tab-item>
+    <v-tab-item>
+      <fav-company />
+    </v-tab-item>
   </v-tabs>
 </template>
 
@@ -40,8 +43,9 @@
 import info from '~/components/profile/company/info/info'
 import posts from '~/components/profile/company/posts/index'
 import quote from '~/components/profile/company/quoteation/quote'
+import FavCompany from '../favCompany.vue'
 export default {
-  components: { info, posts, quote },
+  components: { info, posts, quote, FavCompany },
 }
 </script>
 

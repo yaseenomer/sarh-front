@@ -76,16 +76,16 @@
                 <v-icon color="primary">mdi-calendar-month</v-icon>
               </v-list-item-avatar>
               <v-list-item-content>
-                <v-list-item-title>{{ RQ.date }}</v-list-item-title>
+                <v-list-item-title>{{ RQ.created_at }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
             <v-divider inset />
             <v-list-item>
               <v-list-item-avatar color="blue lighten-4">
-                <v-icon color="primary">mdi-account-group-outline</v-icon>
+                <v-icon color="primary">mdi-pound-box-outline</v-icon>
               </v-list-item-avatar>
               <v-list-item-content>
-                <v-list-item-title>to multi</v-list-item-title>
+                <v-list-item-title>{{ RQ.number }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
             <v-divider inset />
@@ -94,7 +94,7 @@
                 <v-icon color="primary">mdi-paperclip</v-icon>
               </v-list-item-avatar>
               <v-list-item-content>
-                <v-list-item-title>has 1 file</v-list-item-title>
+                <v-list-item-title>file</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
             <v-divider inset />
@@ -104,15 +104,6 @@
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>has 3 quotations</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <v-divider inset />
-            <v-list-item>
-              <v-list-item-avatar color="blue lighten-4">
-                <v-icon color="primary">mdi-tag-text-outline</v-icon>
-              </v-list-item-avatar>
-              <v-list-item-content>
-                <v-list-item-title>main activity</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </v-list>

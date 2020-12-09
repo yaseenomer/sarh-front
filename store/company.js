@@ -5,6 +5,7 @@ export const state = () => ({
   recentlyAdded: [],
   recommendedByUs: [],
   searchedCompanies: [],
+  favoriteCompany: [],
   topRating: [],
   sharing: {},
   reportCompany: 0,
@@ -21,7 +22,7 @@ export const getters = {
   posts: (state) => state.posts,
   sharing: (state) => state.sharing,
   reports: (state) => state.reports,
-  favoriteCompany: (state) => _.filter(state.companies, { is_Favorite: true }),
+  favoriteCompany: (state) => state.favoriteCompany,
 }
 
 export const mutations = {
@@ -33,6 +34,10 @@ export const mutations = {
   },
   setRecommendedByUs(state, recommendedByUs) {
     state.recommendedByUs = recommendedByUs
+  },
+
+  setFavoriteCompany(state, favs) {
+    state.favoriteCompany = favs
   },
   setCompany(state, company) {
     state.company = company
@@ -83,6 +88,11 @@ export const actions = {
   async getRecommendedByUs({ commit }) {
     const companies = await this.$axios.get('user/apiRecommended')
     commit('setRecommendedByUs', companies.data.data)
+  },
+
+  async getFavoriteCompany({ commit }) {
+    const companies = await this.$axios.get('operation/apiUserFavorite')
+    commit('setFavoriteCompany', companies.data.data)
   },
 
   async getCompany({ commit }, id) {

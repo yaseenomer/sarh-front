@@ -68,7 +68,7 @@
               </v-col>
             </v-row>
           </v-container>
-          <v-subheader v-text="post.title" class="display-1" />
+          <v-subheader class="display-1" v-text="post.title" />
           <p v-text="post.content"></p>
         </v-card-text>
       </v-card>

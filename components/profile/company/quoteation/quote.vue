@@ -15,7 +15,7 @@
             <v-row>
               <v-subheader class="primary--text">
                 <v-icon color="primary">mdi-format-quote-open-outline</v-icon>
-                quotations sent
+                Request Quotations Sent
               </v-subheader>
               <v-spacer />
               <v-btn
