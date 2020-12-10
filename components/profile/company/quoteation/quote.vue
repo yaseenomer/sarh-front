@@ -28,18 +28,18 @@
                 @click="createQouteForm = true"
               >
                 <v-icon>mdi-format-quote-open-outline</v-icon>
-                add request quotation
+                send request quotation
               </v-btn>
             </v-row>
           </v-container>
           <v-divider />
           <v-container>
-            <quote-card :quotes="myRequestQuotationsSent" :type="1" />
+            <quote-card :quotes="myRequestQuotationsSent" type="sent" />
           </v-container>
         </v-tab-item>
         <v-tab-item>
           <v-container>
-            <quote-card :quotes="[]" :type="2" />
+            <quote-card :quotes="myRequestQuotationsReceived" type="received" />
           </v-container>
         </v-tab-item>
       </v-tabs>
@@ -64,10 +64,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ myRequestQuotationsSent: 'quote/myRequestQuotationsSent' }),
+    ...mapGetters({
+      myRequestQuotationsSent: 'quote/myRequestQuotationsSent',
+      myRequestQuotationsReceived: 'quote/myRequestQuotationsReceived',
+    }),
   },
   created() {
     this.$store.dispatch('quote/getMyRequestQuotationsSent')
+    this.$store.dispatch('quote/getMyRequestQuotationsReceived')
   },
 }
 </script>

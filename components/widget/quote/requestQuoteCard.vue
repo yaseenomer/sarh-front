@@ -5,7 +5,7 @@
         class="rounded-lg"
         outlined
         hover
-        :to="{ name: 'quote-sent-id', params: { id: quote.id } }"
+        :to="{ name: 'quote-request-id', query: { quote: quote.id, type } }"
       >
         <v-card-text>
           <p class="font-weight-bold text-truncate">
@@ -36,7 +36,7 @@
 export default {
   props: {
     quotes: { type: Array, required: true },
-    type: { type: Number, required: true },
+    type: { type: String, required: true },
   },
 }
 </script>

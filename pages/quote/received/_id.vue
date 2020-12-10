@@ -153,7 +153,7 @@ export default {
       {
         text: 'Profile',
         disabled: false,
-        to: '/',
+        to: 'profile/company?tab=quote',
       },
       {
         text: `quotation`,

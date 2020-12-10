@@ -28,9 +28,6 @@
         </v-btn>
 
         <v-spacer />
-        <v-chip color="blue lighten-4" text-color="primary">
-          price $1000</v-chip
-        >
         <v-btn
           v-if="quote.download_quotation_attachment_url"
           rounded

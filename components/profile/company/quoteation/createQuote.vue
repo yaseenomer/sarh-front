@@ -98,6 +98,7 @@ export default {
       try {
         await this.$store.dispatch('quote/sendQuotation', fd)
         this.saving = false
+        this.closeWindow()
       } catch (e) {
         this.saving = false
         this.$toast.error('something error')

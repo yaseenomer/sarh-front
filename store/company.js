@@ -22,7 +22,7 @@ export const getters = {
   posts: (state) => state.posts,
   sharing: (state) => state.sharing,
   reports: (state) => state.reports,
-  favoriteCompany: (state) => state.favoriteCompany,
+  favoriteCompany: (state) => _.filter(state.companies, { is_Favorite: true }),
 }
 
 export const mutations = {

@@ -32,6 +32,10 @@
         label="send to"
         prepend-icon="mdi-account-arrow-right-outline"
         :items="items"
+        :error-messages="sendToErrors"
+        required
+        @input="$v.send_to.$touch()"
+        @blur="$v.send_to.$touch()"
       />
 
       <v-select
@@ -42,8 +46,12 @@
         item-value="id"
         :loading="!$store.state.activity.activites.length"
         :items="$store.state.activity.activites"
+        :error-messages="activityErrors"
+        required
+        @input="$v.activity_id.$touch()"
+        @blur="$v.activity_id.$touch()"
       />
-      <v-file-input v-model="file" multiple label="files"></v-file-input>
+      <v-file-input v-model="file" label="file"></v-file-input>
     </v-card-text>
     <v-card-actions>
       <v-btn
@@ -71,7 +79,7 @@ export default {
       body: '',
       send_to: '',
       activity_id: '',
-      file: [],
+      file: null,
       saving: false,
       items: [
         { value: 1, text: 'favorites' },
@@ -93,10 +101,24 @@ export default {
       !this.$v.body.required && errors.push('body is required.')
       return errors
     },
+    sendToErrors() {
+      const errors = []
+      if (!this.$v.send_to.$dirty) return errors
+      !this.$v.send_to.required && errors.push('send_to is required.')
+      return errors
+    },
+    activityErrors() {
+      const errors = []
+      if (!this.$v.activity_id.$dirty) return errors
+      !this.$v.activity_id.required && errors.push('activity_id is required.')
+      return errors
+    },
   },
   validations: {
     subject: { required },
     body: { required },
+    send_to: { required },
+    activity_id: { required },
   },
   created() {
     this.$store.dispatch('activity/getActivities')
@@ -107,22 +129,24 @@ export default {
     },
 
     async sendRequestQuote() {
-      const quote = {
-        subject: this.subject,
-        body: this.body,
-        file: this.file,
-        activity_id: this.activity_id,
-        send_to: this.send_to,
-      }
       this.$v.$touch()
 
       if (this.$v.$invalid) return false
 
+      const fd = new FormData()
+      fd.append('subject', this.subject)
+      fd.append('body', this.body)
+      fd.append('activity_id', this.activity_id)
+      fd.append('send_to', this.send_to)
+      fd.append('file', this.file)
+
       this.saving = true
 
       try {
-        await this.$store.dispatch('quote/sendRequestQuotation', quote)
+        await this.$store.dispatch('quote/sendRequestQuotation', fd)
         this.saving = false
+        this.closeWindow()
+        this.$toast.success('send request successful')
       } catch (e) {
         this.saving = false
         this.$toast.error('something error')
