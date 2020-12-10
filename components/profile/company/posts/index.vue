@@ -4,22 +4,21 @@
       <v-tabs vertical background-color="#eeeeee">
         <v-tab>
           <v-icon left>mdi-post-outline</v-icon>
-          posts
+          {{ $t('post.posts') }}
         </v-tab>
         <v-tab>
           <v-icon left>mdi-folder-multiple-image</v-icon>
-          images
+          {{ $t('post.images') }}
         </v-tab>
         <v-tab>
           <v-icon left>mdi-play-box-multiple-outline</v-icon>
-          videos
         </v-tab>
         <v-tab-item>
           <v-container>
             <v-row>
               <v-subheader class="primary--text">
                 <v-icon color="primary">mdi-post-outline</v-icon>
-                Posts
+                {{ $t('post.Posts') }}
               </v-subheader>
               <v-spacer />
               <v-btn
@@ -32,7 +31,7 @@
                 @click="getCreatePost(null)"
               >
                 <v-icon>mdi-plus</v-icon>
-                add post
+                {{ $t('post.addpost') }}
               </v-btn>
             </v-row>
           </v-container>
@@ -46,7 +45,7 @@
             <v-row>
               <v-subheader class="primary--text">
                 <v-icon color="primary">mdi-folder-multiple-image</v-icon>
-                Images</v-subheader
+                {{ $t('posts.images') }}</v-subheader
               >
               <v-spacer />
               <v-btn
@@ -59,7 +58,7 @@
                 @click="getCreatePost('image')"
               >
                 <v-icon>mdi-plus</v-icon>
-                add post with image
+                {{ $t('posts.addpostwithimage') }}
               </v-btn>
             </v-row>
           </v-container>
@@ -73,7 +72,7 @@
             <v-row>
               <v-subheader class="primary--text">
                 <v-icon color="primary">mdi-play-box-multiple-outline</v-icon>
-                Videos
+                {{ $t('posts.vidoes') }}
               </v-subheader>
               <v-spacer />
               <v-btn
@@ -86,7 +85,7 @@
                 @click="getCreatePost('video')"
               >
                 <v-icon>mdi-plus</v-icon>
-                add post with video
+                {{ $t('posts.addpostwithvideo') }}
               </v-btn>
             </v-row>
           </v-container>

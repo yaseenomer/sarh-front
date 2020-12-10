@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      <p>create quote</p>
+      <p>{{ $t('quotation.createquotation') }}</p>
       <v-spacer />
       <v-btn icon @click="closeWindow">
         <v-icon>mdi-window-close</v-icon>
@@ -9,19 +9,14 @@
     </v-card-title>
     <v-card-text>
       <v-text-field
-        v-model="subject"
-        label="subject"
-        prepend-icon="mdi-alpha-s"
-        :error-messages="subjectErrors"
-        required
-        @input="$v.subject.$touch()"
         @blur="$v.subject.$touch()"
       />
 
       <v-textarea
-        v-model="body"
-        label="body"
-        :error-messages="bodyErrors"
+        v-model="content"
+        :label="$t('quotation.content')"
+        outlined
+        :error-messages="contentErrors"
         prepend-icon="mdi-text-subject"
         required
         @input="$v.body.$touch()"
@@ -39,7 +34,9 @@
         >save</v-btn
       >
       <v-spacer />
-      <v-btn elevation="0" @click="closeWindow">cancel</v-btn>
+      <v-btn elevation="0" @click="closeWindow">{{
+        $t('buttons.cancel')
+      }}</v-btn>
     </v-card-actions>
   </v-card>
 </template>

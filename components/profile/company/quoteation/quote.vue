@@ -4,11 +4,11 @@
       <v-tabs vertical background-color="#eeeeee">
         <v-tab>
           <v-icon left>mdi-arrow-top-right-thick</v-icon>
-          Sent Quote
+          {{ $t('quotation.sentquotations') }}
         </v-tab>
         <v-tab>
           <v-icon left>mdi-arrow-bottom-left-thick</v-icon>
-          Received Quote
+          {{ $t('quotation.receivedquotations') }}
         </v-tab>
         <v-tab-item>
           <v-container>

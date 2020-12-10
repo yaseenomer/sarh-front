@@ -1,7 +1,10 @@
 <template>
   <v-card>
     <v-card-title>
-      <p>create post <span v-if="postType">with </span>{{ postType }}</p>
+      <p>
+        {{ $t('posts.addpost') }} <span v-if="postType">with </span
+        >{{ postType }}
+      </p>
       <v-spacer />
       <v-btn icon @click="closeWindow">
         <v-icon>mdi-window-close</v-icon>
@@ -10,7 +13,7 @@
     <v-card-text>
       <v-text-field
         v-model="title"
-        label="title"
+        :label="$t('posts.title')"
         outlined
         :error-messages="titleErrors"
         required
@@ -20,7 +23,7 @@
 
       <v-textarea
         v-model="content"
-        label="content"
+        :label="$t('posts.content')"
         outlined
         :error-messages="contentErrors"
         required
@@ -40,14 +43,15 @@
         :loading="saving"
         :disabled="saving"
         @click="savePost"
-        >save</v-btn
+        >{{ $t('buttons.save') }}</v-btn
       >
       <v-spacer />
-      <v-btn elevation="0" @click="closeWindow">cancel</v-btn>
+      <v-btn elevation="0" @click="closeWindow">{{
+        $t('buttons.cancel')
+      }}</v-btn>
     </v-card-actions>
   </v-card>
 </template>
-
 <script>
 import { required } from 'vuelidate/lib/validators'
 import { validationMixin } from 'vuelidate'

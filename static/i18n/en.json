@@ -28,7 +28,22 @@
   },
   "posts":
   {
-    
+    "images":"Images",
+    "posts":"Posts",
+    "videos":"Videos",
+    "addpost":"Add Post",
+    "addpostwithimage":"Add Post With Image",
+    "addpostwithvideo":"Add Post With Video",
+    "title":"Title",
+    "content":"Content"
+  },
+  "quotation":
+  {
+    "createquotation":"Create Quotation",
+    "title":"Title",
+    "content":"Content",
+    "sentquotations":"Sent Quotations",
+    "receivedquotations":"Received Quotations"
   },
   "company":
   {
@@ -66,12 +81,15 @@
   {
     "edit":"edit",
     "savechanges":"save changes",
-    "cancel":"cancel"
+    "cancel":"cancel",
+    "save":"save"
   },
   "auth":
   {
     "Email":"Email",
     "Password":"Password",
+    "CompanyName":"Company Name",
+    "fullname":"fullname",
     "Forgottenyourpassword":"Forgotten your password",
     "Signin":"Sign in",
     "signup":"sign up",

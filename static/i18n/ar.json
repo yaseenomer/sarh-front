@@ -28,7 +28,22 @@
   },
   "posts":
   {
-    
+    "images":"الصور",
+    "posts":"المنشورات",
+    "videos":"الفيديوهات",
+    "addpost":"اضافة منشور",
+    "addpostwithimage":"اضافة منشور مع صورة",
+    "addpostwithvideo":"اضافة منشور مع فيديو",
+    "title":"العنوان",
+    "content":"المحتوي"
+  },
+  "quotation":
+  {
+    "createquotation":"ارسال طلب",
+    "title":"العنوان",
+    "content":"المحتوي",
+    "sentquotations":"الطلبات المرسلة",
+    "receivedquotations":"الطلبات المستقبلة"
   },
   "company":
   {
@@ -43,7 +58,7 @@
     "CompanyName":"اسم الشركة",
     "email":"البريد اللكتروني",
     "phone":"الهاتف",
-    "EmployeesNumber":"Employees Number",
+    "EmployeesNumber":"عدد الموظفين",
     "ccemail":"ايميل اضافي",
     "website":"الموقع الاكتروني",
     "activity":"النشاط",
@@ -60,13 +75,22 @@
     "UploadLicence":"رفع الرخصة",
     "licencefile":"ملف الرخصة"
   },
+  "buttons":
+  {
+    "edit":"تعديل",
+    "savechanges":"حفظ التغيرات",
+    "cancel":"الغاء",
+    "save":"حفظ"
+  },
   "auth":
   {
     "Email":"البريد الالكتروني",
     "Password":"كلمة المرور",
     "Forgottenyourpassword":"نسيت كلمة المرور",
     "Signin":"تسجيل دخول",
-    "signup":"التسجيل",
+    "signup":"تسجيل",
+    "CompanyName":"اسم الشركة",
+    "fullname":"الاسم كامل",
     "passwordconfirmation":"تاكيد كلمة المرور",
     "OrRgisterWith":"او سجل يواسطة",
     "readtermspolicies":"قراءة الشروط والاحكام",
