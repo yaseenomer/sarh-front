@@ -30,7 +30,20 @@
   {
     "images":"الصور",
     "posts":"المنشورات",
-    "videos":"الفيديوهات"
+    "videos":"الفيديوهات",
+    "addpost":"اضافة منشور",
+    "addpostwithimage":"اضافة منشور مع صورة",
+    "addpostwithvideo":"اضافة منشور مع فيديو",
+    "title":"العنوان",
+    "content":"المحتوي"
+  },
+  "quotation":
+  {
+    "createquotation":"ارسال طلب",
+    "title":"العنوان",
+    "content":"المحتوي",
+    "sentquotations":"الطلبات المرسلة",
+    "receivedquotations":"الطلبات المستقبلة"
   },
   "company":
   {
@@ -66,7 +79,8 @@
   {
     "edit":"تعديل",
     "savechanges":"حفظ التغيرات",
-    "cancel":"الغاء"
+    "cancel":"الغاء",
+    "save":"حفظ"
   },
   "auth":
   {
@@ -74,7 +88,7 @@
     "Password":"كلمة المرور",
     "Forgottenyourpassword":"نسيت كلمة المرور",
     "Signin":"تسجيل دخول",
-    "signup":"التسجيل",
+    "signup":"تسجيل",
     "CompanyName":"اسم الشركة",
     "fullname":"الاسم كامل",
     "passwordconfirmation":"تاكيد كلمة المرور",

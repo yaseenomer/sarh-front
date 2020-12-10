@@ -4,18 +4,18 @@
       <v-tabs vertical background-color="#eeeeee">
         <v-tab>
           <v-icon left>mdi-arrow-top-right-thick</v-icon>
-          Sent Quote
+          {{ $t('quotation.sentquotations') }}
         </v-tab>
         <v-tab>
           <v-icon left>mdi-arrow-bottom-left-thick</v-icon>
-          Received Quote
+          {{ $t('quotation.receivedquotations') }}
         </v-tab>
         <v-tab-item>
           <v-container>
             <v-row>
               <v-subheader class="primary--text">
                 <v-icon color="primary">mdi-format-quote-open-outline</v-icon>
-                quotations sent
+                {{ $t('quotation.sentquotations') }}
               </v-subheader>
               <v-spacer />
               <v-btn
@@ -28,7 +28,7 @@
                 @click="createQouteForm = true"
               >
                 <v-icon>mdi-format-quote-open-outline</v-icon>
-                add request quotation
+                {{ $t('quotation.createquotation') }}
               </v-btn>
             </v-row>
           </v-container>

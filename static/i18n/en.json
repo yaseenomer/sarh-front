@@ -28,9 +28,22 @@
   },
   "posts":
   {
-    "images":"images",
-    "posts":"posts",
-    "videos":"videos"
+    "images":"Images",
+    "posts":"Posts",
+    "videos":"Videos",
+    "addpost":"Add Post",
+    "addpostwithimage":"Add Post With Image",
+    "addpostwithvideo":"Add Post With Video",
+    "title":"Title",
+    "content":"Content"
+  },
+  "quotation":
+  {
+    "createquotation":"Create Quotation",
+    "title":"Title",
+    "content":"Content",
+    "sentquotations":"Sent Quotations",
+    "receivedquotations":"Received Quotations"
   },
   "company":
   {
@@ -68,7 +81,8 @@
   {
     "edit":"edit",
     "savechanges":"save changes",
-    "cancel":"cancel"
+    "cancel":"cancel",
+    "save":"save"
   },
   "auth":
   {
