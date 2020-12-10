@@ -17,9 +17,6 @@
         :label="$t('quotation.content')"
         outlined
         :error-messages="contentErrors"
-        v-model="body"
-        label="body"
-        :error-messages="bodyErrors"
         prepend-icon="mdi-text-subject"
         required
         @input="$v.body.$touch()"
