@@ -15,7 +15,7 @@
             <v-row>
               <v-subheader class="primary--text">
                 <v-icon color="primary">mdi-format-quote-open-outline</v-icon>
-                {{ $t('quotation.sentquotations') }}
+                Request Quotations Sent
               </v-subheader>
               <v-spacer />
               <v-btn
@@ -34,33 +34,40 @@
           </v-container>
           <v-divider />
           <v-container>
-            <quote-card :quotes="[1, 2, 3]" :type="1" />
+            <quote-card :quotes="myRequestQuotationsSent" :type="1" />
           </v-container>
         </v-tab-item>
         <v-tab-item>
           <v-container>
-            <quote-card :quotes="[1, 2, 3]" :type="2" />
+            <quote-card :quotes="[]" :type="2" />
           </v-container>
         </v-tab-item>
       </v-tabs>
     </v-row>
     <div justify="center">
       <v-dialog v-model="createQouteForm" max-width="700px">
-        <create-quote @close-create-quote="createQouteForm = false" />
+        <create-quote @close-create-request-quote="createQouteForm = false" />
       </v-dialog>
     </div>
   </v-container>
 </template>
 
 <script>
-import quoteCard from '~/components/widget/quote/quoteCard'
-import createQuote from '~/components/profile/company/quoteation/createQuote'
+import quoteCard from '~/components/widget/quote/requestQuoteCard'
+import createQuote from '~/components/profile/company/quoteation/createRequestQuote'
+import { mapGetters } from 'vuex'
 export default {
   components: { quoteCard, createQuote },
   data() {
     return {
       createQouteForm: false,
     }
+  },
+  computed: {
+    ...mapGetters({ myRequestQuotationsSent: 'quote/myRequestQuotationsSent' }),
+  },
+  created() {
+    this.$store.dispatch('quote/getMyRequestQuotationsSent')
   },
 }
 </script>

@@ -41,12 +41,14 @@
               class="mx-1"
               x-small
               elevation="0"
-              color="blue lighten-5"
+              color="teal lighten-5"
               fab
+              :to="{
+                name: 'posts-post',
+                query: { post: post.id, type: 'post' },
+              }"
             >
-              <v-icon color="primary" @click="$router.push(`/post/${post.id}`)"
-                >mdi-eye-outline</v-icon
-              >
+              <v-icon color="teal">mdi-eye-outline</v-icon>
             </v-btn>
             <share-company
               :data="{ title: post.title, description: post.content }"
