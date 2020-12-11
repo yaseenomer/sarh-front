@@ -15,7 +15,7 @@
             <v-row>
               <v-subheader class="primary--text">
                 <v-icon color="primary">mdi-format-quote-open-outline</v-icon>
-                Request Quotations Sent
+               {{ $t('quotation.sentquotations') }}
               </v-subheader>
               <v-spacer />
               <v-btn
@@ -28,7 +28,7 @@
                 @click="createQouteForm = true"
               >
                 <v-icon>mdi-format-quote-open-outline</v-icon>
-                send request quotation
+              {{ $t('quotation.createquotation') }}
               </v-btn>
             </v-row>
           </v-container>

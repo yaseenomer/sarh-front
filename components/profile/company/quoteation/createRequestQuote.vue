@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      <p>create quote</p>
+      <p>{{ $t('quotation.createquotation') }}</p>
       <v-spacer />
       <v-btn icon @click="closeWindow">
         <v-icon>mdi-window-close</v-icon>
@@ -10,7 +10,7 @@
     <v-card-text>
       <v-text-field
         v-model="subject"
-        label="subject"
+        :label="$t('quotation.subject')"
         prepend-icon="mdi-alpha-s"
         :error-messages="subjectErrors"
         required
@@ -20,7 +20,7 @@
 
       <v-textarea
         v-model="body"
-        label="body"
+        :label="$t('quotation.body')"
         :error-messages="bodyErrors"
         prepend-icon="mdi-text-subject"
         required
@@ -29,7 +29,7 @@
       ></v-textarea>
       <v-select
         v-model="send_to"
-        label="send to"
+        :label="$t('quotation.sendto')"
         prepend-icon="mdi-account-arrow-right-outline"
         :items="items"
         :error-messages="sendToErrors"
@@ -40,7 +40,7 @@
 
       <v-select
         v-model="activity_id"
-        label="activity"
+        :label="$t('quotation.activity')"
         prepend-icon="mdi-tag-outline"
         item-text="name"
         item-value="id"
@@ -60,10 +60,10 @@
         :loading="saving"
         :disabled="saving"
         @click="sendRequestQuote"
-        >save</v-btn
+        >{{ $t('buttons.save') }}</v-btn
       >
       <v-spacer />
-      <v-btn elevation="0" @click="closeWindow">cancel</v-btn>
+      <v-btn elevation="0" @click="closeWindow">{{ $t('buttons.cancel') }}</v-btn>
     </v-card-actions>
   </v-card>
 </template>

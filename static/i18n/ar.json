@@ -35,7 +35,8 @@
     "addpostwithimage":"اضافة منشور مع صورة",
     "addpostwithvideo":"اضافة منشور مع فيديو",
     "title":"العنوان",
-    "content":"المحتوي"
+    "content":"المحتوي",
+    "with":"مع"
   },
   "quotation":
   {
@@ -43,7 +44,10 @@
     "title":"العنوان",
     "content":"المحتوي",
     "sentquotations":"الطلبات المرسلة",
-    "receivedquotations":"الطلبات المستقبلة"
+    "receivedquotations":"الطلبات المستقبلة",
+    "subject":"الموضوع",
+    "body":"المحتوي",
+    "sendto":"ارسال الي"
   },
   "company":
   {

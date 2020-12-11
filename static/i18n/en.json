@@ -35,7 +35,8 @@
     "addpostwithimage":"Add Post With Image",
     "addpostwithvideo":"Add Post With Video",
     "title":"Title",
-    "content":"Content"
+    "content":"Content",
+    "with":"with"
   },
   "quotation":
   {
@@ -43,7 +44,10 @@
     "title":"Title",
     "content":"Content",
     "sentquotations":"Sent Quotations",
-    "receivedquotations":"Received Quotations"
+    "receivedquotations":"Received Quotations",
+    "subject":"Subject",
+    "body":"Body",
+    "sendto":"Send To"
   },
   "company":
   {

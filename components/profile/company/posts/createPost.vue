@@ -2,7 +2,7 @@
   <v-card>
     <v-card-title>
       <p>
-        {{ $t('posts.addpost') }} <span v-if="postType">with </span
+        {{ $t('posts.addpost') }} <span v-if="postType">{{ $t('posts.with') }} </span
         >{{ postType }}
       </p>
       <v-spacer />
