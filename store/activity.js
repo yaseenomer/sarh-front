@@ -34,6 +34,9 @@ export const mutations = {
   setUserActivities(state, userActivity) {
     state.userActivity = userActivity[0]
   },
+  setDeleteUserActivities(state, id) {
+    state.userActivity.user_activities.filter((t) => t.id == !id)
+  },
 
   setNewSub(state, sub) {
     state.selectedActivity.sub_activity.push(sub)
@@ -52,6 +55,10 @@ export const actions = {
   async getUserActivity({ commit }) {
     const userActivity = await this.$axios.get('operation/apiUserActivities')
     commit('setUserActivities', userActivity.data.data)
+  },
+  async deleteUserActivity({ commit }, id) {
+    await this.$axios.delete('operation/apiUserActivities/' + id)
+    commit('setDeleteUserActivities', id)
   },
 
   async storeUserActivity({ dispatch }, activity) {

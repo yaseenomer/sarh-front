@@ -58,6 +58,12 @@ export const actions = {
     const Q = await this.$axios.post('operation/apiAddQuotation', quotation)
     commit('SET_NEW_QUOTATION', Q.data.data)
   },
+
+  // eslint-disable-next-line no-unused-vars
+  async downloadFile({ commit }, id) {
+    const Q = await this.$axios.get('operation/apiDwonload/quotation/' + id)
+    return Q.data
+  },
 }
 
 export default {

@@ -22,8 +22,8 @@ export default {
         address_1: this.profile.address_1,
         address_2: this.profile.address_2,
         country_id: this.profile.country_id,
-        state: this.$refs.regin.state,
-        city_id: this.$refs.regin.city,
+        state: this.profile.state,
+        city_id: this.profile.city_id,
       }
     },
   },
@@ -133,7 +133,7 @@ export default {
           </v-col>
           <v-col cols="12" md="4">
             <v-select
-              v-model="state_id"
+              v-model="profile.state"
               :items="states"
               :disabled="disabled"
               item-text="name"

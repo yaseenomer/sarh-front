@@ -97,9 +97,9 @@ export default {
               <v-btn
                 color="primary"
                 elevation="0"
-                @click="sendReport"
                 :loading="loading"
                 :disabled="loading"
+                @click="sendReport"
               >
                 send
                 <v-icon>mdi-send</v-icon>

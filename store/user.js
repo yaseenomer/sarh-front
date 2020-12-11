@@ -116,6 +116,19 @@ export const actions = {
       }
     }
   },
+
+  // eslint-disable-next-line no-unused-vars
+  async uploadLicence({ commit }, file) {
+    try {
+      const fd = new FormData()
+      fd.append('file', file, file.name)
+      await this.$axios.post('user/apiProfiles/user/update-licence', fd)
+    } catch (e) {
+      for (const [key, value] of Object.entries(e.response.data.errors)) {
+        this.$toast.error(key + ':' + value[0])
+      }
+    }
+  },
   // eslint-disable-next-line no-unused-vars
   loginWithSocial({ commit }, service) {
     window.location.href = 'https://back.sarh.ae/api/auth/login/' + service //

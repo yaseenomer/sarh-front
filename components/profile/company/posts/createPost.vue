@@ -2,8 +2,8 @@
   <v-card>
     <v-card-title>
       <p>
-        {{ $t('posts.addpost') }} <span v-if="postType">{{ $t('posts.with') }} </span
-        >{{ postType }}
+        {{ $t('posts.addpost') }}
+        <span v-if="postType">{{ $t('posts.with') }} </span>{{ postType }}
       </p>
       <v-spacer />
       <v-btn icon @click="closeWindow">

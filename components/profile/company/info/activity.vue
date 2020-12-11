@@ -13,7 +13,7 @@
             <tr v-for="(item, i) in activity.user_activities" :key="i">
               <td>{{ item.sub_activity.name }}</td>
               <td>
-                <v-btn icon>
+                <v-btn icon @click="deleteUserActivity(item.sub_activity.id)">
                   <v-icon>mdi-delete-outline</v-icon>
                 </v-btn>
               </td>
@@ -33,6 +33,11 @@ export default {
   },
   created() {
     this.$store.dispatch('activity/getUserActivity')
+  },
+  methods: {
+    deleteUserActivity(id) {
+      this.$store.dispatch('activity/deleteUserActivity', id)
+    },
   },
 }
 </script>

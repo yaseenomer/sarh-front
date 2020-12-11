@@ -35,9 +35,10 @@
           color="blue lighten-4"
           elevation="0"
           class="mx-1"
+          @click="downloadFile(quote.id)"
         >
           <v-icon color="primary">mdi-paperclip</v-icon>
-          <span class="primary--text">file name</span>
+          <v-icon color="primary">mdi-download</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -48,6 +49,17 @@
 export default {
   props: {
     quotations: { type: Array, required: true },
+  },
+  methods: {
+    async downloadFile(id) {
+      const file = await this.$store.dispatch('quote/downloadFile', id)
+      const blob = new Blob([file], { type: 'application/pdf' })
+      const link = document.createElement('a')
+      link.href = URL.createObjectURL(blob)
+      link.download = 'quotation'
+      link.click()
+      URL.revokeObjectURL(link.href)
+    },
   },
 }
 </script>

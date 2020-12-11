@@ -27,7 +27,7 @@ export default {
         expiration_date: this.profile.expiration_date, //  moment(this.expiration_date).format('YYYY-MM-DD')
       }
       if (this.file) {
-        await this.$store.dispatch('account/uploadLicence', this.file)
+        await this.$store.dispatch('user/uploadLicence', this.file)
       }
       await this.updateProfile(data)
       this.loading = false
@@ -167,108 +167,4 @@ export default {
       </v-container>
     </v-card-text>
   </v-card>
-  <!--  <div v-if="profile" class="panel">-->
-  <!--    <h6 class="title">-->
-  <!--      Licence Company-->
-  <!--    </h6>-->
-  <!--    <form action="" class="row licence">-->
-  <!--      <div class="form-group col-md-6">-->
-  <!--        <label for="">Licence Number</label>-->
-  <!--        <input-->
-  <!--          v-model="profile.licence_number"-->
-  <!--          type="text"-->
-  <!--          :disabled="disabled"-->
-  <!--          class="form-control"-->
-  <!--        />-->
-  <!--      </div>-->
-  <!--      <div class="form-group col-md-6">-->
-  <!--        <label for="">Creation Date</label>-->
-
-  <!--        <input-->
-  <!--          v-if="disabled"-->
-  <!--          v-model="profile.creation_date"-->
-  <!--          type="text"-->
-  <!--          :disabled="disabled"-->
-  <!--          class="form-control"-->
-  <!--        />-->
-  <!--        <DatePicker-->
-  <!--          v-else-->
-  <!--          v-model="creation_date"-->
-  <!--          :popover="{ placement: 'bottom', visibility: 'click' }"-->
-  <!--          :masks="{ L: 'YYYY-MM-DD' }"-->
-  <!--        />-->
-  <!--      </div>-->
-  <!--      <div class="form-group col-md-6">-->
-  <!--        <label for="">Expiration Date</label>-->
-  <!--        <input-->
-  <!--          v-if="disabled"-->
-  <!--          v-model="profile.expiration_date"-->
-  <!--          type="text"-->
-  <!--          :disabled="disabled"-->
-  <!--          class="form-control "-->
-  <!--        />-->
-
-  <!--        <DatePicker-->
-  <!--          v-else-->
-  <!--          v-model="expiration_date"-->
-  <!--          :popover="{ placement: 'bottom', visibility: 'click' }"-->
-  <!--          :masks="{ L: 'YYYY-MM-DD' }"-->
-  <!--        />-->
-  <!--      </div>-->
-
-  <!--      <div v-if="disabled" class="col-md-6">-->
-  <!--        <br />-->
-  <!--        <span>licence file</span>-->
-  <!--        <a v-b-modal.show-licence-file href="javascript:;">-->
-  <!--          <b-img-->
-  <!--            v-bind="{ width: 200, height: 50 }"-->
-  <!--            :src="profile.licence_file"-->
-  <!--            right-->
-  <!--            rounded-->
-  <!--            alt="Rounded image"-->
-  <!--          />-->
-  <!--        </a>-->
-  <!--      </div>-->
-
-  <!--      <div v-if="!disabled" class="form-group col-md-6">-->
-  <!--        <label for="">Upload Licence</label>-->
-  <!--        <b-form-group>-->
-  <!--          <b-form-file-->
-  <!--            v-model="file"-->
-  <!--            placeholder="Upload Licence"-->
-  <!--            drop-placeholder="Drop file here..."-->
-  <!--          />-->
-  <!--        </b-form-group>-->
-  <!--      </div>-->
-  <!--      <div class="col-sm-12">-->
-  <!--        <button v-if="!disabled" :disabled="loading" @click.prevent="update">-->
-  <!--          <i v-if="loading" class="fa fa-spinner fa-spin" />-->
-  <!--          Save Changes-->
-  <!--        </button>-->
-  <!--        <button v-if="disabled" @click.prevent="disabled = !disabled">-->
-  <!--          Edit Data-->
-  <!--        </button>-->
-
-  <!--        <button v-if="!disabled" @click.prevent="disabled = !disabled">-->
-  <!--          cancel-->
-  <!--        </button>-->
-  <!--      </div>-->
-  <!--    </form>-->
-
-  <!--    <b-modal-->
-  <!--      id="show-licence-file"-->
-  <!--      hide-footer-->
-  <!--      hide-header-->
-  <!--      title="BootstrapVue"-->
-  <!--    >-->
-  <!--      <p class="my-4">-->
-  <!--        <b-img-->
-  <!--          v-bind="{ fluidGrow: true }"-->
-  <!--          :src="profile.licence_file"-->
-  <!--          rounded-->
-  <!--          alt="Rounded image"-->
-  <!--        />-->
-  <!--      </p>-->
-  <!--    </b-modal>-->
-  <!--  </div>-->
 </template>

@@ -59,11 +59,10 @@ export default {
 
   proxy: {
     '/api': {
-      target: 'https://back.sarh.ae/',
+      target: 'https://back.sarh.ae',
       pathRewrite: {
         '^/api/': '/',
       },
-      changeOrigin: true,
     },
   },
 

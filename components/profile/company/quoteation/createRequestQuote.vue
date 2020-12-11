@@ -63,7 +63,9 @@
         >{{ $t('buttons.save') }}</v-btn
       >
       <v-spacer />
-      <v-btn elevation="0" @click="closeWindow">{{ $t('buttons.cancel') }}</v-btn>
+      <v-btn elevation="0" @click="closeWindow">{{
+        $t('buttons.cancel')
+      }}</v-btn>
     </v-card-actions>
   </v-card>
 </template>

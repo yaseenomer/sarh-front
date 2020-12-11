@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-tabs icons-and-text centered background-color="#eeeeee" v-model="tab">
+    <v-tabs v-model="tab" icons-and-text centered background-color="#eeeeee">
       <v-tab href="#info">
         {{ $t('company.info') }}
         <v-icon>mdi-information-variant</v-icon>

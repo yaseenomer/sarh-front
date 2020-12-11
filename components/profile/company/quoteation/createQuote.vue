@@ -8,9 +8,7 @@
       </v-btn>
     </v-card-title>
     <v-card-text>
-      <v-text-field
-        @blur="$v.subject.$touch()"
-      />
+      <v-text-field @blur="$v.subject.$touch()" />
 
       <v-textarea
         v-model="content"
