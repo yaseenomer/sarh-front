@@ -95,7 +95,9 @@ export default {
               small
               elevation="0"
               rounded
-              @click="$router.push('/company/' + company.id)"
+              @click="
+                $router.push({ name: 'company-id', params: { id: company.id } })
+              "
             >
               <span style="color: #0c7cfe">{{
                 $t('company.viewprofile')

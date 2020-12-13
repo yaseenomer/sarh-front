@@ -1,11 +1,11 @@
 <template>
-  <p>company</p>
+  <p>{{ $route.name }}</p>
 </template>
 
 <script>
 export default {
-  name: 'Company',
+  created() {
+    this.$store.dispatch('company/getCompany', this.$route.params.id)
+  },
 }
 </script>
-
-<style scoped></style>

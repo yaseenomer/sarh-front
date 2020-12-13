@@ -27,7 +27,7 @@ export const mutations = {
 
   SET_QUOTATIONS: (state, Qs) => (state.quotations = Qs),
 
-  SET_NEW_QUOTATION: (state, Q) => state.quotations.push(Q),
+  SET_NEW_QUOTATION: (state, Q) => state.quotations.unshift(Q),
 }
 
 export const actions = {

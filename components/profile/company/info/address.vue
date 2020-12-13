@@ -5,7 +5,7 @@ export default {
   // components: { saveCountry },
   data() {
     return {
-      disabled: true,
+      readonly: true,
       loading: false,
       state_id: parseInt(this.$auth.user.profile.state, 10),
     }
@@ -22,7 +22,7 @@ export default {
         address_1: this.profile.address_1,
         address_2: this.profile.address_2,
         country_id: this.profile.country_id,
-        state: this.profile.state,
+        state: this.state_id,
         city_id: this.profile.city_id,
       }
     },
@@ -40,8 +40,8 @@ export default {
       this.loading = false
       this.changeDisable()
     },
-    changeDisable() {
-      this.disabled = !this.disabled
+    changeReadonly() {
+      this.readonly = !this.readonly
     },
 
     selectCountry() {
@@ -49,7 +49,7 @@ export default {
     },
 
     selectState() {
-      this.$store.commit('country/filterCities', this.profile.state)
+      this.$store.commit('country/filterCities', this.state_id)
     },
   },
 }
@@ -64,17 +64,17 @@ export default {
       </v-btn>
       <v-spacer />
       <v-btn
-        v-if="disabled"
+        v-if="readonly"
         text
         color="primary"
-        @click.prevent="changeDisable"
+        @click.prevent="changeReadonly"
       >
         <v-icon>mdi-pencil-outline</v-icon>
         <span>{{ $t('buttons.edit') }}</span>
       </v-btn>
 
       <v-btn
-        v-if="!disabled"
+        v-if="!readonly"
         text
         color="primary"
         :disabled="loading"
@@ -85,7 +85,7 @@ export default {
         <span>{{ $t('buttons.savechanges') }} </span>
       </v-btn>
       <v-btn
-        v-if="!disabled"
+        v-if="!readonly"
         text
         color="primary"
         :disabled="loading"
@@ -103,7 +103,7 @@ export default {
             <v-text-field
               v-model="profile.address_1"
               :label="$t('company.Address1')"
-              :disabled="disabled"
+              :readonly="readonly"
               prepend-icon="mdi-map-marker-outline"
             />
           </v-col>
@@ -112,7 +112,7 @@ export default {
             <v-text-field
               v-model="profile.address_2"
               :label="$t('company.Address2')"
-              :disabled="disabled"
+              :readonly="readonly"
               prepend-icon="mdi-map-marker-plus"
             />
           </v-col>
@@ -123,7 +123,7 @@ export default {
             <v-select
               v-model="profile.country_id"
               :items="countries"
-              :disabled="disabled"
+              :readonly="readonly"
               item-text="name"
               item-value="id"
               prepend-icon="mdi-web"
@@ -133,9 +133,9 @@ export default {
           </v-col>
           <v-col cols="12" md="4">
             <v-select
-              v-model="profile.state"
+              v-model="state_id"
               :items="states"
-              :disabled="disabled"
+              :readonly="readonly"
               item-text="name"
               item-value="id"
               prepend-icon="mdi-map"
@@ -147,7 +147,7 @@ export default {
             <v-select
               v-model="profile.city_id"
               :items="cities"
-              :disabled="disabled"
+              :readonly="readonly"
               item-text="name"
               item-value="id"
               prepend-icon="mdi-city"

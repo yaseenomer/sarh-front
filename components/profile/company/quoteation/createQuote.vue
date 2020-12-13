@@ -8,19 +8,28 @@
       </v-btn>
     </v-card-title>
     <v-card-text>
-      <v-text-field @blur="$v.subject.$touch()" />
+      <v-text-field
+        v-model="subject"
+        label="subject"
+        outlined
+        dense
+        :error-messages="subjectErrors"
+        required
+        @blur="$v.subject.$touch()"
+        @input="$v.body.$touch()"
+      />
 
       <v-textarea
-        v-model="content"
+        v-model="body"
         :label="$t('quotation.content')"
         outlined
-        :error-messages="contentErrors"
-        prepend-icon="mdi-text-subject"
+        dense
+        :error-messages="bodyErrors"
         required
         @input="$v.body.$touch()"
         @blur="$v.body.$touch()"
       />
-      <v-file-input v-model="file" label="file"></v-file-input>
+      <v-file-input outlined v-model="file" dense label="file"></v-file-input>
     </v-card-text>
     <v-card-actions>
       <v-btn
