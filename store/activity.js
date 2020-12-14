@@ -2,6 +2,7 @@ export const state = () => ({
   activites: [],
   selectedActivity: null,
   userActivity: null,
+  userMainActivity: null,
 })
 
 export const getters = {
@@ -20,6 +21,8 @@ export const getters = {
   userActivity(state) {
     return state.userActivity
   },
+
+  userMainActivity: (state) => state.userMainActivity,
 }
 
 export const mutations = {
@@ -38,6 +41,10 @@ export const mutations = {
     state.userActivity.user_activities.filter((t) => t.id == !id)
   },
 
+  setUserMainActivity(state, userMainActivit) {
+    return (state.userMainActivity = userMainActivit)
+  },
+
   setNewSub(state, sub) {
     state.selectedActivity.sub_activity.push(sub)
   },
@@ -47,6 +54,11 @@ export const actions = {
   async getActivities({ commit }) {
     const res = await this.$axios.get('operation/apiAllActivities')
     commit('setActivites', res.data.data)
+  },
+
+  async getUserMainActivity({ commit }) {
+    const res = await this.$axios.get('operation/apiUserActivities/main')
+    commit('setUserMainActivity', res.data.data)
   },
 
   async getSelectedActivity({ commit }, id) {

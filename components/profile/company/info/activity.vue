@@ -32,7 +32,7 @@ export default {
     ...mapGetters({ activity: 'activity/userActivity' }),
   },
   created() {
-    this.$store.dispatch('activity/getUserActivity')
+    this.$store.dispatch('activity/getUserMainActivity')
   },
   methods: {
     deleteUserActivity(id) {

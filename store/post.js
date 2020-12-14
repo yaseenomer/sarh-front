@@ -66,6 +66,12 @@ export const actions = {
     const posts = await this.$axios.get('operation/apiPost/companyPost')
     commit('SET_MY_POSTS', posts.data.data)
   },
+  async getCompanyPosts({ commit }, companyId) {
+    const posts = await this.$axios.get(
+      `operation/apiPost/allPosts/${companyId}`
+    )
+    commit('SET_POSTS', posts.data.data)
+  },
 
   async createPost({ commit }, post) {
     const newPost = await this.$axios.post('operation/apiPost', post)

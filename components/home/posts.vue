@@ -105,26 +105,16 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import photo from '~/components/widget/post/photo'
 import videos from '~/components/widget/post/video'
 import posts from '~/components/widget/post/posts'
 export default {
-  name: 'Index',
+  props: {
+    posts: { type: Array, required: true },
+    videos: { type: Array, required: true },
+    images: { type: Array, required: true },
+  },
   components: { photo, videos, posts },
-  data() {
-    return {}
-  },
-  computed: {
-    ...mapGetters({
-      posts: 'post/posts',
-      videos: 'post/videos',
-      images: 'post/images',
-    }),
-  },
-  created() {
-    this.$store.dispatch('post/getPosts')
-  },
 }
 </script>
 
