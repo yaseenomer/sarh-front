@@ -1,37 +1,30 @@
 export const state = () => ({
   activites: [],
+  activity: null,
   userMainActivity: null,
   userSubActivities: [],
 })
 
 export const getters = {
-  activites: (state) => state.activites,
+  activity: (state) => state.activity,
+  activities: (state) => state.activites,
   userMainActivity: (state) => state.userMainActivity,
   userSubActivities: (state) => state.userSubActivities,
 }
 
 export const mutations = {
-  setActivites(state, activites) {
-    state.activites = activites
-  },
-  setDeleteUserActivities(state, id) {
-    state.userActivity.user_activities.filter((t) => t.id == !id)
-  },
-
-  setUserMainActivity(state, userMainActivit) {
-    return (state.userMainActivity = userMainActivit)
-  },
-
-  setUserSubActivities(state, subs) {
-    return (state.userSubActivities = subs)
-  },
-
-  setNewSub(state, sub) {
-    state.selectedActivity.sub_activity.push(sub)
-  },
+  setActivity: (state, activity) => (state.activity = activity),
+  setActivites: (state, activites) => (state.activites = activites),
+  setUserMainActivity: (state, main) => (state.userMainActivity = main),
+  setUserSubActivities: (state, subs) => (state.userSubActivities = subs),
 }
 
 export const actions = {
+  async getActivity({ commit }, id) {
+    const res = await this.$axios.get('operation/apiActivities/' + id)
+    commit('setActivity', res.data.data)
+  },
+
   async getActivities({ commit }) {
     const res = await this.$axios.get('operation/apiAllActivities')
     commit('setActivites', res.data.data)
@@ -47,9 +40,11 @@ export const actions = {
     commit('setUserSubActivities', res.data.data)
   },
 
+  // eslint-disable-next-line no-unused-vars
   async deleteUserActivity({ commit }, id) {
-    await this.$axios.delete('operation/apiUserActivities/' + id)
-    commit('setDeleteUserActivities', id)
+    await this.$axios.delete('operation/apiUserActivities/' + id) // apiUserActivities
+    return true
+    //  commit('setDeleteUserActivities', id)
   },
 
   async storeUserActivity({ dispatch }, activity) {
