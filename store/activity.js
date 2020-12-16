@@ -1,41 +1,18 @@
 export const state = () => ({
   activites: [],
-  selectedActivity: null,
-  userActivity: null,
   userMainActivity: null,
+  userSubActivities: [],
 })
 
 export const getters = {
-  activites(state) {
-    return state.activites
-  },
-  selectedActivity(state) {
-    return state.selectedActivity
-  },
-
-  subActivities(state) {
-    if (state.selectedActivity) return state.selectedActivity.sub_activity
-    return []
-  },
-
-  userActivity(state) {
-    return state.userActivity
-  },
-
+  activites: (state) => state.activites,
   userMainActivity: (state) => state.userMainActivity,
+  userSubActivities: (state) => state.userSubActivities,
 }
 
 export const mutations = {
   setActivites(state, activites) {
     state.activites = activites
-  },
-  setSelectedActivity(state, id) {
-    // eslint-disable-next-line eqeqeq
-    state.selectedActivity = state.activites.find((r) => r.id == id)
-  },
-
-  setUserActivities(state, userActivity) {
-    state.userActivity = userActivity[0]
   },
   setDeleteUserActivities(state, id) {
     state.userActivity.user_activities.filter((t) => t.id == !id)
@@ -43,6 +20,10 @@ export const mutations = {
 
   setUserMainActivity(state, userMainActivit) {
     return (state.userMainActivity = userMainActivit)
+  },
+
+  setUserSubActivities(state, subs) {
+    return (state.userSubActivities = subs)
   },
 
   setNewSub(state, sub) {
@@ -61,13 +42,11 @@ export const actions = {
     commit('setUserMainActivity', res.data.data)
   },
 
-  async getSelectedActivity({ commit }, id) {
-    commit('setSelectedActivity', id)
+  async getUserSubActivities({ commit }) {
+    const res = await this.$axios.get('operation/apiUserActivities/sub')
+    commit('setUserSubActivities', res.data.data)
   },
-  async getUserActivity({ commit }) {
-    const userActivity = await this.$axios.get('operation/apiUserActivities')
-    commit('setUserActivities', userActivity.data.data)
-  },
+
   async deleteUserActivity({ commit }, id) {
     await this.$axios.delete('operation/apiUserActivities/' + id)
     commit('setDeleteUserActivities', id)

@@ -1,7 +1,10 @@
 <template>
   <v-row id="scrolling-techniques-4" class="overflow-y-auto">
     <v-col cols="12">
-      <p class="primary--text text-center text-uppercase font-weight-bold">
+      <p
+        v-if="hasTitel"
+        class="primary--text text-center text-uppercase font-weight-bold"
+      >
         {{ $t('home.Latestposts') }}
       </p>
     </v-col>
@@ -113,6 +116,7 @@ export default {
     posts: { type: Array, required: true },
     videos: { type: Array, required: true },
     images: { type: Array, required: true },
+    hasTitel: { type: Boolean, required: false },
   },
   components: { photo, videos, posts },
 }

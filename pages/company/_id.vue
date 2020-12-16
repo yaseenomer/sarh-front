@@ -2,6 +2,7 @@
   <div>
     <v-breadcrumbs :items="items"></v-breadcrumbs>
     <company-info />
+    <p>{{ $route.name }}</p>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <posts :posts="posts" :images="images" :videos="videos" />
+    <posts :posts="posts" :images="images" :videos="videos" :has-titel="true" />
     <companies />
   </div>
 </template>

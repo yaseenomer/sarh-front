@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import activity from '~/components/profile/company/info/activity'
+import activity from '~/components/profile/company/info/activity/activity'
 import aboutCompany from '~/components/profile/company/info/about'
 import companyAddress from '~/components/profile/company/info/address'
 import licence from '~/components/profile/company/info/licence'
