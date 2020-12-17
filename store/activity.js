@@ -15,7 +15,8 @@ export const getters = {
 export const mutations = {
   setActivity: (state, activity) => (state.activity = activity),
   setActivites: (state, activites) => (state.activites = activites),
-  setUserMainActivity: (state, main) => (state.userMainActivity = main),
+  setUserMainActivity: (state, main) =>
+    (state.userMainActivity = main[0].activity),
   setUserSubActivities: (state, subs) => (state.userSubActivities = subs),
 }
 
@@ -40,16 +41,16 @@ export const actions = {
     commit('setUserSubActivities', res.data.data)
   },
 
-  // eslint-disable-next-line no-unused-vars
-  async deleteUserActivity({ commit }, id) {
-    await this.$axios.delete('operation/apiUserActivities/' + id) // apiUserActivities
-    return true
-    //  commit('setDeleteUserActivities', id)
+  async deleteUserActivity({ dispatch }, id) {
+    await this.$axios.delete('operation/apiUserActivities/' + id)
+    dispatch('getUserMainActivity')
+    dispatch('getUserSubActivities')
   },
 
   async storeUserActivity({ dispatch }, activity) {
     await this.$axios.post('operation/apiUserActivities', activity)
-    dispatch('getUserActivity')
+    dispatch('getUserMainActivity')
+    dispatch('getUserSubActivities')
   },
 
   async newSubActivity({ commit, state }, name) {
@@ -61,7 +62,8 @@ export const actions = {
   },
   async updateUserActivity({ dispatch }, activity) {
     await this.$axios.put('operation/apiUserActivities', activity)
-    dispatch('getUserActivity')
+    dispatch('getUserMainActivity')
+    dispatch('getUserSubActivities')
   },
 
   async userHasActivity({ dispatch, state }) {

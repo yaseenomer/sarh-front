@@ -12,8 +12,10 @@
       </v-col>
       <v-col>
         <v-select
-          v-model="sub"
+          v-model="subIds"
           :items="subs"
+          multiple
+          chips
           item-text="name"
           item-value="id"
         ></v-select>
@@ -28,7 +30,7 @@ export default {
   data() {
     return {
       main: 0,
-      sub: 0,
+      subIds: [],
       subs: [],
     }
   },
@@ -39,6 +41,13 @@ export default {
     ...mapGetters({ activities: 'activity/activities' }),
   },
   methods: {
+    async saveActivity() {
+      const data = {
+        activity_id: this.main,
+        sub_activity_id: this.subIds,
+      }
+      await this.$store.dispatch('activity/storeUserActivity', data)
+    },
     async setSubs() {
       const { sub_activity } = await this.activities.find(
         (m) => m.id == this.main
