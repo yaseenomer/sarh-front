@@ -77,7 +77,13 @@
     "CreationDate":"Creation Date",
     "ExpirationDate":"Expiration Date",
     "UploadLicence":"Upload Licence",
-    "licencefile":"licence file"
+    "licencefile":"licence file",
+    "enteryouraddress":"Enter Your Address",
+    "maplocation":"Map Location",
+    "pickyourlocationafterthatwedisplayhere":"pick Your Location After That We Display Here",
+    "companyactivities":"Company Activities",
+    "mainactivity":"Main Activity",
+    "subactivities":"Sub Activities"
     
 
   },
@@ -86,7 +92,8 @@
     "edit":"edit",
     "savechanges":"save changes",
     "cancel":"cancel",
-    "save":"save"
+    "save":"save",
+    "update":"update"
   },
   "auth":
   {

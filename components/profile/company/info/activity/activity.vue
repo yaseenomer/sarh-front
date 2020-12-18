@@ -3,7 +3,7 @@
     <v-card-title>
       <v-btn text color="primary" readonly>
         <v-icon>mdi-tag-multiple-outline</v-icon>
-        <span>company activities</span>
+        <span>{{ $t('company.companyactivities') }}</span>
       </v-btn>
       <v-spacer />
 
@@ -23,11 +23,11 @@
     <v-card-text>
       <template v-if="main">
         <p>
-          <span class="primary--text">main activity: </span>
+          <span class="primary--text">{{ $t('company.mainactivity') }}: </span>
           <span>{{ main.name }}</span>
         </p>
         <v-row>
-          <p class="primary--text">sub activities :</p>
+          <p class="primary--text">{{ $t('company.subactivities') }}:</p>
           <v-btn icon color="primary" @click="createSubActivity = true">
             <v-icon>mdi-pencil-outline</v-icon>
           </v-btn>

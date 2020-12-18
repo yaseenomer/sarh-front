@@ -18,11 +18,11 @@
         rounded
         elevation="0"
         @click="add"
-        >update</v-btn
+        >{{ $t('buttons.update') }}</v-btn
       >
       <v-spacer />
-      <v-btn @click="$emit('close-add-sub-form')" elevation="0" rounded>
-        cancel
+      <v-btn elevation="0" rounded @click="$emit('close-add-sub-form')">
+        {{ $t('buttons.cancel') }}
       </v-btn>
     </v-card-actions>
   </v-card>

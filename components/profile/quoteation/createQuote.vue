@@ -29,7 +29,7 @@
         @input="$v.body.$touch()"
         @blur="$v.body.$touch()"
       />
-      <v-file-input outlined v-model="file" dense label="file"></v-file-input>
+      <v-file-input v-model="file" outlined dense label="file"></v-file-input>
     </v-card-text>
     <v-card-actions>
       <v-btn
