@@ -3,6 +3,9 @@ import { required, maxLength } from 'vuelidate/lib/validators'
 import { validationMixin } from 'vuelidate'
 
 export default {
+  props: {
+    companyId: { type: String, required: true },
+  },
   mixins: [validationMixin],
   data() {
     return {
@@ -33,7 +36,7 @@ export default {
           const data = {
             comment: {
               user_id: this.$auth.user.id,
-              company: this.$store.state.company.company.id,
+              company: this.companyId,
               comment: this.comment,
             },
             replay: false,

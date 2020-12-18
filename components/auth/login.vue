@@ -22,8 +22,8 @@ export default {
   },
   methods: {
     async forgotPassword() {
-      await this.$emit('close-login-form')
-      this.$router.push('/account/reset')
+      await this.$store.commit('user/setLoginForm', false)
+      this.$router.push({ name: 'profile-forgotPassword' })
     },
     async onSubmit() {
       await this.$v.$touch()
@@ -45,7 +45,6 @@ export default {
             if (e.response.data.tow_factor) {
               this.loading = false
               localStorage.setItem('email-for-tow-factor', this.user.email)
-              this.$bvModal.hide('login-modal')
               this.$toast.info(e.response.data.message)
               // return this.$router.push('/account/factorActivate')
             }

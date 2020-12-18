@@ -53,6 +53,9 @@ export default {
     ],
   ],
   auth,
+  toast: {
+    duration: '3000',
+  },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {

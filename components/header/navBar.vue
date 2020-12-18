@@ -4,7 +4,7 @@
       <img src="/logo/logo.png" />
     </nuxt-link>
     <div>
-      <v-btn text dark @click="$router.push({ name: 'community' })">
+      <v-btn text dark @click="$router.push({ name: 'index' })">
         <v-icon color="primary" class="mx-1">mdi-chat-outline</v-icon>
         {{ $t('nav.home') }}
       </v-btn>
@@ -110,7 +110,7 @@ export default {
       this.$store.dispatch('company/getCompanies')
     },
     setLocal(local) {
-      this.$vuetify.rtl !== this.this.$vuetify.rtl
+      this.$vuetify.rtl = !this.$vuetify.rtl
       this.$i18n.locale = local
     },
   },

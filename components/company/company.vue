@@ -1,7 +1,13 @@
 <template>
   <div>
     <info />
-    <posts :posts="posts" :images="images" :videos="videos" />
+    <posts
+      :posts="posts"
+      :images="images"
+      :videos="videos"
+      :has-comments="true"
+      :company-id="$route.params.id.toString()"
+    />
   </div>
 </template>
 
