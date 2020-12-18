@@ -100,7 +100,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import createQuote from '~/components/profile/company/quoteation/createQuote'
+import createQuote from '~/components/profile/quoteation/createQuote'
 import quotaionCard from '~/components/widget/quote/quotaionCard'
 export default {
   components: { createQuote, quotaionCard },

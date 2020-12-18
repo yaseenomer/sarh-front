@@ -110,6 +110,7 @@ export default {
       this.$store.dispatch('company/getCompanies')
     },
     setLocal(local) {
+      this.$vuetify.rtl !== this.this.$vuetify.rtl
       this.$i18n.locale = local
     },
   },

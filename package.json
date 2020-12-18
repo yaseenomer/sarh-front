@@ -20,6 +20,7 @@
     "nuxt": "^2.14.6",
     "nuxt-google-maps-module": "^1.6.0",
     "nuxt-i18n": "^6.15.4",
+    "vue-moment": "^4.1.0",
     "vue-social-sharing": "^3.0.4",
     "vuelidate": "^0.7.6"
   },

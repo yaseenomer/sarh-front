@@ -40,6 +40,13 @@
       <v-tab-item value="favCompany">
         <fav-company />
       </v-tab-item>
+
+      <v-tab-item value="comment">
+        <comments />
+      </v-tab-item>
+      <v-tab-item value="security">
+        <change-password />
+      </v-tab-item>
     </v-tabs-items>
   </div>
 </template>
@@ -47,10 +54,12 @@
 <script>
 import info from '~/components/profile/company/info/info'
 import posts from '~/components/profile/company/posts/index'
-import quote from '~/components/profile/company/quoteation/quote'
-import favCompany from '~/components/profile/company/favCompany'
+import quote from '~/components/profile/quoteation/quote'
+import favCompany from '~/components/profile/favCompany'
+import comments from '~/components/profile/company/comments'
+import changePassword from '~/components/profile/changePassword'
 export default {
-  components: { info, posts, quote, favCompany },
+  components: { info, posts, quote, favCompany, comments, changePassword },
   computed: {
     tab: {
       set(tab) {

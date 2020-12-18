@@ -54,7 +54,7 @@
 
 <script>
 import quoteCard from '~/components/widget/quote/requestQuoteCard'
-import createQuote from '~/components/profile/company/quoteation/createRequestQuote'
+import createQuote from '~/components/profile/quoteation/createRequestQuote'
 import { mapGetters } from 'vuex'
 export default {
   components: { quoteCard, createQuote },

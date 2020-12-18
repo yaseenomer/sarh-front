@@ -140,7 +140,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import createQuote from '~/components/profile/company/quoteation/createQuote'
+import createQuote from '~/components/profile/quoteation/createQuote'
 export default {
   components: { createQuote },
   asyncData({ params }) {
