@@ -28,7 +28,7 @@
                 class="mx-2"
                 rounded
                 small
-                @click="getCreatePost(null)"
+                @click="getCreatePost('post')"
               >
                 <v-icon>mdi-plus</v-icon>
                 {{ $t('post.addpost') }}
@@ -145,8 +145,8 @@ export default {
     this.$store.dispatch('post/getMyPosts')
   },
   methods: {
-    getCreatePost(title) {
-      this.postType = title
+    async getCreatePost(title) {
+      this.postType = await title
       this.createPost = true
     },
   },

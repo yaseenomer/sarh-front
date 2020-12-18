@@ -3,7 +3,8 @@
     <v-card-title>
       <p>
         {{ $t('posts.addpost') }}
-        <span v-if="postType">{{ $t('posts.with') }} </span>{{ postType }}
+        <span v-if="postType === 'image'">{{ $t('posts.with') }} </span>
+        {{ postType }}
       </p>
       <v-spacer />
       <v-btn icon @click="closeWindow">
@@ -31,7 +32,7 @@
         @blur="$v.content.$touch()"
       ></v-textarea>
       <v-file-input
-        v-if="postType"
+        v-if="postType !== 'post'"
         v-model="file"
         :label="postType"
       ></v-file-input>
@@ -57,12 +58,14 @@ import { required } from 'vuelidate/lib/validators'
 import { validationMixin } from 'vuelidate'
 export default {
   mixins: [validationMixin],
-  props: ['postType'],
+  props: {
+    postType: { type: String, required: true },
+  },
   data() {
     return {
       title: '',
       content: '',
-      file: '',
+      file: [],
       saving: false,
     }
   },
@@ -92,17 +95,17 @@ export default {
     async savePost() {
       await this.$v.$touch()
       if (!this.$v.$invalid) {
-        const post = {
-          title: this.title,
-          content: this.content,
-          type: (await this.postType) ? this.postType : 'post',
-        }
-        if (await this.postType) {
-          post.file = this.file
+        const fd = new FormData()
+        fd.append('title', this.title)
+        fd.append('content', this.title)
+        fd.append('type', this.postType)
+        fd.append('title', this.title)
+        if (this.postType !== 'post') {
+          fd.append('file', this.file)
         }
         try {
           this.saving = true
-          await this.$store.dispatch('post/createPost', post)
+          await this.$store.dispatch('post/createPost', fd)
           this.saving = false
           this.closeWindow()
         } catch (e) {

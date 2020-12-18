@@ -35,7 +35,7 @@
           <licence />
         </v-tab-item>
         <v-tab-item>
-          <p>{{ $t('company.map') }}</p>
+          <mapLocation />
         </v-tab-item>
       </v-tabs>
     </v-row>
@@ -47,8 +47,9 @@ import activity from '~/components/profile/company/info/activity/activity'
 import aboutCompany from '~/components/profile/company/info/about'
 import companyAddress from '~/components/profile/company/info/address'
 import licence from '~/components/profile/company/info/licence'
+import mapLocation from '~/components/profile/company/map/map'
 export default {
-  components: { activity, aboutCompany, companyAddress, licence },
+  components: { activity, aboutCompany, companyAddress, licence, mapLocation },
   created() {
     this.$store.dispatch('user/getUser')
   },

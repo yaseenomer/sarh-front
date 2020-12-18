@@ -38,7 +38,7 @@ export default {
       this.loading = true
       await this.$store.dispatch('user/updateProfile', this.profileData)
       this.loading = false
-      this.changeDisable()
+      this.changeReadonly()
     },
     changeReadonly() {
       this.readonly = !this.readonly

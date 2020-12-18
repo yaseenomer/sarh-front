@@ -44,6 +44,13 @@ export default {
     '@nuxtjs/toast',
     'nuxt-i18n',
     'vue-social-sharing/nuxt',
+    [
+      'nuxt-google-maps-module',
+      {
+        /* module options */
+        key: 'AIzaSyBsz_jkVeLWvUshS33vQvgv_sHBSYytxyI', // Default
+      },
+    ],
   ],
   auth,
 

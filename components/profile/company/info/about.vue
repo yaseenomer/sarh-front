@@ -5,6 +5,7 @@ export default {
     return {
       disabled: true,
       loading: false,
+      readonly: true,
     }
   },
   computed: {
@@ -26,7 +27,7 @@ export default {
       await this.$store.dispatch('user/updateProfile', this.updateData)
       this.$auth.fetchUser()
       this.loading = false
-      this.disabled = true
+      this.readonly = true
     },
   },
 }
@@ -41,17 +42,17 @@ export default {
       </v-btn>
       <v-spacer />
       <v-btn
-        v-if="disabled"
+        v-if="readonly"
         text
         color="primary"
-        @click.prevent="disabled = !disabled"
+        @click.prevent="readonly = !readonly"
       >
         <v-icon>mdi-pencil-outline</v-icon>
         <span>{{ $t('buttons.edit') }}</span>
       </v-btn>
 
       <v-btn
-        v-if="!disabled"
+        v-if="!readonly"
         text
         color="primary"
         :disabled="loading"
@@ -62,11 +63,11 @@ export default {
         <span>{{ $t('buttons.savechanges') }} </span>
       </v-btn>
       <v-btn
-        v-if="!disabled"
+        v-if="!readonly"
         text
         color="primary"
         :disabled="loading"
-        @click.prevent="disabled = !disabled"
+        @click.prevent="readonly = !readonly"
       >
         <v-icon>mdi-cancel</v-icon>
         <span>{{ $t('company.cancel') }} </span>
@@ -79,7 +80,7 @@ export default {
           <v-col cols="12" md="6">
             <v-text-field
               v-model="profile.full_name"
-              :disabled="disabled"
+              :readonly="readonly"
               :label="$t('company.CompanyName')"
               prepend-icon="mdi-account-circle-outline"
             />
@@ -89,7 +90,7 @@ export default {
               v-model="$auth.user.email"
               prepend-icon="mdi-email-open-outline"
               :label="$t('company.email')"
-              disabled
+              readonly
             />
           </v-col>
           <v-col cols="12" md="6">
@@ -99,7 +100,7 @@ export default {
               v-model="profile.phone"
               :label="$t('company.phone')"
               prepend-icon="mdi-phone-outline"
-              :disabled="disabled"
+              :readonly="readonly"
             ></v-text-field>
           </v-col>
 
@@ -108,7 +109,7 @@ export default {
               v-model="profile.employee_number"
               :label="$t('company.EmployeesNumber')"
               prepend-icon="mdi-account-group-outline"
-              :disabled="disabled"
+              :readonly="readonly"
             />
           </v-col>
 
@@ -116,7 +117,7 @@ export default {
             <v-text-field
               v-model="profile.email_cc"
               :label="$t('company.ccemail')"
-              :disabled="disabled"
+              :readonly="readonly"
               prepend-icon="mdi-email-outline"
             />
           </v-col>
@@ -125,7 +126,7 @@ export default {
             <v-text-field
               v-model="profile.web_site"
               :label="$t('company.website')"
-              :disabled="disabled"
+              :readonly="readonly"
               prepend-icon="mdi-web"
             />
           </v-col>
@@ -133,7 +134,7 @@ export default {
           <v-col cols="12" md="12">
             <v-textarea
               v-model="profile.about"
-              :disabled="disabled"
+              :readonly="readonly"
               :label="$t('company.aboutcompany')"
               prepend-icon="mdi-information-variant"
             ></v-textarea>

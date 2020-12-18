@@ -18,7 +18,7 @@
         rounded
         elevation="0"
         @click="add"
-        >save</v-btn
+        >update</v-btn
       >
       <v-spacer />
       <v-btn @click="$emit('close-add-sub-form')" elevation="0" rounded>
