@@ -77,14 +77,21 @@
     "CreationDate":"تاريخ الاصدار",
     "ExpirationDate":"تاريخ الانتهاء ",
     "UploadLicence":"رفع الرخصة",
-    "licencefile":"ملف الرخصة"
+    "licencefile":"ملف الرخصة",
+    "enteryouraddress":"ادخل عنوانك",
+    "maplocation":"الخريطة",
+    "pickyourlocationafterthatwedisplayhere":"حدد موقعك علي الخرطة ,بعدها سوف نقوم بعرضه هنا",
+    "companyactivities":"نشاطات الشركة",
+    "mainactivity":"النشاط الرئيسي",
+    "subactivities":"النشاط الفرعي" 
   },
   "buttons":
   {
     "edit":"تعديل",
     "savechanges":"حفظ التغيرات",
     "cancel":"الغاء",
-    "save":"حفظ"
+    "save":"حفظ",
+    "update":"تعديل"
   },
   "auth":
   {

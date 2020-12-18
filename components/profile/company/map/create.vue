@@ -99,8 +99,8 @@ export default {
   <div>
     <v-text-field
       id="autocomplete"
-      label="Enter your address"
-      placeholder="Enter your address"
+      :label="$t('company.enteryouraddress')"
+      :placeholder="$t('company.enteryouraddress')"
       type="text"
       prepend-icon="mdi-map-marker-outline"
     />

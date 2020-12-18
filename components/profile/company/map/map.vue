@@ -30,7 +30,7 @@ export default {
     <v-card-title>
       <v-btn text color="primary" readonly>
         <v-icon>mdi-map-marker-radius-outline</v-icon>
-        <span> map location</span>
+        <span> {{ $t('company.maplocation') }}</span>
       </v-btn>
       <v-spacer />
       <v-btn
@@ -52,7 +52,7 @@ export default {
         @click="editMyLocation"
       >
         <v-icon>mdi-content-save-all-outline</v-icon>
-        <span>save changes </span>
+        <span>{{ $t('buttons.savechanges') }} </span>
       </v-btn>
       <v-btn
         v-if="!disabled"
@@ -62,7 +62,7 @@ export default {
         @click.prevent="disabled = !disabled"
       >
         <v-icon>mdi-cancel</v-icon>
-        <span>cancel </span>
+        <span> {{ $t('buttons.cancel') }}</span>
       </v-btn>
     </v-card-title>
     <v-divider />
@@ -73,7 +73,7 @@ export default {
           :location="profile.location"
         />
         <p v-if="!profile.location">
-          pick your location after that we display here
+          {{ $t('company.pickyourlocationafterthatwedisplayhere') }}
         </p>
         <edit-location v-if="!disabled" ref="editLocationRef" />
       </v-container>

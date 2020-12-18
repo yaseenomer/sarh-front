@@ -112,13 +112,13 @@ import photo from '~/components/widget/post/photo'
 import videos from '~/components/widget/post/video'
 import posts from '~/components/widget/post/posts'
 export default {
+  components: { photo, videos, posts },
   props: {
     posts: { type: Array, required: true },
     videos: { type: Array, required: true },
     images: { type: Array, required: true },
     hasTitel: { type: Boolean, required: false },
   },
-  components: { photo, videos, posts },
 }
 </script>
 
