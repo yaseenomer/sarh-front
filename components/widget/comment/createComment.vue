@@ -3,10 +3,10 @@ import { required, maxLength } from 'vuelidate/lib/validators'
 import { validationMixin } from 'vuelidate'
 
 export default {
+  mixins: [validationMixin],
   props: {
     companyId: { type: String, required: true },
   },
-  mixins: [validationMixin],
   data() {
     return {
       comment: '',

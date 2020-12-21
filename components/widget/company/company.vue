@@ -36,7 +36,7 @@ export default {
 <template>
   <v-row>
     <v-col v-for="company in companies" :key="company.id" cols="12" md="4">
-      <v-card class="rounded-xl" outlined hover nuxt replace>
+      <v-card class="rounded-xl" outlined hover nuxt replace to="/company">
         <v-img
           class="rounded-xl m-1"
           :src="company.profile.cover"

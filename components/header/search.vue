@@ -11,6 +11,7 @@
         </h3>
         <p class="text-center">
           <v-btn
+            v-if="!$auth.loggedIn"
             color="primary"
             elevation="0"
             rounded

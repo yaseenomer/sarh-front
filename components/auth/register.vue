@@ -64,7 +64,7 @@ export default {
       this.$toast.success(user.message)
       localStorage.setItem('email-to-activate', this.email)
       localStorage.setItem('activate-status', 'activate')
-      this.$router.push('/account/activate')
+      this.$router.push('/profile/activate')
       this.$v.$reset()
       this.$store.commit('user/setRegisterForm', { status: false, type: 1 })
     },

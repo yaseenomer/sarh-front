@@ -5,7 +5,10 @@
         class="rounded-lg"
         outlined
         hover
-        :to="{ name: 'quote-request-id', query: { quote: quote.id, type } }"
+        :to="{
+          name: 'quote-request-id',
+          query: { quote: quote.id, type, profile },
+        }"
       >
         <v-card-text>
           <p class="font-weight-bold text-truncate">
@@ -37,6 +40,11 @@ export default {
   props: {
     quotes: { type: Array, required: true },
     type: { type: String, required: true },
+  },
+  computed: {
+    profile() {
+      return this.$auth.user.type === 2 ? 'company' : 'user'
+    },
   },
 }
 </script>
