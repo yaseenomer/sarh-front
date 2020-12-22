@@ -9,7 +9,7 @@
         {{ $t('nav.home') }}
       </v-btn>
 
-      <v-btn text dark>
+      <v-btn text dark @click="getQuote">
         <v-icon color="primary" class="mx-1">mdi-message-text-outline</v-icon>
         {{ $t('nav.quotations') }}
       </v-btn>
@@ -54,15 +54,13 @@
           <v-list-item-group color="primary">
             <v-list-item
               route
-              :to="$auth.user.type == 2 ? '/profile/company' : '/profile/user'"
+              :to="$auth.user.type === 2 ? '/profile/company' : '/profile/user'"
             >
               <v-list-item-icon>
                 <v-icon>mdi-account-cog-outline</v-icon>
               </v-list-item-icon>
               <v-list-item-content>
-                <v-list-item-title>{{
-                  $t('nav.userprofile')
-                }}</v-list-item-title>
+                <v-list-item-title>{{ profileTitle }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
             <v-list-item @click="logOut">
@@ -78,6 +76,7 @@
       </v-menu>
     </div>
     <v-btn
+      v-if="!$auth.loggedIn"
       color="primary"
       rounded
       elevation="0"
@@ -85,16 +84,25 @@
     >
       <v-icon>mdi-plus</v-icon>{{ $t('nav.addcompany') }}
     </v-btn>
+    <div justify="center">
+      <v-dialog v-model="createQouteForm" max-width="700px">
+        <create-request-quote
+          @close-create-request-quote="createQouteForm = false"
+        />
+      </v-dialog>
+    </div>
   </v-row>
 </template>
 
 <script>
+import createRequestQuote from '~/components/profile/quoteation/createRequestQuote'
 export default {
-  name: 'NavBar',
+  components: { createRequestQuote },
   data() {
     return {
       login: false,
       logOutLoading: false,
+      createQouteForm: false,
     }
   },
   computed: {
@@ -112,6 +120,13 @@ export default {
     setLocal(local) {
       this.$vuetify.rtl = !this.$vuetify.rtl
       this.$i18n.locale = local
+    },
+
+    getQuote() {
+      if (this.$auth.loggedIn) {
+        return (this.createQouteForm = true)
+      }
+      return this.$toast.show('plase login ...')
     },
   },
 }

@@ -104,28 +104,27 @@ import createQuote from '~/components/profile/quoteation/createQuote'
 import quotaionCard from '~/components/widget/quote/quotaionCard'
 export default {
   components: { createQuote, quotaionCard },
-  asyncData({ query }) {
-    const items = [
-      {
-        text: 'Home',
-        disabled: false,
-        to: '/',
-      },
-      {
-        text: 'Profile',
-        disabled: false,
-        to: '/profile/company?tab=quote',
-      },
-      {
-        text: `Request quotation ${query.type}`,
-        disabled: true,
-      },
-    ]
+  data() {
     return {
-      id: query.quote,
-      type: query.type,
+      items: [
+        {
+          text: 'Home',
+          disabled: false,
+          to: '/',
+        },
+        {
+          text: 'Profile',
+          disabled: false,
+          to: `/profile/${this.$route.query.profile}?tab=quote`,
+        },
+        {
+          text: `Request quotation ${this.$route.query.type}`,
+          disabled: true,
+        },
+      ],
+      id: this.$route.query.quote,
       createQuote: false,
-      items,
+      type: this.$route.query.type,
     }
   },
   computed: {

@@ -59,7 +59,7 @@ export default {
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: 'http://back.sarh.ae/api/',
+    baseURL: 'https://back.sarh.ae/api/',
     common: {
       Accept: 'application/json',
     },
@@ -67,19 +67,19 @@ export default {
     credentials: false,
   },
 
-  proxy: {
-    '/api': {
-      target: 'https://back.sarh.ae',
-      pathRewrite: {
-        '^/api/': '/',
-      },
-    },
-  },
+  // proxy: {
+  //   '/api': {
+  //     target: 'https://back.sarh.ae',
+  //     pathRewrite: {
+  //       '^/api/': '/',
+  //     },
+  //   },
+  // },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
-    rtl: false,
+    rtl: true,
     theme: {
       dark: false,
       themes: {
@@ -106,11 +106,11 @@ export default {
   },
   i18n: {
     locales: ['en', 'ar'],
-    defaultLocale: 'en',
+    defaultLocale: 'ar',
     strategy: 'no_prefix',
     vueI18n: {
       fallbackLocale: 'en',
-      messages: { ar, en },
+      messages: { en, ar },
     },
   },
 
