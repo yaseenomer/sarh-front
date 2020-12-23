@@ -4,21 +4,22 @@
       <v-tabs vertical background-color="#eeeeee">
         <v-tab>
           <v-icon left>mdi-post-outline</v-icon>
-          {{ $t('post.posts') }}
+          posts
         </v-tab>
         <v-tab>
           <v-icon left>mdi-folder-multiple-image</v-icon>
-          {{ $t('post.images') }}
+          images
         </v-tab>
         <v-tab>
           <v-icon left>mdi-play-box-multiple-outline</v-icon>
+          videos
         </v-tab>
         <v-tab-item>
           <v-container>
             <v-row>
               <v-subheader class="primary--text">
                 <v-icon color="primary">mdi-post-outline</v-icon>
-                {{ $t('post.Posts') }}
+                Posts
               </v-subheader>
               <v-spacer />
               <v-btn
@@ -28,10 +29,10 @@
                 class="mx-2"
                 rounded
                 small
-                @click="getCreatePost('post')"
+                @click="getCreatePost(null)"
               >
                 <v-icon>mdi-plus</v-icon>
-                {{ $t('post.addpost') }}
+                add post
               </v-btn>
             </v-row>
           </v-container>
@@ -45,7 +46,7 @@
             <v-row>
               <v-subheader class="primary--text">
                 <v-icon color="primary">mdi-folder-multiple-image</v-icon>
-                {{ $t('posts.images') }}</v-subheader
+                Images</v-subheader
               >
               <v-spacer />
               <v-btn
@@ -58,7 +59,7 @@
                 @click="getCreatePost('image')"
               >
                 <v-icon>mdi-plus</v-icon>
-                {{ $t('posts.addpostwithimage') }}
+                add post with image
               </v-btn>
             </v-row>
           </v-container>
@@ -72,7 +73,7 @@
             <v-row>
               <v-subheader class="primary--text">
                 <v-icon color="primary">mdi-play-box-multiple-outline</v-icon>
-                {{ $t('posts.vidoes') }}
+                Videos
               </v-subheader>
               <v-spacer />
               <v-btn
@@ -85,7 +86,7 @@
                 @click="getCreatePost('video')"
               >
                 <v-icon>mdi-plus</v-icon>
-                {{ $t('posts.addpostwithvideo') }}
+                add post with video
               </v-btn>
             </v-row>
           </v-container>
@@ -95,7 +96,7 @@
           </v-container>
         </v-tab-item>
       </v-tabs>
-      <!-- post form start -------------------------------------------------->
+      <!-- post form start ------------------------------------------------->
       <div justify="center">
         <v-dialog v-model="createPost" max-width="700px">
           <create-post
@@ -104,7 +105,7 @@
           />
         </v-dialog>
       </div>
-      <!-- post form end ---------------------------------------------------->
+      <!-- post form end ----------------------------------------------------->
     </v-row>
   </v-container>
 </template>
@@ -145,8 +146,8 @@ export default {
     this.$store.dispatch('post/getMyPosts')
   },
   methods: {
-    async getCreatePost(title) {
-      this.postType = await title
+    getCreatePost(title) {
+      this.postType = title
       this.createPost = true
     },
   },

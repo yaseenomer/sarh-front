@@ -1,6 +1,8 @@
 <script>
 import { mapGetters } from 'vuex'
+import shareCompany from '~/components/widget/company/shareCompany'
 export default {
+  components: { shareCompany },
   data() {
     return {
       rating: 3,
@@ -20,13 +22,28 @@ export default {
           <v-card-text>
             <v-row>
               <v-spacer />
-              <!-- <share-company
-                  :company="company"
-                  :them="{ color: '#d1d8e0', small: true, x_small: false }"
-                /> -->
+              <v-btn color="orange lighten-4" fab small elevation="0">
+                <v-icon color="orange">mdi-alert</v-icon>
+              </v-btn>
+              <share-company
+                :data="{
+                  title: company.profile.full_name,
+                  description:
+                    company.profile.about == null
+                      ? 'Information about the company will appear here after adding it'
+                      : company.profile.about,
+                  url: `https://sarh.ae/company/${$route.params.id}`,
+                }"
+                :them="{
+                  color: 'blue lighten-4',
+                  small: true,
+                  x_small: false,
+                }"
+              />
+
               <v-btn
                 fab
-                color="#d1d8e0"
+                color="red lighten-4"
                 elevation="0"
                 small
                 class="mx-1"

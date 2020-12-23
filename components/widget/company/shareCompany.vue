@@ -47,7 +47,7 @@ export default {
         v-for="network in networks"
         :key="network.network"
         :network="network.network"
-        url="https://sarh.ae"
+        :url="data.url"
         :title="data.title"
         :description="data.description"
         quote="FIND BEST COMPANY AND PROFESSIONALS CONSULTING ON SARH"

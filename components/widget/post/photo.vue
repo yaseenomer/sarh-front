@@ -1,7 +1,15 @@
 <template>
   <v-row>
     <v-col v-for="post in images" :key="post.id" cols="12" md="4">
-      <v-card class="rounded-xl" outlined>
+      <v-card
+        class="rounded-xl"
+        outlined
+        hover
+        :to="{
+          name: 'posts-post',
+          query: { post: post.id, type: 'image' },
+        }"
+      >
         <v-img
           class="rounded-xl m-1"
           height="400"
@@ -31,41 +39,10 @@
                 elevation="0"
                 color="red lighten-5"
                 fab
-                @click="like(post)"
               >
                 <v-icon color="#EA2027">{{
                   post.is_Like ? 'mdi-heart' : 'mdi-heart-outline'
                 }}</v-icon>
-              </v-btn>
-            </v-row>
-            <v-row>
-              <v-spacer />
-              <share-company
-                :data="{
-                  title: post.user_id ? post.user_id.name : 'company name',
-                  description: post.file,
-                }"
-                :them="{
-                  color: 'light-blue lighten-5',
-                  small: false,
-                  x_small: true,
-                }"
-              />
-            </v-row>
-            <v-row>
-              <v-spacer />
-              <v-btn
-                :to="{
-                  name: 'posts-post',
-                  query: { post: post.id, type: 'image' },
-                }"
-                fab
-                x-small
-                color="teal lighten-5"
-                elevation="0"
-                class="ma-2"
-              >
-                <v-icon color="teal">mdi-eye-outline</v-icon>
               </v-btn>
             </v-row>
           </v-container>
@@ -75,9 +52,7 @@
   </v-row>
 </template>
 <script>
-import shareCompany from '~/components/widget/company/shareCompany'
 export default {
-  components: { shareCompany },
   props: {
     images: { type: Array, required: true },
   },
@@ -89,9 +64,6 @@ export default {
   methods: {
     onErrorImage() {
       this.failed_image = true
-    },
-    like(post) {
-      this.$store.dispatch('post/likePost', post)
     },
   },
 }

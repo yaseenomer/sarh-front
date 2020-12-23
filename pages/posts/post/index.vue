@@ -4,13 +4,12 @@
       <v-breadcrumbs :items="items"> </v-breadcrumbs>
     </v-col>
     <v-col cols="12" md="12">
-      <v-card class="rounded-xl" elevation="0">
-        <v-img
-          class="rounded-xl"
+      <v-card class="rounded-xl" outlined>
+        <img
+          class="rounded-xl pa-2"
           :src="post ? post.file : ''"
           width="100%"
-          max-height="600"
-          lazy-src="https://picsum.photos/id/11/10/6"
+          height="600"
         />
         <v-card-text v-if="post">
           <v-container>
@@ -34,7 +33,8 @@
                   <share-company
                     :data="{
                       title: post.user_id ? post.user_id.name : 'company name',
-                      description: post.file,
+                      description: post.title,
+                      url: `https://sarh.ae/posts/post?post=${post.id}&type=${$route.query.type}`,
                     }"
                     :them="{
                       color: 'blue lighten-4',
@@ -48,9 +48,9 @@
                     elevation="0"
                     color="orange lighten-4"
                     fab
-                    @click="like(post)"
+                    @click="reportFormStatus = true"
                   >
-                    <v-icon color="orange">mdi-alert-outline</v-icon>
+                    <v-icon color="orange">mdi-alert</v-icon>
                   </v-btn>
                   <v-btn
                     class="mx-2"
@@ -73,16 +73,29 @@
         </v-card-text>
       </v-card>
     </v-col>
+    <!-- registration form start -------------------------------------------------->
+    <div justify="center">
+      <v-dialog v-model="reportFormStatus" max-width="400px">
+        <report-form
+          type="post"
+          :object-id="$route.query.post"
+          @close-report-form="reportFormStatus = false"
+        />
+      </v-dialog>
+    </div>
+    <!-- registration form end ---------------------------------------------------->
   </v-row>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import shareCompany from '~/components/widget/company/shareCompany'
+import reportForm from '~/components/widget/report'
 export default {
-  components: { shareCompany },
+  components: { shareCompany, reportForm },
   data() {
     return {
+      reportFormStatus: false,
       items: [
         {
           text: 'Home',
