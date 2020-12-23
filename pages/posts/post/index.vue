@@ -73,17 +73,17 @@
         </v-card-text>
       </v-card>
     </v-col>
-    <!-- registration form start -------------------------------------------------->
+    <!-- report form start -------------------------------------------------->
     <div justify="center">
       <v-dialog v-model="reportFormStatus" max-width="400px">
         <report-form
           type="post"
-          :object-id="$route.query.post"
+          :object-id="$route.query.post.toString()"
           @close-report-form="reportFormStatus = false"
         />
       </v-dialog>
     </div>
-    <!-- registration form end ---------------------------------------------------->
+    <!-- report form end ---------------------------------------------------->
   </v-row>
 </template>
 

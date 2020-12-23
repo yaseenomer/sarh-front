@@ -49,13 +49,18 @@ export default {
             reason: this.reason,
             description: this.description,
           }
-          this.type === 'post'
-            ? (data.post_id = this.objectId)
-            : (data.company = this.objectId)
-
-          await this.$store.dispatch('account/sendReport', data)
-          this.loading = false
-          this.$emit('close-report-form')
+          if (this.type === 'post') {
+            data.post_id = this.objectId
+          } else {
+            data.company = this.objectId
+          }
+          try {
+            await this.$store.dispatch('account/sendReport', data)
+            this.loading = false
+            this.$emit('close-report-form')
+          } catch (e) {
+            console.log(20)
+          }
         }
       } else {
         this.$toast.error('please login ...')

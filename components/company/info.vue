@@ -1,11 +1,13 @@
 <script>
 import { mapGetters } from 'vuex'
 import shareCompany from '~/components/widget/company/shareCompany'
+import reportForm from '~/components/widget/report'
 export default {
-  components: { shareCompany },
+  components: { shareCompany, reportForm },
   data() {
     return {
       rating: 3,
+      reportFormStatus: false,
     }
   },
   computed: {
@@ -22,9 +24,6 @@ export default {
           <v-card-text>
             <v-row>
               <v-spacer />
-              <v-btn color="orange lighten-4" fab small elevation="0">
-                <v-icon color="orange">mdi-alert</v-icon>
-              </v-btn>
               <share-company
                 :data="{
                   title: company.profile.full_name,
@@ -40,6 +39,16 @@ export default {
                   x_small: false,
                 }"
               />
+
+              <v-btn
+                color="orange lighten-4"
+                fab
+                small
+                elevation="0"
+                @click="reportFormStatus = true"
+              >
+                <v-icon color="orange">mdi-alert</v-icon>
+              </v-btn>
 
               <v-btn
                 fab
@@ -76,7 +85,7 @@ export default {
                         <v-btn color="primary" outlined elevation="0" rounded>
                           <nuxt-link
                             :to="{
-                              name: 'community',
+                              name: '',
                               params: { isNew: true, user_id: company.id },
                             }"
                           >
@@ -152,6 +161,17 @@ export default {
       <v-col v-else cols="12" md="12">
         <v-skeleton-loader type="image" />
       </v-col>
+      <!-- report form start -------------------------------------------------->
+      <div justify="center">
+        <v-dialog v-model="reportFormStatus" max-width="400px">
+          <report-form
+            type="company"
+            :object-id="$route.params.id.toString()"
+            @close-report-form="reportFormStatus = false"
+          />
+        </v-dialog>
+      </div>
+      <!-- report form end ---------------------------------------------------->
     </v-row>
   </v-container>
 </template>
