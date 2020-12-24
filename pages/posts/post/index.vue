@@ -75,9 +75,9 @@
     </v-col>
     <!-- report form start -------------------------------------------------->
     <div justify="center">
-      <v-dialog v-model="reportFormStatus" max-width="400px">
+      <v-dialog v-model="reportFormStatus" max-width="500px">
         <report-form
-          type="post"
+          object-type="post_id"
           :object-id="$route.query.post.toString()"
           @close-report-form="reportFormStatus = false"
         />

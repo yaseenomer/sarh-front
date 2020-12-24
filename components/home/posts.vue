@@ -2,7 +2,7 @@
   <v-row id="scrolling-techniques-4" class="overflow-y-auto">
     <v-col cols="12">
       <p
-        v-if="hasTitel"
+        v-if="!isProfile"
         class="primary--text text-center text-uppercase font-weight-bold"
       >
         {{ $t('home.Latestposts') }}
@@ -13,22 +13,12 @@
         <v-tab>{{ $t('home.Photos') }}</v-tab>
         <v-tab>{{ $t('home.Videos') }}</v-tab>
         <v-tab>{{ $t('home.Posts') }}</v-tab>
-        <v-tab v-if="hasComments">comments</v-tab>
+        <v-tab v-if="isProfile">map location</v-tab>
+        <v-tab v-if="isProfile">comments</v-tab>
         <v-tab-item>
           <v-container style="background-color: #f5f5f5">
-            <template v-if="images.length">
-              <photo :images="images" />
-            </template>
-            <template v-else>
-              <v-row>
-                <v-col v-for="i in 6" :key="i" cols="12" md="4">
-                  <v-skeleton-loader
-                    class="mx-auto rounded-xl"
-                    type="image"
-                  ></v-skeleton-loader>
-                </v-col>
-              </v-row>
-            </template>
+            <photo :images="images" v-if="images.length" />
+            <empty-component v-else msg="There are no pictures to display" />
             <v-row>
               <v-col cols="12">
                 <p class="text-center">
@@ -54,7 +44,8 @@
         </v-tab-item>
         <v-tab-item>
           <v-container style="background-color: #f5f5f5">
-            <videos :videos="videos" />
+            <videos v-if="videos.length" :videos="videos" />
+            <empty-component v-else msg="There are no videos to display" />
             <v-row>
               <v-col cols="12">
                 <p class="text-center">
@@ -79,7 +70,8 @@
         </v-tab-item>
         <v-tab-item>
           <v-container style="background-color: #f5f5f5">
-            <posts :posts="posts" />
+            <posts v-if="posts.length" :posts="posts" />
+            <empty-component v-else msg="There are no posts to display" />
             <v-row>
               <v-col cols="12">
                 <p class="text-center">
@@ -103,9 +95,28 @@
             </v-row>
           </v-container>
         </v-tab-item>
-        <v-tab-item v-if="hasComments">
-          <create-comment :company-id="companyId" />
-          <comments :company-id="companyId" />
+        <v-tab-item v-if="isProfile">
+          <v-container style="background-color: #f5f5f5">
+            <v-row>
+              <v-col>
+                <div v-if="company.profile.location">
+                  <show-map :location="company.profile.location" />
+                </div>
+                <div v-else>
+                  <v-row justify="center">
+                    <v-icon size="100">mdi-map-marker-off</v-icon>
+                  </v-row>
+                  <v-row justify="center">
+                    <p class="font-weight-light">not have any location yet</p>
+                  </v-row>
+                </div>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-tab-item>
+        <v-tab-item v-if="isProfile">
+          <create-comment :company-id="company.id" />
+          <comments :company-id="company.id" />
         </v-tab-item>
       </v-tabs>
     </v-col>
@@ -118,15 +129,24 @@ import videos from '~/components/widget/post/video'
 import posts from '~/components/widget/post/posts'
 import comments from '~/components/company/comments'
 import createComment from '~/components/widget/comment/createComment'
+import showMap from '~/components/profile/company/map/show'
+import emptyComponent from '~/components/widget/empty'
 export default {
-  components: { photo, videos, posts, comments, createComment },
+  components: {
+    photo,
+    videos,
+    posts,
+    comments,
+    createComment,
+    showMap,
+    emptyComponent,
+  },
   props: {
     posts: { type: Array, required: true },
     videos: { type: Array, required: true },
     images: { type: Array, required: true },
-    hasTitel: { type: Boolean, required: false },
-    hasComments: { type: Boolean, required: false },
-    companyId: { type: String, required: false },
+    isProfile: { type: Boolean, required: true },
+    company: { type: Object, required: false },
   },
 }
 </script>

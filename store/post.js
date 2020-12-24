@@ -25,6 +25,11 @@ export const mutations = {
     state.videos = posts.filter((post) => post.type === 'video')
     state.images = posts.filter((post) => post.type === 'image')
   },
+  SET_RECENTLY_POSTS(state, posts) {
+    state.images = posts.images
+    state.posts = posts.posts
+    state.videos = posts.videos
+  },
   SET_MY_POSTS: (state, posts) => (state.myPosts = posts),
   SET_NEW_POST: (state, post) => {
     if (post.type === 'post') {
@@ -55,6 +60,10 @@ export const actions = {
   async getPosts({ commit }) {
     const posts = await this.$axios.get('operation/apiGetPost/20')
     commit('SET_POSTS', posts.data.data)
+  },
+  async getPostsRecentlyAdded({ commit }) {
+    const posts = await this.$axios.get('operation/apiPostRecentlyAdded')
+    commit('SET_RECENTLY_POSTS', posts.data.data)
   },
 
   async getPost({ commit }, id) {

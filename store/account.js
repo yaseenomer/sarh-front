@@ -56,13 +56,12 @@ export const actions = {
   },
 
   async sendReport(context, data) {
-    if (data.post_id) {
-      await this.$axios
-        .post('operation/apiReport/post', data)
-        .then(() => this.$toast.success('send report success'))
-        .catch(() => this.$toast.error('something error '))
-      return true
-    }
+    const url = data.company ? 'company' : 'post'
+    await this.$axios
+      .post(`operation/apiReport/${url}`, data)
+      .then(() => this.$toast.success('send report success'))
+      .catch(() => this.$toast.error('something error '))
+    return true
   },
 }
 

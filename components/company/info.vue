@@ -1,13 +1,13 @@
 <script>
 import { mapGetters } from 'vuex'
 import shareCompany from '~/components/widget/company/shareCompany'
-import reportForm from '~/components/widget/report'
+import reportFormCompany from '~/components/widget/report'
 export default {
-  components: { shareCompany, reportForm },
+  components: { shareCompany, reportFormCompany },
   data() {
     return {
       rating: 3,
-      reportFormStatus: false,
+      reportFormOpen: false,
     }
   },
   computed: {
@@ -45,7 +45,7 @@ export default {
                 fab
                 small
                 elevation="0"
-                @click="reportFormStatus = true"
+                @click="reportFormOpen = true"
               >
                 <v-icon color="orange">mdi-alert</v-icon>
               </v-btn>
@@ -161,17 +161,15 @@ export default {
       <v-col v-else cols="12" md="12">
         <v-skeleton-loader type="image" />
       </v-col>
-      <!-- report form start -------------------------------------------------->
-      <div justify="center">
-        <v-dialog v-model="reportFormStatus" max-width="400px">
-          <report-form
-            type="company"
-            :object-id="$route.params.id.toString()"
-            @close-report-form="reportFormStatus = false"
-          />
-        </v-dialog>
-      </div>
-      <!-- report form end ---------------------------------------------------->
     </v-row>
+    <div justify="center">
+      <v-dialog v-model="reportFormOpen" max-width="500px">
+        <report-form-company
+          object-type="company"
+          :object-id="$route.params.id"
+          @close-report-form="reportFormOpen = false"
+        />
+      </v-dialog>
+    </div>
   </v-container>
 </template>

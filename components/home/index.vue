@@ -1,6 +1,11 @@
 <template>
   <div>
-    <posts :posts="posts" :images="images" :videos="videos" :has-titel="true" />
+    <posts
+      :posts="posts"
+      :images="images"
+      :videos="videos"
+      :is-profile="false"
+    />
     <companies />
   </div>
 </template>
@@ -19,7 +24,7 @@ export default {
     }),
   },
   created() {
-    this.$store.dispatch('post/getPosts')
+    this.$store.dispatch('post/getPostsRecentlyAdded')
   },
 }
 </script>

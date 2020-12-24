@@ -5,7 +5,7 @@ import { required } from 'vuelidate/lib/validators'
 export default {
   mixins: [validationMixin],
   props: {
-    type: { type: String, required: true },
+    objectType: { type: String, required: true },
     objectId: { type: String, required: true },
   },
   data() {
@@ -42,25 +42,17 @@ export default {
   methods: {
     async sendReport() {
       if (this.$auth.loggedIn) {
-        await this.$v.$touch()
+        this.$v.$touch()
         if (!this.$v.$invalid) {
-          this.loading = true
           const data = {
             reason: this.reason,
             description: this.description,
           }
-          if (this.type === 'post') {
-            data.post_id = this.objectId
-          } else {
-            data.company = this.objectId
-          }
-          try {
-            await this.$store.dispatch('account/sendReport', data)
-            this.loading = false
-            this.$emit('close-report-form')
-          } catch (e) {
-            console.log(20)
-          }
+          data[this.objectType] = await this.objectId
+          this.loading = true
+          await this.$store.dispatch('account/sendReport', data)
+          this.loading = false
+          this.$emit('close-report-form')
         }
       } else {
         this.$toast.error('please login ...')
