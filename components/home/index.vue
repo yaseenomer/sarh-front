@@ -1,9 +1,15 @@
 <template>
   <div>
+    <v-row v-if="loading">
+      <v-col v-for="i in 3" :key="i" md="4">
+        <v-skeleton-loader type="image"></v-skeleton-loader>
+      </v-col>
+    </v-row>
     <posts
-      :posts="posts"
-      :images="images"
-      :videos="videos"
+      v-else
+      :posts="posts.slice(0, 3)"
+      :images="images.slice(0, 3)"
+      :videos="videos.slice(0, 3)"
       :is-profile="false"
     />
     <companies />
@@ -16,6 +22,11 @@ import posts from '~/components/home/posts'
 import companies from '~/components/home/companies'
 export default {
   components: { posts, companies },
+  data() {
+    return {
+      loading: false,
+    }
+  },
   computed: {
     ...mapGetters({
       posts: 'post/posts',
@@ -23,8 +34,10 @@ export default {
       images: 'post/images',
     }),
   },
-  created() {
-    this.$store.dispatch('post/getPostsRecentlyAdded')
+  async created() {
+    this.loading = true
+    await this.$store.dispatch('post/getPostsRecentlyAdded')
+    this.loading = false
   },
 }
 </script>

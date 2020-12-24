@@ -1,6 +1,11 @@
 <template>
   <v-row>
-    <v-col cols="12" md="12">
+    <template v-if="loading">
+      <v-col v-for="i in 6" :key="i" cols="12" md="4">
+        <v-skeleton-loader class="rounded-xl" type="image"></v-skeleton-loader>
+      </v-col>
+    </template>
+    <v-col v-else cols="12" md="12">
       <p class="primary--text text-center text-uppercase font-weight-bold">
         {{ $t('home.Companies') }}
       </p>
@@ -11,18 +16,8 @@
         <v-tab>{{ $t('home.Random') }}</v-tab>
         <v-tab-item>
           <v-container style="background-color: #f5f5f5">
-            <template v-if="recentlyAdded.length">
+            <template>
               <company :companies="recentlyAdded" />
-            </template>
-            <template v-else>
-              <v-row>
-                <v-col v-for="i in 12" :key="i" cols="12" md="4">
-                  <v-skeleton-loader
-                    class="rounded-xl"
-                    type="image"
-                  ></v-skeleton-loader>
-                </v-col>
-              </v-row>
             </template>
           </v-container>
         </v-tab-item>
@@ -53,6 +48,11 @@ import { mapGetters } from 'vuex'
 import company from '~/components/widget/company/company'
 export default {
   components: { company },
+  data() {
+    return {
+      loading: false,
+    }
+  },
   computed: {
     ...mapGetters({
       companies: 'company/companies',
@@ -61,9 +61,11 @@ export default {
       recommendedByUs: 'company/recommendedByUs',
     }),
   },
-  created() {
-    this.$store.dispatch('company/getCompanies')
-    this.$store.dispatch('company/getRecommendedByUs')
+  async created() {
+    this.loading = true
+    await this.$store.dispatch('company/getCompanies')
+    await this.$store.dispatch('company/getRecommendedByUs')
+    this.loading = false
   },
 }
 </script>
