@@ -6,10 +6,11 @@
     <v-col cols="12" md="12">
       <v-card class="rounded-xl" outlined>
         <img
-          class="rounded-xl pa-2"
+          class="rounded-xl pa-2 img"
           :src="post ? post.file : ''"
           width="100%"
           height="600"
+          :lazy-src="`https://picsum.photos/10/6?image=${5 * 5 + 10}`"
         />
         <v-card-text v-if="post">
           <v-container>

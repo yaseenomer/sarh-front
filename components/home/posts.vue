@@ -17,7 +17,7 @@
         <v-tab v-if="isProfile">comments</v-tab>
         <v-tab-item>
           <v-container style="background-color: #f5f5f5">
-            <photo :images="images" v-if="images.length" />
+            <photo v-if="images.length" :images="images" />
             <empty-component v-else msg="There are no pictures to display" />
             <v-row>
               <v-col cols="12">
@@ -115,8 +115,8 @@
           </v-container>
         </v-tab-item>
         <v-tab-item v-if="isProfile">
-          <create-comment :company-id="company.id" />
-          <comments :company-id="company.id" />
+          <create-comment :company-id="company.id.toString()" />
+          <comments :company-id="company.id.toString()" />
         </v-tab-item>
       </v-tabs>
     </v-col>

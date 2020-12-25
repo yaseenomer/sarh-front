@@ -166,7 +166,7 @@ export default {
       <v-dialog v-model="reportFormOpen" max-width="500px">
         <report-form-company
           object-type="company"
-          :object-id="$route.params.id"
+          :object-id="$route.params.id.toString()"
           @close-report-form="reportFormOpen = false"
         />
       </v-dialog>
