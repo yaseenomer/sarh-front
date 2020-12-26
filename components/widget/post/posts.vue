@@ -11,14 +11,12 @@
           query: { post: post.id, type: 'post' },
         }"
       >
-        <v-img
+        <img
           class="rounded-xl m-1"
           height="250"
-          :src="failed_image ? '/img/sarh.cover.jpg' : post.file"
-          aspect-ratio="1"
-          @error="onErrorImage"
-        >
-        </v-img>
+          :src="post.file"
+          width="100%"
+        />
         <v-card-text style="height: 80px">
           <h5 class="text-truncate font-weight-bold">{{ post.title }}</h5>
           <p class="text-truncate">{{ post.content }}</p>
@@ -55,16 +53,6 @@
 export default {
   props: {
     posts: { type: Array, required: true },
-  },
-  data() {
-    return {
-      failed_image: false,
-    }
-  },
-  methods: {
-    onErrorImage() {
-      this.failed_image = true
-    },
   },
 }
 </script>

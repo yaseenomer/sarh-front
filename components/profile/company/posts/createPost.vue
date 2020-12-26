@@ -13,6 +13,7 @@
     </v-card-title>
     <v-card-text>
       <v-text-field
+        v-if="postType !== 'image'"
         v-model="title"
         :label="$t('posts.title')"
         outlined
@@ -23,6 +24,7 @@
       ></v-text-field>
 
       <v-textarea
+        v-if="postType !== 'image'"
         v-model="content"
         :label="$t('posts.content')"
         outlined
@@ -31,11 +33,7 @@
         @input="$v.content.$touch()"
         @blur="$v.content.$touch()"
       ></v-textarea>
-      <v-file-input
-        v-if="postType !== 'post'"
-        v-model="file"
-        :label="postType"
-      ></v-file-input>
+      <v-file-input :rules="file" :label="postType"></v-file-input>
     </v-card-text>
     <v-card-actions>
       <v-btn
@@ -65,7 +63,7 @@ export default {
     return {
       title: '',
       content: '',
-      file: [],
+      file: [(v) => !!v || 'File is required'],
       saving: false,
     }
   },
@@ -94,24 +92,34 @@ export default {
 
     async savePost() {
       await this.$v.$touch()
-      if (!this.$v.$invalid) {
-        const fd = new FormData()
-        fd.append('title', this.title)
-        fd.append('content', this.title)
-        fd.append('type', this.postType)
-        fd.append('title', this.title)
-        if (this.postType !== 'post') {
+      const fd = new FormData()
+      if (this.postType === 'image') {
+        if (this.file) {
+          console.log(this.file)
+          // fd.append('type', this.postType)
+          // fd.append('file', this.file)
+          // this.storePost(fd)
+        }
+      } else {
+        if (!this.$v.$invalid) {
+          fd.append('title', this.title)
+          fd.append('content', this.title)
+          fd.append('type', this.postType)
+          fd.append('title', this.title)
           fd.append('file', this.file)
+          this.storePost(fd)
         }
-        try {
-          this.saving = true
-          await this.$store.dispatch('post/createPost', fd)
-          this.saving = false
-          this.closeWindow()
-        } catch (e) {
-          this.$toast.error(e.response.data)
-          this.saving = false
-        }
+      }
+    },
+    async storePost(fd) {
+      try {
+        this.saving = true
+        await this.$store.dispatch('post/createPost', fd)
+        this.saving = false
+        this.closeWindow()
+      } catch (e) {
+        this.$toast.error(e.response.data)
+        this.saving = false
       }
     },
   },

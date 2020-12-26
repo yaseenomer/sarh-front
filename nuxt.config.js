@@ -40,9 +40,9 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth',
+    'nuxt-i18n',
     '@nuxtjs/proxy',
     '@nuxtjs/toast',
-    'nuxt-i18n',
     'vue-social-sharing/nuxt',
     [
       'nuxt-google-maps-module',
@@ -79,7 +79,7 @@ export default {
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
-    rtl: true,
+    rtl: false,
     theme: {
       dark: false,
       themes: {
@@ -106,12 +106,12 @@ export default {
   },
   i18n: {
     locales: ['en', 'ar'],
-    defaultLocale: 'ar',
-    strategy: 'no_prefix',
+    defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',
       messages: { en, ar },
     },
+    strategy: 'no_prefix',
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

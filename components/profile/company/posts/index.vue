@@ -29,7 +29,7 @@
                 class="mx-2"
                 rounded
                 small
-                @click="getCreatePost(null)"
+                @click="getCreatePost('post')"
               >
                 <v-icon>mdi-plus</v-icon>
                 add post
@@ -56,7 +56,7 @@
                 class="mx-2"
                 rounded
                 small
-                @click="getCreatePost('image')"
+                @click="createImagePost = true"
               >
                 <v-icon>mdi-plus</v-icon>
                 add post with image
@@ -106,6 +106,14 @@
         </v-dialog>
       </div>
       <!-- post form end ----------------------------------------------------->
+
+      <!-- post form start ------------------------------------------------->
+      <div justify="center">
+        <v-dialog v-model="createImagePost" max-width="700px">
+          <create-image-post @close-create-post="createImagePost = false" />
+        </v-dialog>
+      </div>
+      <!-- post form end ----------------------------------------------------->
     </v-row>
   </v-container>
 </template>
@@ -116,12 +124,14 @@ import postsCard from '~/components/widget/post/posts'
 import videoCard from '~/components/widget/post/video'
 import createPost from '~/components/profile/company/posts/createPost'
 import { mapGetters } from 'vuex'
+import createImagePost from '~/components/profile/company/posts/createImagePost'
 export default {
   components: {
     photoCard,
     postsCard,
     videoCard,
     createPost,
+    createImagePost,
   },
 
   async asyncData({ store }) {
@@ -133,6 +143,7 @@ export default {
   },
   data() {
     return {
+      createImagePost: false,
       createPost: false,
       postType: '',
     }

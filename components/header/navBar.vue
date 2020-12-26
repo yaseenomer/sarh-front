@@ -110,6 +110,9 @@ export default {
       return this.$auth.user.type == 2 ? 'company profile' : 'user profile'
     },
   },
+  created() {
+    this.$i18n.locale = 'en'
+  },
   methods: {
     async logOut() {
       this.logOutLoading = await true
