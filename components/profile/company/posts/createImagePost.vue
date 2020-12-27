@@ -2,7 +2,7 @@
   <v-card>
     <v-card-title>publish image</v-card-title>
     <v-card-text>
-      <v-file-input :rules="rules" label="image" ></v-file-input>
+      <v-file-input :rules="rules" label="image"></v-file-input>
     </v-card-text>
     <v-card-actions>
       <v-btn
