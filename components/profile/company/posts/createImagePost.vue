@@ -2,7 +2,12 @@
   <v-card>
     <v-card-title>publish image</v-card-title>
     <v-card-text>
-      <v-file-input :rules="rules" label="image" ></v-file-input>
+      <v-file-input
+        ref="myfile"
+        v-model="file"
+        :rules="rules"
+        label="image"
+      ></v-file-input>
     </v-card-text>
     <v-card-actions>
       <v-btn
@@ -26,12 +31,28 @@ export default {
   data() {
     return {
       saving: false,
-      rules: [(v) => !!v || 'File is required'],
+      rules: [(v) => !!v || 'file is required ...'],
+      file: null,
     }
   },
   methods: {
-    savePost() {
-      console.log(this.rules)
+    async savePost() {
+      if (this.$refs.myfile.valid) {
+        this.saving = true
+        const fd = new FormData()
+        fd.append('type', 'image')
+        fd.append('file', this.file)
+        try {
+          await this.$store.dispatch('post/createPost', fd)
+          this.saving = false
+          this.$emit('close-create-image-post')
+        } catch (e) {
+          this.saving = false
+          this.$toast.error('something error ... :(')
+        }
+      } else {
+        this.$toast.error('file is required ...')
+      }
     },
   },
 }

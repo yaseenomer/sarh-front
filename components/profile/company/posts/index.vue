@@ -107,10 +107,12 @@
       </div>
       <!-- post form end ----------------------------------------------------->
 
-      <!-- post form start ------------------------------------------------->
+      <!-- post with image  form start ------------------------------------------------->
       <div justify="center">
         <v-dialog v-model="createImagePost" max-width="700px">
-          <create-image-post @close-create-post="createImagePost = false" />
+          <create-image-post
+            @close-create-image-post="createImagePost = false"
+          />
         </v-dialog>
       </div>
       <!-- post form end ----------------------------------------------------->

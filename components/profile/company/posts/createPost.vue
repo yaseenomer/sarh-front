@@ -33,7 +33,7 @@
         @input="$v.content.$touch()"
         @blur="$v.content.$touch()"
       ></v-textarea>
-      <v-file-input :rules="file" :label="postType"></v-file-input>
+      <v-file-input v-model="files" :label="postType"></v-file-input>
     </v-card-text>
     <v-card-actions>
       <v-btn
@@ -63,7 +63,7 @@ export default {
     return {
       title: '',
       content: '',
-      file: [(v) => !!v || 'File is required'],
+      files: [],
       saving: false,
     }
   },
@@ -103,10 +103,9 @@ export default {
       } else {
         if (!this.$v.$invalid) {
           fd.append('title', this.title)
-          fd.append('content', this.title)
+          fd.append('content', this.content)
           fd.append('type', this.postType)
-          fd.append('title', this.title)
-          fd.append('file', this.file)
+          fd.append('file', this.files)
           this.storePost(fd)
         }
       }
