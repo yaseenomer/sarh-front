@@ -36,7 +36,15 @@
         ></v-text-field>
       </v-col>
       <v-col cols="12" md="1">
-        <v-btn dark rounded color="primary" large>
+        <v-btn
+          dark
+          rounded
+          color="primary"
+          large
+          @click="
+            $router.replace({ name: 'company-search', query: { activity: 55 } })
+          "
+        >
           <v-icon>mdi-magnify</v-icon>
           {{ $t('home.search') }}
         </v-btn>
