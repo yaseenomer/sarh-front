@@ -18,6 +18,21 @@
       </v-card-title>
       <v-card-text>
         <p class="font-weight-bold" v-text="quote.body" />
+        <v-expansion-panels v-if="quote.lpo" flat>
+          <v-expansion-panel>
+            <v-expansion-panel-header> lpo </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-card outlined class="my-2 rounded-xl">
+                <v-card-title>
+                  <span>{{ quote.lpo.subject }}</span>
+                  <v-spacer />
+                  <span>{{ quote.lpo.created_at }}</span>
+                </v-card-title>
+                <v-card-text>{{ quote.lpo.body }} </v-card-text>
+              </v-card>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
       </v-card-text>
       <v-card-actions>
         <v-btn text rounded>
@@ -41,7 +56,7 @@
           <v-icon color="primary">mdi-download</v-icon>
         </v-btn>
         <v-btn
-          v-if="$route.query.type === 'sent'"
+          v-if="$route.query.type === 'sent' && !quote.lpo"
           elevation="0"
           rounded
           color="blue lighten-4"

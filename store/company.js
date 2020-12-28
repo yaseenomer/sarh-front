@@ -81,6 +81,11 @@ export const actions = {
     }
   },
 
+  async getCompanyByActivity({ commit }, activity) {
+    const companies = await this.$axios.get('user/apiSearch/' + activity)
+    commit('setCompanies', companies.data.data)
+  },
+
   async getRecentlyAdded({ commit }) {
     const companies = await this.$axios.get('user/apiRecentlyAdded')
     commit('setRecentlyAdded', companies.data.data)
