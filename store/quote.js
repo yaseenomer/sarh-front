@@ -28,6 +28,8 @@ export const mutations = {
   SET_QUOTATIONS: (state, Qs) => (state.quotations = Qs),
 
   SET_NEW_QUOTATION: (state, Q) => state.quotations.unshift(Q),
+
+  SET_NEW_LPO: (state, lpo) => console.log(lpo),
 }
 
 export const actions = {
@@ -57,6 +59,11 @@ export const actions = {
   async sendQuotation({ commit }, quotation) {
     const Q = await this.$axios.post('operation/apiAddQuotation', quotation)
     commit('SET_NEW_QUOTATION', Q.data.data)
+  },
+
+  async sendLpo({ commit }, lpo) {
+    const newLpo = await this.$axios.post('operation/apiAddLpo', lpo)
+    commit('SET_NEW_LPO', newLpo.data.data)
   },
 
   // eslint-disable-next-line no-unused-vars

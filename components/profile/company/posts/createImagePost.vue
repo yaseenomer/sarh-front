@@ -2,12 +2,16 @@
   <v-card>
     <v-card-title>publish image</v-card-title>
     <v-card-text>
+<<<<<<< HEAD
       <v-file-input
         ref="myfile"
         v-model="file"
         :rules="rules"
         label="image"
       ></v-file-input>
+=======
+      <v-file-input :rules="rules" label="image"></v-file-input>
+>>>>>>> 76ddb4e69c370d1df3e45f2f3875b167ac8230b0
     </v-card-text>
     <v-card-actions>
       <v-btn

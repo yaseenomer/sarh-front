@@ -40,15 +40,44 @@
           <v-icon color="primary">mdi-paperclip</v-icon>
           <v-icon color="primary">mdi-download</v-icon>
         </v-btn>
+        <v-btn
+          v-if="$route.query.type === 'sent'"
+          elevation="0"
+          rounded
+          color="blue lighten-4"
+          small
+          @click="sendLpoAction(quote.id)"
+        >
+          <span class="primary--text">send lpo</span>
+          <v-icon color="primary">mdi-send</v-icon>
+        </v-btn>
       </v-card-actions>
     </v-card>
+    <!-- send lpo form start --------------------------------------------------------->
+    <div justify="center">
+      <v-dialog v-model="sendLpoForm" max-width="600px">
+        <send-lpo
+          :quotation-id="qoutationId.toString()"
+          @close-create-lpo-quote="sendLpoForm = false"
+        />
+      </v-dialog>
+    </div>
+    <!-- send lpo form end ----------------------------------------------------------->
   </div>
 </template>
 
 <script>
+import sendLpo from '~/components/profile/quoteation/sendLpo'
 export default {
   props: {
     quotations: { type: Array, required: true },
+  },
+  components: { sendLpo },
+  data() {
+    return {
+      qoutationId: 0,
+      sendLpoForm: false,
+    }
   },
   methods: {
     async downloadFile(id) {
@@ -59,6 +88,10 @@ export default {
       link.download = 'quotation'
       link.click()
       URL.revokeObjectURL(link.href)
+    },
+    sendLpoAction(id) {
+      this.qoutationId = id
+      this.sendLpoForm = true
     },
   },
 }

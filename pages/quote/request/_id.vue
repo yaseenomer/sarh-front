@@ -1,10 +1,10 @@
 <template>
-  <v-row v-if="RQ">
+  <v-row>
     <v-col cols="12" md="12">
       <v-breadcrumbs :items="items"> </v-breadcrumbs>
     </v-col>
     <v-col cols="12" md="9">
-      <v-card flat>
+      <v-card v-if="!loading" flat>
         <v-card-title>
           <span class="title font-weight-light primary--text">{{
             RQ.subject
@@ -40,9 +40,10 @@
           <quotaion-card :quotations="Qs" />
         </v-card-text>
       </v-card>
+      <v-skeleton-loader v-else type="card" />
     </v-col>
     <v-col cols="12" md="3">
-      <v-card flat>
+      <v-card v-if="!loading" flat>
         <v-card-text>
           <v-list>
             <v-list-item>
@@ -85,11 +86,15 @@
           </v-list>
         </v-card-text>
       </v-card>
+      <template v-else>
+        <v-skeleton-loader v-for="i in 4" :key="i" type="list-item" />
+      </template>
     </v-col>
     <!-- registration form start -------------------------------------------------->
     <div justify="center">
       <v-dialog v-model="createQuote" max-width="700px">
         <create-quote
+          v-if="RQ"
           :inquiry-id="RQ.id.toString()"
           @close-create-quote="createQuote = false"
         />
@@ -106,6 +111,7 @@ export default {
   components: { createQuote, quotaionCard },
   data() {
     return {
+      loading: false,
       items: [
         {
           text: 'Home',
@@ -134,9 +140,11 @@ export default {
     }),
   },
 
-  created() {
-    this.$store.dispatch('quote/getMyRequestQuotationDetails', this.id)
-    this.$store.dispatch('quote/getQuotations', this.id)
+  async created() {
+    this.loading = true
+    await this.$store.dispatch('quote/getMyRequestQuotationDetails', this.id)
+    await this.$store.dispatch('quote/getQuotations', this.id)
+    this.loading = false
   },
 }
 </script>

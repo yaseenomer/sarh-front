@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      <p>{{ $t('quotation.createquotation') }}</p>
+      <p>send lpo</p>
       <v-spacer />
       <v-btn icon @click="closeWindow">
         <v-icon>mdi-window-close</v-icon>
@@ -21,7 +21,7 @@
 
       <v-textarea
         v-model="body"
-        :label="$t('quotation.content')"
+        label="description"
         outlined
         dense
         :error-messages="bodyErrors"
@@ -29,7 +29,7 @@
         @input="$v.body.$touch()"
         @blur="$v.body.$touch()"
       />
-      <v-file-input v-model="file" outlined dense label="file"></v-file-input>
+      <v-file-input v-model="file" dense label="file"></v-file-input>
     </v-card-text>
     <v-card-actions>
       <v-btn
@@ -37,8 +37,8 @@
         elevation="0"
         :loading="saving"
         :disabled="saving"
-        @click="sendQuote"
-        >save</v-btn
+        @click="sendLpo"
+        >send</v-btn
       >
       <v-spacer />
       <v-btn elevation="0" @click="closeWindow">{{
@@ -55,7 +55,7 @@ import quotaitionValidation from '~/components/auth/mixin/quotaitionValidation'
 export default {
   mixins: [validationMixin, quotaitionValidation],
   props: {
-    inquiryId: { type: String, required: true },
+    quotationId: { type: String, required: true },
   },
   data() {
     return {
@@ -71,15 +71,15 @@ export default {
   },
   methods: {
     closeWindow() {
-      this.$emit('close-create-quote')
+      this.$emit('close-create-lpo-quote')
     },
 
-    async sendQuote() {
+    async sendLpo() {
       const fd = new FormData()
       fd.append('subject', this.subject)
       fd.append('body', this.body)
-      fd.append('inquiry_id', this.inquiryId)
-      fd.append('file', this.file, this.file.name)
+      fd.append('quotation_id', this.quotationId)
+      fd.append('file', this.file)
       this.$v.$touch()
 
       if (this.$v.$invalid) return false
@@ -87,7 +87,7 @@ export default {
       this.saving = true
 
       try {
-        await this.$store.dispatch('quote/sendQuotation', fd)
+        await this.$store.dispatch('quote/sendLpo', fd)
         this.saving = false
         this.closeWindow()
       } catch (e) {
