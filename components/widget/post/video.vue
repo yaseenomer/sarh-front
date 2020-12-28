@@ -2,7 +2,7 @@
 export default {
   props: {
     videos: { type: Array, required: true },
-  }
+  },
 }
 </script>
 <template>

@@ -69,10 +69,10 @@
 <script>
 import sendLpo from '~/components/profile/quoteation/sendLpo'
 export default {
+  components: { sendLpo },
   props: {
     quotations: { type: Array, required: true },
   },
-  components: { sendLpo },
   data() {
     return {
       qoutationId: 0,

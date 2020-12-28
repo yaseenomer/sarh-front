@@ -13,7 +13,7 @@
       <template #img="{ props }">
         <v-img
           v-bind="props"
-          gradient="to top right, rgba(212, 230, 241,.5), rgba(127, 179, 213,.5)"
+          gradient="to top right, rgba(100,115,201,.5), rgba(0,120,215,.5)"
         ></v-img>
       </template>
 

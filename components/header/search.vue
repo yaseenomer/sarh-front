@@ -3,10 +3,10 @@
     <v-row class="mx-auto">
       <v-col cols="12" md="8" offset-md="2">
         <v-icon color="primary">mdi-format-quote-open</v-icon>
-        <h1 class="primary--text text-uppercase font-weight-bold">
+        <h1 class="text-uppercase font-weight-bold">
           {{ $t('home.title-1') }}
         </h1>
-        <h3 class="primary--text text-uppercase font-weight-bold">
+        <h3 class="text-uppercase font-weight-bold">
           {{ $t('home.title-2') }}
         </h3>
         <p class="text-center">
@@ -29,9 +29,8 @@
       <v-col cols="12" md="5" offset-md="3">
         <v-text-field
           rounded
-          color="primary"
           outlined
-          filled
+          background-color="#dcdde1"
           :placeholder="$t('home.search')"
           dense
         ></v-text-field>
