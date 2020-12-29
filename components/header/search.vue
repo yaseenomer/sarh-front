@@ -27,24 +27,20 @@
     </v-row>
     <v-row no-gutters>
       <v-col cols="12" md="5" offset-md="3">
-        <v-text-field
+        <v-select
+          v-model="activity"
+          :items="$store.state.activity.activites"
+          item-text="name"
+          item-value="id"
           rounded
           outlined
           background-color="#dcdde1"
           :placeholder="$t('home.search')"
           dense
-        ></v-text-field>
+        ></v-select>
       </v-col>
       <v-col cols="12" md="1">
-        <v-btn
-          dark
-          rounded
-          color="primary"
-          large
-          @click="
-            $router.replace({ name: 'company-search', query: { activity: 55 } })
-          "
-        >
+        <v-btn dark rounded color="primary" large @click="searchCompany">
           <v-icon>mdi-magnify</v-icon>
           {{ $t('home.search') }}
         </v-btn>
@@ -52,3 +48,24 @@
     </v-row>
   </v-container>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      activity: null,
+    }
+  },
+  created() {
+    this.$store.dispatch('activity/getActivities')
+  },
+  methods: {
+    searchCompany() {
+      if (!this.activity) return this.$toast.info('select activity ...')
+      this.$router.replace({
+        name: 'company-search',
+        query: { activity: this.activity },
+      })
+    },
+  },
+}
+</script>
