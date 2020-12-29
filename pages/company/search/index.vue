@@ -56,6 +56,12 @@ import { mapGetters } from 'vuex'
 import companyCard from '~/components/widget/company/company'
 export default {
   components: { companyCard },
+  asyncData({ store }) {
+    const companies = store.state.company.companies
+    return {
+      companies,
+    }
+  },
   data() {
     return {
       loading: false,
@@ -76,7 +82,6 @@ export default {
   },
   computed: {
     ...mapGetters({
-      companies: 'company/companies',
       activity: 'activity/activity',
       cities: 'country/cities',
     }),
@@ -110,8 +115,7 @@ export default {
           }
         })
       })
-      this.filterCompanies = cs
-      console.log(this.filterCompanies)
+      this.companies = cs
     },
   },
 }
