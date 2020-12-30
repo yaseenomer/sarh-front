@@ -2,7 +2,7 @@
   <div>
     <v-textarea
       v-model="comment"
-      :label="$t('posts.content')"
+      label="type your comment"
       outlined
       rounded
       height="100"
@@ -41,7 +41,7 @@ export default {
     commentErrors() {
       const errors = []
       if (!this.$v.comment.$dirty) return errors
-      !this.$v.comment.required && errors.push('title is required.')
+      !this.$v.comment.required && errors.push('comment is required.')
       return errors
     },
   },

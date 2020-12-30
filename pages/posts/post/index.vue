@@ -65,10 +65,15 @@
       <v-skeleton-loader v-else type="card" />
       <v-card v-if="!loading" flat class="rounded-xl my-5">
         <v-card-title>
-          <span class="primary--text">comments</span>
+          <v-icon class="mx-1" color="primary"
+            >mdi-comment-text-multiple-outline</v-icon
+          >
+          <span class="primary--text">comments ({{ comments.length }})</span>
         </v-card-title>
         <v-card-text>
           <post-comment-form />
+          <post-comment-list v-if="comments.length" :comments="comments" />
+          <v-skeleton-loader v-else type="text"></v-skeleton-loader>
         </v-card-text>
       </v-card>
     </v-col>
@@ -91,9 +96,9 @@ import { mapGetters } from 'vuex'
 import shareCompany from '~/components/widget/company/shareCompany'
 import reportForm from '~/components/widget/report'
 import postCommentForm from '~/components/widget/post/postCommentForm'
-
+import postCommentList from '~/components/widget/post/postCommentList'
 export default {
-  components: { shareCompany, reportForm, postCommentForm },
+  components: { shareCompany, reportForm, postCommentForm, postCommentList },
   data() {
     return {
       reportFormStatus: false,
@@ -112,7 +117,11 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ image: `post/image`, po: `post/post` }),
+    ...mapGetters({
+      image: `post/image`,
+      po: `post/post`,
+      comments: 'post/comments',
+    }),
     post() {
       return this.$route.query.type === 'post' ? this.po : this.image
     },
