@@ -2,6 +2,7 @@ export const state = () => ({
   posts: [],
   videos: [],
   images: [],
+  comments: [],
   myPosts: null,
   image: null,
   post: null,
@@ -17,6 +18,8 @@ export const getters = {
   post: (state) => state.post,
   image: (state) => state.image,
   video: (state) => state.video,
+
+  comments: (state) => state.comments,
 }
 
 export const mutations = {
@@ -54,6 +57,9 @@ export const mutations = {
       state.video = post
     }
   },
+
+  SET_COMMENTS: (state, comments) => (state.comments = comments),
+  SET_NEW_COMMENT: (state, comment) => state.comments.unshift(comment),
 }
 
 export const actions = {
@@ -85,6 +91,15 @@ export const actions = {
   async createPost({ commit }, post) {
     const newPost = await this.$axios.post('operation/apiPost', post)
     commit('SET_NEW_POST', newPost.data.data)
+  },
+
+  async getCommentsByPost({ commit }, postId) {
+    const comments = await this.$axios.get('operation/apiComments/' + postId)
+    commit('SET_COMMENTS', comments.data.data)
+  },
+  async createComment({ commit }, commrnt) {
+    const newC = await this.$axios.post('operation/apiPostComment', commrnt)
+    commit('SET_NEW_COMMENT', newC.data.data)
   },
 
   async likePost(context, post) {

@@ -10,10 +10,12 @@ export const state = () => ({
   sharing: {},
   reportCompany: 0,
   reports: [],
+  searchCompanies: [],
 })
 
 export const getters = {
   companies: (state) => state.companies,
+  searchCompanies: (state) => state.searchCompanies,
   recentlyAdded: (state) => _.orderBy(state.companies, 'created_at', 'desc'),
   topRating: (state) => _.orderBy(state.companies, 'rate', 'desc'),
   recommendedByUs: (state) => state.recommendedByUs,
@@ -28,6 +30,7 @@ export const getters = {
 export const mutations = {
   setCompanies(state, companies) {
     state.companies = companies.filter((company) => company.type === 2)
+    state.searchCompanies = companies
   },
   setRecentlyAdded(state, recentlyAdded) {
     state.recentlyAdded = recentlyAdded
@@ -38,6 +41,9 @@ export const mutations = {
 
   setFavoriteCompany(state, favs) {
     state.favoriteCompany = favs
+  },
+  setFilterCompanies(state, companies) {
+    state.searchCompanies = companies
   },
   setCompany(state, company) {
     state.company = company

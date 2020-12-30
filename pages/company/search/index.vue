@@ -14,6 +14,7 @@
         <v-card v-else flat raised>
           <v-card-text>
             <company-card :companies="filterCompanies" />
+            <p v-if="!filterCompanies.length">no result found ...</p>
           </v-card-text>
         </v-card>
       </v-col>
@@ -36,8 +37,8 @@
               <v-subheader>sub activities</v-subheader>
               <v-checkbox
                 v-for="sub in activity.sub_activity"
-                v-model="activity_ids"
                 :key="sub.id"
+                v-model="activity_ids"
                 :label="sub.name"
                 :value="sub.id"
                 hide-details
@@ -56,12 +57,6 @@ import { mapGetters } from 'vuex'
 import companyCard from '~/components/widget/company/company'
 export default {
   components: { companyCard },
-  asyncData({ store }) {
-    const companies = store.state.company.companies
-    return {
-      companies,
-    }
-  },
   data() {
     return {
       loading: false,
@@ -84,13 +79,15 @@ export default {
     ...mapGetters({
       activity: 'activity/activity',
       cities: 'country/cities',
+      companies: 'company/companies',
+      filterCompanies: 'company/searchCompanies',
     }),
-    filterCompanies: {
+    comps: {
       get() {
         return this.companies
       },
-      set(c) {
-        return c
+      set(com) {
+        return com
       },
     },
   },
@@ -115,10 +112,8 @@ export default {
           }
         })
       })
-      this.companies = cs
+      this.$store.commit('company/setFilterCompanies', cs)
     },
   },
 }
 </script>
-
-<style scoped></style>

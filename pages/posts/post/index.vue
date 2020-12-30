@@ -4,7 +4,7 @@
       <v-breadcrumbs :items="items"> </v-breadcrumbs>
     </v-col>
     <v-col cols="12" md="12">
-      <v-card v-if="!loading" class="rounded-xl" outlined>
+      <v-card v-if="!loading" class="rounded-xl" flat>
         <img
           class="rounded-xl pa-2 img"
           :src="post ? post.file : ''"
@@ -63,6 +63,14 @@
         </v-card-actions>
       </v-card>
       <v-skeleton-loader v-else type="card" />
+      <v-card v-if="!loading" flat class="rounded-xl my-5">
+        <v-card-title>
+          <span class="primary--text">comments</span>
+        </v-card-title>
+        <v-card-text>
+          <post-comment-form />
+        </v-card-text>
+      </v-card>
     </v-col>
     <!-- report form start -------------------------------------------------->
     <div justify="center">
@@ -82,8 +90,10 @@
 import { mapGetters } from 'vuex'
 import shareCompany from '~/components/widget/company/shareCompany'
 import reportForm from '~/components/widget/report'
+import postCommentForm from '~/components/widget/post/postCommentForm'
+
 export default {
-  components: { shareCompany, reportForm },
+  components: { shareCompany, reportForm, postCommentForm },
   data() {
     return {
       reportFormStatus: false,
@@ -110,6 +120,7 @@ export default {
   async created() {
     this.loading = true
     await this.$store.dispatch('post/getPost', this.$route.query.post)
+    await this.$store.dispatch('post/getCommentsByPost', this.$route.query.post)
     this.loading = false
   },
   methods: {
