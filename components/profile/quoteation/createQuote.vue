@@ -79,7 +79,7 @@ export default {
       fd.append('subject', this.subject)
       fd.append('body', this.body)
       fd.append('inquiry_id', this.inquiryId)
-      fd.append('file', this.file, this.file.name)
+      fd.append('file', this.file)
       this.$v.$touch()
 
       if (this.$v.$invalid) return false

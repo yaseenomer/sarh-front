@@ -1,7 +1,8 @@
 <template>
   <v-card>
     <v-card-title>
-      <p>{{ $t('quotation.createquotation') }}</p>
+      <v-icon color="primary">mdi-message-text</v-icon>
+      <span class="primary--text mx-1">send request quotation</span>
       <v-spacer />
       <v-btn icon @click="closeWindow">
         <v-icon>mdi-window-close</v-icon>
@@ -14,36 +15,31 @@
         prepend-icon="mdi-alpha-s"
         :error-messages="subjectErrors"
         required
+        outlined
+        dense
         @input="$v.subject.$touch()"
         @blur="$v.subject.$touch()"
       ></v-text-field>
 
       <v-textarea
         v-model="body"
-        :label="$t('quotation.body')"
+        label="description"
         :error-messages="bodyErrors"
         prepend-icon="mdi-text-subject"
         required
+        outlined
+        dense
         @input="$v.body.$touch()"
         @blur="$v.body.$touch()"
       ></v-textarea>
-      <v-select
-        v-model="send_to"
-        :label="$t('quotation.sendto')"
-        prepend-icon="mdi-account-arrow-right-outline"
-        :items="items"
-        :error-messages="sendToErrors"
-        required
-        @input="$v.send_to.$touch()"
-        @blur="$v.send_to.$touch()"
-      />
-
       <v-select
         v-model="activity_id"
         :label="$t('quotation.activity')"
         prepend-icon="mdi-tag-outline"
         item-text="name"
         item-value="id"
+        outlined
+        dense
         :loading="!$store.state.activity.activites.length"
         :items="$store.state.activity.activites"
         :error-messages="activityErrors"
@@ -51,7 +47,19 @@
         @input="$v.activity_id.$touch()"
         @blur="$v.activity_id.$touch()"
       />
-      <v-file-input v-model="file" label="file"></v-file-input>
+      <v-select
+        v-model="send_to"
+        :label="$t('quotation.sendto')"
+        prepend-icon="mdi-account-arrow-right-outline"
+        :items="items"
+        :error-messages="sendToErrors"
+        required
+        outlined
+        dense
+        @input="$v.send_to.$touch()"
+        @blur="$v.send_to.$touch()"
+      />
+      <v-file-input v-model="file" label="file" outlined dense></v-file-input>
     </v-card-text>
     <v-card-actions>
       <v-btn
@@ -107,7 +115,6 @@ export default {
 
     async sendRequestQuote() {
       this.$v.$touch()
-
       if (this.$v.$invalid) return false
 
       const fd = new FormData()
@@ -122,6 +129,7 @@ export default {
       try {
         await this.$store.dispatch('quote/sendRequestQuotation', fd)
         this.saving = false
+        this.resetForm()
         this.closeWindow()
         this.$toast.success('send request successful')
       } catch (e) {
@@ -129,8 +137,21 @@ export default {
         this.$toast.error('something error')
       }
     },
+
+    resetForm() {
+      this.subject = ''
+      this.body = ''
+      this.send_to = ''
+      this.activity_id = ''
+      this.file = null
+      this.$v.$reset()
+    },
   },
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-icon {
+  color: blue;
+}
+</style>

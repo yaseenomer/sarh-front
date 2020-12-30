@@ -29,7 +29,11 @@ export const mutations = {
 
   SET_NEW_QUOTATION: (state, Q) => state.quotations.unshift(Q),
 
-  SET_NEW_LPO: (state, lpo) => console.log(lpo),
+  SET_NEW_LPO: (state, lpo) => {
+    const quote = state.quotations.find((q) => q.id == lpo.quotation_id)
+    console.log(quote)
+    quote.lpo = lpo
+  },
 }
 
 export const actions = {
@@ -56,6 +60,10 @@ export const actions = {
     await this.$axios.post('operation/apiAddInquiry', reqQuotation)
     dispatch('getMyRequestQuotationsSent')
   },
+  async sendRequestQuotationForCompany({ dispatch }, reqQuotation) {
+    await this.$axios.post('operation/apiAddInquiryCompany', reqQuotation)
+    dispatch('getMyRequestQuotationsSent')
+  },
   async sendQuotation({ commit }, quotation) {
     const Q = await this.$axios.post('operation/apiAddQuotation', quotation)
     commit('SET_NEW_QUOTATION', Q.data.data)
@@ -63,6 +71,7 @@ export const actions = {
 
   async sendLpo({ commit }, lpo) {
     const newLpo = await this.$axios.post('operation/apiAddLpo', lpo)
+    console.log(newLpo)
     commit('SET_NEW_LPO', newLpo.data.data)
   },
 

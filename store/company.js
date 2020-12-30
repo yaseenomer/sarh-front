@@ -107,7 +107,8 @@ export const actions = {
   },
 
   async getCompany({ commit }, id) {
-    const company = await this.$axios.get('user/apiCompany/' + id)
+    const uri = (await this.$auth.loggedIn) ? 'apiCompany' : 'apiGetCompany'
+    const company = await this.$axios.get(`user/${uri}/${id}`)
     commit('setCompany', company.data.data)
   },
 

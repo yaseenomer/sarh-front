@@ -2,12 +2,14 @@
 import { mapGetters } from 'vuex'
 import shareCompany from '~/components/widget/company/shareCompany'
 import reportFormCompany from '~/components/widget/report'
+import requestQuoteForCompany from '~/components/profile/quoteation/requestQuoteForCompany'
 export default {
-  components: { shareCompany, reportFormCompany },
+  components: { shareCompany, reportFormCompany, requestQuoteForCompany },
   data() {
     return {
       rating: 3,
       reportFormOpen: false,
+      requestFormOpen: false,
     }
   },
   computed: {
@@ -78,7 +80,12 @@ export default {
                     </v-row>
                     <v-row class="justify-center">
                       <p>
-                        <v-btn color="primary" rounded elevation="0">
+                        <v-btn
+                          color="primary"
+                          rounded
+                          elevation="0"
+                          @click="requestFormOpen = true"
+                        >
                           <v-icon>mdi-message-text-outline</v-icon>
                           inquery
                         </v-btn>
@@ -162,12 +169,22 @@ export default {
         <v-skeleton-loader type="image" />
       </v-col>
     </v-row>
+    <!--    report form dialog -->
     <div justify="center">
       <v-dialog v-model="reportFormOpen" max-width="500px">
         <report-form-company
           object-type="company"
           :object-id="$route.params.id.toString()"
           @close-report-form="reportFormOpen = false"
+        />
+      </v-dialog>
+    </div>
+    <!--    request quotation form dialog -->
+    <div justify="center">
+      <v-dialog v-model="requestFormOpen" max-width="500px">
+        <request-quote-for-company
+          :company-id="$route.params.id"
+          @close-create-request-quote-for-company="requestFormOpen = false"
         />
       </v-dialog>
     </div>
